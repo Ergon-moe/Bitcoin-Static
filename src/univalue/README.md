@@ -53,4 +53,4 @@ Commands to build the library stand-alone:
 make
 ```
 
-ERGN UniValue requires C++14 or later.
+ERGN UniValue requires C++17 or later.

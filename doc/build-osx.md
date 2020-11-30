@@ -45,7 +45,7 @@ If you want to run ZMQ tests with the test framework, you need the zmq python mo
 Build Bitcoin Static
 ------------------------
 
-Before you start building, please make sure that your compiler supports C++14.
+Before you start building, please make sure that your compiler supports C++17.
 
 Clone the Bitcoin Static source code and cd into `bitcoin-cash-node`
 
