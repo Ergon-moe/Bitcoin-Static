@@ -270,7 +270,7 @@ static UniValue getmininginfo(const Config &config,
 }
 
 // NOTE: Unlike wallet RPC (which use ERG values), mining RPCs follow GBT (BIP
-// 22) in using satoshi amounts
+// 22) in using fixoshi amounts
 static UniValue prioritisetransaction(const Config &config,
                                       const JSONRPCRequest &request) {
     if (request.fHelp || request.params.size() != 3) {
@@ -281,7 +281,7 @@ static UniValue prioritisetransaction(const Config &config,
                     {"txid", RPCArg::Type::STR_HEX, /* opt */ false, /* default_val */ "", "The transaction id."},
                     {"dummy", RPCArg::Type::NUM, /* opt */ false, /* default_val */ "", "API-Compatibility for previous API. Must be zero or null.\n"
             "                  DEPRECATED. For forward compatibility use named arguments and omit this parameter."},
-                    {"fee_delta", RPCArg::Type::NUM, /* opt */ false, /* default_val */ "", "The fee value (in satoshis) to add (or subtract, if negative).\n"
+                    {"fee_delta", RPCArg::Type::NUM, /* opt */ false, /* default_val */ "", "The fee value (in fixoshis) to add (or subtract, if negative).\n"
             "                  Note, that this value is not a fee rate. It is a value to modify absolute fee of the TX.\n"
             "                  The fee is not actually paid, only the algorithm for selecting transactions into a block\n"
             "                  considers the transaction as it would have paid a higher (or lower) fee."},
@@ -393,7 +393,7 @@ static UniValue getblocktemplatecommon(bool fLight, const Config &config, const 
               "             ,...\n"
               "         ],\n"
               "         \"fee\": n,                    (numeric) difference in "
-              "value between transaction inputs and outputs (in satoshis); for "
+              "value between transaction inputs and outputs (in fixoshis); for "
               "coinbase transactions, this is a negative number of the total "
               "collected block fees (i.e., not including the block subsidy); "
               "if this key is not present, fee is unknown and clients MUST NOT "
@@ -451,7 +451,7 @@ static UniValue getblocktemplatecommon(bool fLight, const Config &config, const 
             "  },\n"
             "  \"coinbasevalue\" : n,              (numeric) maximum allowable "
             "input to coinbase transaction, including the generation award and "
-            "transaction fees (in satoshis)\n"
+            "transaction fees (in fixoshis)\n"
             "  \"coinbasetxn\" : { ... },          (json object) information "
             "for coinbase transaction\n"
             "  \"target\" : \"xxxx\",                (string) The hash target\n"

@@ -50,7 +50,7 @@ QString BitcoinUnits::longName(int unit) {
 QString BitcoinUnits::shortName(int unit) {
     switch (unit) {
         case FIX:
-            return QString("sat");
+            return QString("fix");
         default:
             return longName(unit);
     }

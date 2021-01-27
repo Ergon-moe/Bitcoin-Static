@@ -159,7 +159,7 @@ public:
         netMagic[1] = 215;
         netMagic[2] = 51;
         netMagic[3] = 46;
-        nDefaultPort = 8333;
+        nDefaultPort = 2137;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
@@ -191,7 +191,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-
+        vSeeds.emplace_back("dnsseed.ergon.moe");
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<uint8_t>(1, 5);
         base58Prefixes[SECRET_KEY] = std::vector<uint8_t>(1, 128);

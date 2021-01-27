@@ -632,11 +632,11 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog *dialog) {
         tr("This label turns red if any recipient receives an amount smaller "
            "than the current dust threshold.");
 
-    // how many satoshis the estimated fee can vary per byte we guess wrong
+    // how many fixoshis the estimated fee can vary per byte we guess wrong
     double dFeeVary = (nBytes != 0) ? double(nPayFee / FIXOSHI) / nBytes : 0;
 
     QString toolTip4 =
-        tr("Can vary +/- %1 satoshi(s) per input.").arg(dFeeVary);
+        tr("Can vary +/- %1 fixoshi(s) per input.").arg(dFeeVary);
 
     l3->setToolTip(toolTip4);
     l4->setToolTip(toolTip4);

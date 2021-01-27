@@ -33,7 +33,7 @@ public:
     }
 
     static constexpr Amount zero() { return Amount(0); }
-    static constexpr Amount satoshi() { return Amount(1); }
+    static constexpr Amount fixoshi() { return Amount(1); }
 
     /**
      * Implement standard operators
@@ -148,14 +148,14 @@ public:
     }
 };
 
-static constexpr Amount FIXOSHI = Amount::satoshi();
+static constexpr Amount FIXOSHI = Amount::fixoshi();
 static constexpr Amount CASH = 100 * FIXOSHI;
 static constexpr Amount COIN = 100000000 * FIXOSHI;
 
 extern const std::string CURRENCY_UNIT;
 
 /**
- * No amount larger than this (in satoshi) is valid.
+ * No amount larger than this (in fixoshi) is valid.
  *
  * Note that this constant is *not* the total money supply, which in Bitcoin
  * currently happens to be less than 21,000,000 ERG for various reasons, but
