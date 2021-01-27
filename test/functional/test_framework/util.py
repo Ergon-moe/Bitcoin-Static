@@ -224,8 +224,8 @@ def assert_blocktemplate_equal(blocktemplate0, blocktemplate1):
 def check_json_precision():
     """Make sure json library being used does not lose precision converting ERG values"""
     n = Decimal("20000000.00000003")
-    satoshis = int(json.loads(json.dumps(float(n))) * 1.0e8)
-    if satoshis != 2000000000000003:
+    fixoshis = int(json.loads(json.dumps(float(n))) * 1.0e8)
+    if fixoshis != 2000000000000003:
         raise RuntimeError("JSON encode/decode loses precision")
 
 
@@ -249,7 +249,7 @@ def str_to_b64str(string):
     return b64encode(string.encode('utf-8')).decode('ascii')
 
 
-def satoshi_round(amount):
+def fixoshi_round(amount):
     return Decimal(amount).quantize(Decimal('0.00000001'), rounding=ROUND_DOWN)
 
 
@@ -592,7 +592,7 @@ def create_lots_of_big_transactions(node, txouts, utxos, num, fee):
         inputs = [{"txid": t["txid"], "vout": t["vout"]}]
         outputs = {}
         change = t['amount'] - fee
-        outputs[addr] = satoshi_round(change)
+        outputs[addr] = fixoshi_round(change)
         rawtx = node.createrawtransaction(inputs, outputs)
         newtx = rawtx[0:92]
         newtx = newtx + txouts

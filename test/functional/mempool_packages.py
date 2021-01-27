@@ -11,7 +11,7 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
-    satoshi_round,
+    fixoshi_round,
     sync_blocks,
     sync_mempools,
 )
@@ -34,7 +34,7 @@ class MempoolPackagesTest(BitcoinTestFramework):
     # Return amount sent
     def chain_transaction(self, node, parent_txid, vout,
                           value, fee, num_outputs):
-        send_value = satoshi_round((value - fee) / num_outputs)
+        send_value = fixoshi_round((value - fee) / num_outputs)
         inputs = [{'txid': parent_txid, 'vout': vout}]
         outputs = {}
         for i in range(num_outputs):
@@ -207,13 +207,13 @@ class MempoolPackagesTest(BitcoinTestFramework):
             descendant_fees += mempool[x]['fee']
             if (x == chain[-1]):
                 assert_equal(mempool[x]['modifiedfee'],
-                             mempool[x]['fee'] + satoshi_round(0.00002))
+                             mempool[x]['fee'] + fixoshi_round(0.00002))
                 assert_equal(mempool[x]['fees']['modified'],
-                             mempool[x]['fee'] + satoshi_round(0.00002))
+                             mempool[x]['fee'] + fixoshi_round(0.00002))
             assert_equal(mempool[x]['descendantfees'],
                          descendant_fees * COIN + 2000)
             assert_equal(mempool[x]['fees']['descendant'],
-                         descendant_fees + satoshi_round(0.00002))
+                         descendant_fees + fixoshi_round(0.00002))
 
         # TODO: check that node1's mempool is as expected
 
@@ -290,7 +290,7 @@ class MempoolPackagesTest(BitcoinTestFramework):
         value = utxo[0]['amount']
         vout = utxo[0]['vout']
 
-        send_value = satoshi_round((value - fee) / 2)
+        send_value = fixoshi_round((value - fee) / 2)
         inputs = [{'txid': txid, 'vout': vout}]
         outputs = {}
         for i in range(2):

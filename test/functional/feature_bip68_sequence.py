@@ -28,7 +28,7 @@ from test_framework.util import (
     assert_raises_rpc_error,
     connect_nodes,
     disconnect_nodes,
-    satoshi_round,
+    fixoshi_round,
     sync_blocks,
 )
 
@@ -94,7 +94,7 @@ class BIP68Test(BitcoinTestFramework):
         utxo = utxos[0]
 
         tx1 = CTransaction()
-        value = int(satoshi_round(utxo["amount"] - self.relayfee) * COIN)
+        value = int(fixoshi_round(utxo["amount"] - self.relayfee) * COIN)
 
         # Check that the disable flag disables relative locktime.
         # If sequence locks were used, this would require 1 block for the

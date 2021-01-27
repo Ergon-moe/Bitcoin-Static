@@ -25,7 +25,7 @@ from .messages import (
     ser_string,
 )
 from .txtools import pad_tx
-from .util import assert_equal, satoshi_round
+from .util import assert_equal, fixoshi_round
 
 # Create a block (with regtest difficulty)
 
@@ -171,13 +171,13 @@ def create_confirmed_utxos(node, count, age=101):
         inputs = []
         inputs.append({"txid": t["txid"], "vout": t["vout"]})
         outputs = {}
-        outputs[addr1] = satoshi_round(t['amount'] / 2)
-        outputs[addr2] = satoshi_round(t['amount'] / 2)
+        outputs[addr1] = fixoshi_round(t['amount'] / 2)
+        outputs[addr2] = fixoshi_round(t['amount'] / 2)
         raw_tx = node.createrawtransaction(inputs, outputs)
         ctx = FromHex(CTransaction(), raw_tx)
         fee = node.calculate_fee(ctx) // 2
         ctx.vout[0].nValue -= fee
-        # Due to possible truncation, we go ahead and take another satoshi in
+        # Due to possible truncation, we go ahead and take another fixoshi in
         # fees to ensure the transaction gets through
         ctx.vout[1].nValue -= fee + 1
         signed_tx = node.signrawtransactionwithwallet(ToHex(ctx))["hex"]
@@ -215,7 +215,7 @@ def send_big_transactions(node, utxos, num, fee_multiplier):
         txid = int(utxo['txid'], 16)
         ctx.vin.append(CTxIn(COutPoint(txid, int(utxo["vout"])), b""))
         ctx.vout.append(
-            CTxOut(int(satoshi_round(utxo['amount'] * COIN)),
+            CTxOut(int(fixoshi_round(utxo['amount'] * COIN)),
                    CScript([OP_DUP, OP_HASH160, addrHash, OP_EQUALVERIFY, OP_CHECKSIG])))
         for i in range(0, 127):
             ctx.vout.append(CTxOut(0, CScript(
