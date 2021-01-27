@@ -1,16 +1,16 @@
-Release Notes for Bitcoin Cash Node version 0.21.0
+Release Notes for Bitcoin Static version 0.21.0
 ==================================================
 
-Bitcoin Cash Node version 0.21.0 is now available from:
+Bitcoin Static version 0.21.0 is now available from:
 
   <https://bitcoincashnode.org>
 
-This is the first release of Bitcoin Cash Node as a drop-in replacement for Bitcoin ABC 0.21.0. It is based on Bitcoin ABC 0.21.0, with minimal changes necessary to disable the Infrastructure Funding Proposal (IFP) soft forks. For exchanges and users, this client will follow the longest chain whether it includes IFP soft forks or not. For miners, running this client ensures the `getblocktemplate` RPC call will return a block with version bits that vote "NO" for the IFP soft forks. Additionally, unlike Bitcoin ABC, `getblocktemplate` will *not* automatically insert IFP white-list addresses into the coinbase transaction.
+This is the first release of Bitcoin Static as a drop-in replacement for Bitcoin ABC 0.21.0. It is based on Bitcoin ABC 0.21.0, with minimal changes necessary to disable the Infrastructure Funding Proposal (IFP) soft forks. For exchanges and users, this client will follow the longest chain whether it includes IFP soft forks or not. For miners, running this client ensures the `getblocktemplate` RPC call will return a block with version bits that vote "NO" for the IFP soft forks. Additionally, unlike Bitcoin ABC, `getblocktemplate` will *not* automatically insert IFP white-list addresses into the coinbase transaction.
 
-Minimal changes from Bitcoin ABC 0.21.0 to Bitcoin Cash Node 0.21.0:
+Minimal changes from Bitcoin ABC 0.21.0 to Bitcoin Static 0.21.0:
 - All IFP soft fork logic, signaling logic and the hard-coded whitelist have been removed.
-- Rebranding from Bitcoin ABC to Bitcoin Cash Node.
-- Qt GUI settings are automatically copied from Bitcoin ABC on first use of Bitcoin Cash Node.
+- Rebranding from Bitcoin ABC to Bitcoin Static.
+- Qt GUI settings are automatically copied from Bitcoin ABC on first use of Bitcoin Static.
 
 _Note regarding BIP9 and `getblockchaininfo` below: BIP9 is inactive due to no available proposals to vote on and it may be removed in a future release._
 
@@ -45,7 +45,7 @@ At the MTP time of 1589544000 (May 15, 2020 12:00:00 UTC) the following behavior
 Usage recommendations
 ---------------------
 
-We recommend Bitcoin Cash Node 0.21.0 as a drop-in replacement for ABC 0.21.0.
+We recommend Bitcoin Static 0.21.0 as a drop-in replacement for ABC 0.21.0.
 
 The files in this release contain some resource links such as email addresses
 (e.g. info@bitcoincashnode.org) which are still being brought into operation and
@@ -56,4 +56,4 @@ patience and will advise when ready via the project's communication channels
 Regressions
 -----------
 
-Bitcoin Cash Node 0.21.0 does not introduce any known regressions compared to ABC 0.21.0.
+Bitcoin Static 0.21.0 does not introduce any known regressions compared to ABC 0.21.0.

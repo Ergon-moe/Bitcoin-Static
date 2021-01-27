@@ -1,19 +1,19 @@
-# Release Notes for Bitcoin Cash Node version 22.1.0
+# Release Notes for Bitcoin Static version 22.1.0
 
-Bitcoin Cash Node version 22.1.0 is now available from:
+Bitcoin Static version 22.1.0 is now available from:
 
   <https://bitcoincashnode.org>
 
 ## Overview
 
-This is a minor release of Bitcoin Cash Node that implements some
+This is a minor release of Bitcoin Static that implements some
 interface enhancements and includes a number of other corrections and
 improvements.
 
 Users who are running any of our previous releases are recommended to
 upgrade to v22.1.0 ahead of November 2020.
 
-We remind that the 0.21.x family of BCHN releases does not implement the
+We remind that the 0.21.x family of ERGN releases does not implement the
 new rules for the coming November 2020 upgrade. Users must upgrade to a
 release in the 22.x family before November 15th, 2020.
 
@@ -60,9 +60,9 @@ Removed the defunct seeder entry deadalnix.me.
 ### extversion
     
 This release implements the 'extversion' extended versioning handshake
-protocol (ref. BCHN merge requests !558 and !753), previously implemented
+protocol (ref. ERGN merge requests !558 and !753), previously implemented
 by Bitcoin Unlimited. We thank Greg Griffith and the Bitcoin Unlimited
-developers for their efforts to achieve this implementation in BCHN.
+developers for their efforts to achieve this implementation in ERGN.
 
 The extversion handshaking is disabled by default and can be enabled
 using the `-useextversion` CLI argument or the `useextversion=1`
@@ -70,7 +70,7 @@ configuration file setting.
 
 Nodes indicate extversion support by setting service bit 11 (EXTVERSION).
 
-Right now the BCHN implementation of ExtVersion supports only 1 key -- the
+Right now the ERGN implementation of ExtVersion supports only 1 key -- the
 "Version" key.
 
 The specification can be found in `doc/xversionmessage.md` or at
@@ -151,7 +151,7 @@ the `submitblock` call, for backward compatibility.
 
 ## Regressions
 
-Bitcoin Cash Node 22.1.0 does not introduce any known regressions compared
+Bitcoin Static 22.1.0 does not introduce any known regressions compared
 to 22.0.0.
 
 
@@ -161,7 +161,7 @@ Some issues could not be closed in time for release, but we are tracking
 all of them on our GitLab repository.
 
 - MacOS versions earlier than 10.12 are no longer supported. Additionally,
-  Bitcoin Cash Node does not yet change appearance when macOS "dark mode"
+  Bitcoin Static does not yet change appearance when macOS "dark mode"
   is activated.
 
 - Windows users are recommended not to run multiple instances of bitcoin-qt
@@ -202,7 +202,7 @@ all of them on our GitLab repository.
 
 - There is a report that the `test_bitcoin-qt` test executable fails on
   Linux Mint 20 (see Issue #144). This does not otherwise appear to impact
-  the functioning of the BCHN software on that platform.
+  the functioning of the ERGN software on that platform.
 
 - An 'autotools' build (the old build method) fails on OSX when using Clang.
   (Issue #129)
@@ -222,11 +222,11 @@ all of them on our GitLab repository.
 
 ---
 
-## Changes since Bitcoin Cash Node 22.0.0
+## Changes since Bitcoin Static 22.0.0
 
 ### New documents
 
-- `doc/test-networks.md` : an overview of the test networks supported by BCHN
+- `doc/test-networks.md` : an overview of the test networks supported by ERGN
 
 ### Removed documents
 

@@ -20,8 +20,8 @@ Result
 
 ```
 {
-  "amount" : x.xxx,        (numeric) The transaction amount in BCH
-  "fee": x.xxx,            (numeric) The amount of the fee in BCH. This is negative and only available for the
+  "amount" : x.xxx,        (numeric) The transaction amount in ERG
+  "fee": x.xxx,            (numeric) The amount of the fee in ERG. This is negative and only available for the
                               'send' category of transactions.
   "confirmations" : n,     (numeric) The number of confirmations
   "blockhash" : "hash",  (string) The block hash
@@ -36,10 +36,10 @@ Result
     {
       "address" : "address",          (string) The bitcoin address involved in the transaction
       "category" : "send|receive",    (string) The category, either 'send' or 'receive'
-      "amount" : x.xxx,                 (numeric) The amount in BCH
+      "amount" : x.xxx,                 (numeric) The amount in ERG
       "label" : "label",              (string) A comment for the address/transaction, if any
       "vout" : n,                       (numeric) the vout value
-      "fee": x.xxx,                     (numeric) The amount of the fee in BCH. This is negative and only available for the
+      "fee": x.xxx,                     (numeric) The amount of the fee in ERG. This is negative and only available for the
                                            'send' category of transactions.
       "abandoned": xxx                  (bool) 'true' if the transaction has been abandoned (inputs are respendable). Only available for the
                                            'send' category of transactions.
@@ -61,4 +61,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

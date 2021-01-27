@@ -772,7 +772,7 @@
 </translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>bitcoin cash node</translation>
     </message>
     <message>

@@ -936,8 +936,8 @@
         <translation>Dirbti fone kaip šešėlyje ir priimti komandas</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>Error opening block database</source>

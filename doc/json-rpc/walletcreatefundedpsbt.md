@@ -24,7 +24,7 @@ Arguments
 2. "outputs"               (array, required) a json array with outputs (key-value pairs)
    [
     {
-      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in BCH
+      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in ERG
     },
     {
       "data": "hex"        (obj, optional) A key-value pair. The key must be "data", the value is hex-encoded data
@@ -39,7 +39,7 @@ Arguments
      "changePosition"         (numeric, optional, default random) The index of the change output
      "includeWatching"        (boolean, optional, default false) Also select inputs which are watch only
      "lockUnspents"           (boolean, optional, default false) Lock selected unspent outputs
-     "feeRate"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in BCH/kB
+     "feeRate"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in ERG/kB
      "subtractFeeFromOutputs" (array, optional) A json array of integers.
                               The fee will be equally deducted from the amount of each specified output.
                               The outputs are specified by their zero-based index, before any change output is added.
@@ -56,7 +56,7 @@ Result
 ```
 {
   "psbt": "value",        (string)  The resulting raw transaction (base64-encoded string)
-  "fee":       n,         (numeric) Fee in BCH the resulting transaction pays
+  "fee":       n,         (numeric) Fee in ERG the resulting transaction pays
   "changepos": n          (numeric) The position of the added change output, or -1
 }
 ```
@@ -71,4 +71,4 @@ Create a transaction with no inputs
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

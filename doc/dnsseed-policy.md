@@ -1,13 +1,13 @@
-Bitcoin Cash Node BCH-relevant DNS seed information
+Bitcoin Static ERG-relevant DNS seed information
 ====================================================
 
-Bitcoin Cash Node uses special seeds under the control of Bitcoin Cash (BCH)
+Bitcoin Static uses special seeds under the control of Bitcoin Cash (ERG)
 network supporting operators to increase the chance of a node
-to find suitable peers on the BCH network.
+to find suitable peers on the ERG network.
 
 The seeds used by Cash Node should distribute peers fairly but in a
-manner which increases the likelihood that Bitcoin Cash Nodes are able
-to connect to BCH compatible peers.
+manner which increases the likelihood that Bitcoin Statics are able
+to connect to ERG compatible peers.
 
 
 General expectations for DNS Seed operators

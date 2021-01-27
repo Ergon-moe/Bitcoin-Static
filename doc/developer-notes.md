@@ -218,7 +218,7 @@ that run in `-regtest` mode.
 
 ### DEBUG_LOCKORDER
 
-Bitcoin Cash Node is a multi-threaded application, and deadlocks or other
+Bitcoin Static is a multi-threaded application, and deadlocks or other
 multi-threading bugs can be very difficult to track down.
 The `-DCMAKE_BUILD_TYPE=Debug` cmake option adds `-DDEBUG_LOCKORDER` to the
 compiler flags. This inserts run-time checks to keep track of which locks are
@@ -266,7 +266,7 @@ to the `cmake` command line.
 
 ### Sanitizers
 
-Bitcoin Cash Node can be compiled with various "sanitizers" enabled, which add
+Bitcoin Static can be compiled with various "sanitizers" enabled, which add
 instrumentation for issues regarding things like memory safety, thread race
 conditions, or undefined behavior. This is controlled with the
 `-DENABLE_SANITIZERS` cmake flag, which should be a semicolon separated list of
@@ -416,7 +416,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Bitcoin Cash Node, where everyone uses
+However, in open source software such as Bitcoin Static, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
@@ -446,7 +446,7 @@ Development guidelines
 ----------------------
 
 A few non-style-related recommendations for developers, as well as points to
-pay attention to for reviewers of Bitcoin Cash Node code.
+pay attention to for reviewers of Bitcoin Static code.
 
 ### Wallet
 
@@ -741,7 +741,7 @@ Current subtrees include:
     - Upstream at [https://github.com/bitcoin-core/ctaes](https://github.com/bitcoin-core/ctaes); actively maintained by Core contributors.
 
 - src/univalue
-    - BCHN no longer has a single upstream for `src/univalue`, but maintains its own univalue code based on fixes from several repositories, namely [https://github.com/jgarzik/univalue](https://github.com/jgarzik/univalue), Bitcoin Core's fork of univalue and the Bitcoin ABC repository.
+    - ERGN no longer has a single upstream for `src/univalue`, but maintains its own univalue code based on fixes from several repositories, namely [https://github.com/jgarzik/univalue](https://github.com/jgarzik/univalue), Bitcoin Core's fork of univalue and the Bitcoin ABC repository.
 
 ### Upgrading LevelDB
 

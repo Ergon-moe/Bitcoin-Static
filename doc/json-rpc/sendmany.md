@@ -14,7 +14,7 @@ Arguments
 1. "dummy"               (string, required) Must be set to "" for backwards compatibility.
 2. "amounts"             (string, required) A json object with addresses and amounts
     {
-      "address":amount   (numeric or string) The bitcoin address is the key, the numeric amount (can be string) in BCH is the value
+      "address":amount   (numeric or string) The bitcoin address is the key, the numeric amount (can be string) in ERG is the value
       ,...
     }
 3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.
@@ -66,4 +66,4 @@ As a JSON-RPC call
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

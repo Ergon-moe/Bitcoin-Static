@@ -59,7 +59,7 @@
     <name>BitcoinGUI</name>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin Cash Node</translation>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -228,8 +228,8 @@
 <context>
     <name>bitcoin-cash-node</name>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>

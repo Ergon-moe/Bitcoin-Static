@@ -12,7 +12,7 @@ Arguments
 
 ```
 1. "address"            (string, required) The bitcoin address to send to.
-2. "amount"             (numeric or string, required) The amount in BCH to send. eg 0.1
+2. "amount"             (numeric or string, required) The amount in ERG to send. eg 0.1
 3. "comment"            (string, optional) A comment used to store what the transaction is for.
                              This is not part of the transaction, just kept in your wallet.
 4. "comment_to"         (string, optional) A comment to store the name of the person or organization
@@ -46,4 +46,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

@@ -420,7 +420,7 @@
 <context>
     <name>bitcoin-cash-node</name>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>Биткойн ядро</translation>
     </message>
     </context>

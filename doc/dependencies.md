@@ -1,7 +1,7 @@
 Dependencies
 ============
 
-These are the dependencies currently used by Bitcoin Cash Node. You can find instructions for installing them in the `build-*.md` file for your platform.
+These are the dependencies currently used by Bitcoin Static. You can find instructions for installing them in the `build-*.md` file for your platform.
 
 These dependencies are required:
 

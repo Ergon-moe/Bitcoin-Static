@@ -1,12 +1,12 @@
-# Release Notes for Bitcoin Cash Node version 22.2.0
+# Release Notes for Bitcoin Static version 22.2.0
 
-Bitcoin Cash Node version 22.2.0 is now available from:
+Bitcoin Static version 22.2.0 is now available from:
 
   <https://bitcoincashnode.org>
 
 ## Overview
 
-This is a minor release of Bitcoin Cash Node that implements some
+This is a minor release of Bitcoin Static that implements some
 interface enhancements and includes a number of other corrections and
 improvements.
 
@@ -88,7 +88,7 @@ returned result. A two-step procedure will be followed to correct this.
 
 ## Regressions
 
-Bitcoin Cash Node 22.2.0 does not introduce any known regressions compared
+Bitcoin Static 22.2.0 does not introduce any known regressions compared
 to 22.1.0.
 
 
@@ -98,7 +98,7 @@ Some issues could not be closed in time for release, but we are tracking
 all of them on our GitLab repository.
 
 - MacOS versions earlier than 10.12 are no longer supported. Additionally,
-  Bitcoin Cash Node does not yet change appearance when macOS "dark mode"
+  Bitcoin Static does not yet change appearance when macOS "dark mode"
   is activated.
 
 - Windows users are recommended not to run multiple instances of bitcoin-qt
@@ -132,7 +132,7 @@ all of them on our GitLab repository.
 
 - The `test_bitcoin-qt` test executable fails on Linux Mint 20
   (see Issue #144). This does not otherwise appear to impact the functioning
-  of the BCHN software on that platform.
+  of the ERGN software on that platform.
 
 - An 'autotools' build (the old build method) fails on OSX when using Clang.
   (Issue #129)
@@ -176,7 +176,7 @@ all of them on our GitLab repository.
 
 ---
 
-## Changes since Bitcoin Cash Node 22.1.0
+## Changes since Bitcoin Static 22.1.0
 
 ### New documents
 

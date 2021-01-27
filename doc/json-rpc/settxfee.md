@@ -11,7 +11,7 @@ Arguments
 ---------
 
 ```
-1. amount         (numeric or string, required) The transaction fee in BCH/kB
+1. amount         (numeric or string, required) The transaction fee in ERG/kB
 
 Result
 true|false        (boolean) Returns true if successful
@@ -27,4 +27,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

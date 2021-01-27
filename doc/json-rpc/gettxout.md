@@ -23,7 +23,7 @@ Result
 {
   "bestblock" : "hash",    (string) the block hash
   "confirmations" : n,       (numeric) The number of confirmations
-  "value" : x.xxx,           (numeric) The transaction value in BCH
+  "value" : x.xxx,           (numeric) The transaction value in ERG
   "scriptPubKey" : {         (json object)
      "asm" : "code",       (string)
      "hex" : "hex",        (string)
@@ -54,4 +54,4 @@ As a JSON-RPC call
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

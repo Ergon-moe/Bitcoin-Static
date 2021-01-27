@@ -1208,8 +1208,8 @@
         <translation>Демон сифатида орқа фонда ишга туширинг ва буйруқларга рози бўлинг</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>Connection options:</source>

@@ -25,7 +25,7 @@ Result
   {
     "involvesWatchonly" : true,        (bool) Only returned if imported addresses were involved in transaction
     "address" : "receivingaddress",  (string) The receiving address
-    "amount" : x.xxx,                  (numeric) The total amount in BCH received by the address
+    "amount" : x.xxx,                  (numeric) The total amount in ERG received by the address
     "confirmations" : n,               (numeric) The number of confirmations of the most recent transaction included
     "label" : "label",               (string) The label of the receiving address. The default label is "".
     "txids": [
@@ -49,4 +49,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

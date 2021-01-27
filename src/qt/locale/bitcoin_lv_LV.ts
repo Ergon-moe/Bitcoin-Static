@@ -1124,8 +1124,8 @@
         <translation>Darbināt fonā kā servisu un pieņemt komandas</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

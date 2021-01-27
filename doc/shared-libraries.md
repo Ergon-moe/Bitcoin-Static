@@ -47,7 +47,7 @@ The interface is defined in the C header `bitcoinconsensus.h` located in  `src/s
 
 ### Example Implementations
 
-- [Bitcoin Cash Node (BCHN)](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/blob/master/src/script/bitcoinconsensus.h)
+- [Bitcoin Static (ERGN)](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/blob/master/src/script/bitcoinconsensus.h)
 - [Bitcoin Unlimited (BUCash)](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/release/src/script/bitcoinconsensus.h)
 
 ### Historic Example Implementations in Bitcoin (pre-dating Bitcoin Cash)

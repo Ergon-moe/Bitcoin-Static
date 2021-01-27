@@ -1598,7 +1598,7 @@
         <translation>اجرا در پشت زمینه به‌صورت یک سرویس و پذیرش دستورات</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation> Cash Node Bitcoin </translation>
     </message>
     <message>

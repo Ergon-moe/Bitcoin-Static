@@ -4,7 +4,7 @@
 **`getblockstats hash_or_height ( stats )`**
 
 ```
-Compute per block statistics for a given window. All amounts are in BCH.
+Compute per block statistics for a given window. All amounts are in ERG.
 It won't work for some heights with pruning.
 ```
 
@@ -27,7 +27,7 @@ Result
 ```
 {                           (json object)
   "avgfee": x.xxx,          (numeric) Average fee in the block
-  "avgfeerate": x.xxx,      (numeric) Average feerate (in BCH per byte)
+  "avgfeerate": x.xxx,      (numeric) Average feerate (in ERG per byte)
   "avgtxsize": xxxxx,       (numeric) Average transaction size
   "blockhash": xxxxx,       (string) The block hash (to check for potential reorgs)
   "feerate_percentiles": [  (array of numeric) Feerates at the 10th, 25th, 50th, 75th, and 90th percentile weight unit (in satoshis per byte)
@@ -40,13 +40,13 @@ Result
   "height": xxxxx,          (numeric) The height of the block
   "ins": xxxxx,             (numeric) The number of inputs (excluding coinbase)
   "maxfee": xxxxx,          (numeric) Maximum fee in the block
-  "maxfeerate": xxxxx,      (numeric) Maximum feerate (in BCH per byte)
+  "maxfeerate": xxxxx,      (numeric) Maximum feerate (in ERG per byte)
   "maxtxsize": xxxxx,       (numeric) Maximum transaction size
   "medianfee": x.xxx,       (numeric) Truncated median fee in the block
   "mediantime": xxxxx,      (numeric) The block median time past
   "mediantxsize": xxxxx,    (numeric) Truncated median transaction size
   "minfee": x.xxx,          (numeric) Minimum fee in the block
-  "minfeerate": xx.xx,      (numeric) Minimum feerate (in BCH per byte)
+  "minfeerate": xx.xx,      (numeric) Minimum feerate (in ERG per byte)
   "mintxsize": xxxxx,       (numeric) Minimum transaction size
   "outs": xxxxx,            (numeric) The number of outputs
   "subsidy": x.xxx,         (numeric) The block subsidy
@@ -70,4 +70,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

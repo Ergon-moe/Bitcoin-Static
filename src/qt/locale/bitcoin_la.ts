@@ -768,8 +768,8 @@
         <translation>Operare infere sicut daemon et mandata accipe</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

@@ -114,7 +114,7 @@ class WalletTest(BitcoinTestFramework):
         assert_equal(self.nodes[1].getunconfirmedbalance(), Decimal('0'))
 
         # In the original Core version of this test, Node 1 would've bumped
-        # the fee by 0.01 here to resend, but this is BCH, so it has 0.01 BCH
+        # the fee by 0.01 here to resend, but this is ERG, so it has 0.01 ERG
         # left to spend on goods and services
         self.sync_all()
 

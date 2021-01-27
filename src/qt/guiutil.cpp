@@ -177,7 +177,7 @@ bool parseBitcoinURI(const QString &scheme, const QUrl &uri,
             fShouldReturnFalse = false;
         } else if (i->first == "amount") {
             if (!i->second.isEmpty()) {
-                if (!BitcoinUnits::parse(BitcoinUnits::BCH, i->second,
+                if (!BitcoinUnits::parse(BitcoinUnits::ERG, i->second,
                                          &rv.amount)) {
                     return false;
                 }
@@ -220,7 +220,7 @@ QString formatBitcoinURI(const CChainParams &params,
     if (info.amount != Amount::zero()) {
         ret +=
             QString("?amount=%1")
-                .arg(BitcoinUnits::format(BitcoinUnits::BCH, info.amount, false,
+                .arg(BitcoinUnits::format(BitcoinUnits::ERG, info.amount, false,
                                           BitcoinUnits::separatorNever));
         paramCount++;
     }
@@ -574,19 +574,19 @@ static fs::path StartupShortcutPath() {
        in the uninstaller NSIS script (see: cmake/modules/NSIS.template.in) */
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN) {
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Cash Node.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Static.lnk";
     }
     if (chain == CBaseChainParams::TESTNET) {
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Cash Node (testnet).lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Static (testnet).lnk";
     }
     if (chain == CBaseChainParams::TESTNET4) {
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Cash Node (testnet4).lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Static (testnet4).lnk";
     }
     if (chain == CBaseChainParams::SCALENET) {
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Cash Node (scalenet).lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin Static (scalenet).lnk";
     }
     return GetSpecialFolderPath(CSIDL_STARTUP) /
-           strprintf("Bitcoin Cash Node (%s).lnk", chain); // If we get here: "regtest"
+           strprintf("Bitcoin Static (%s).lnk", chain); // If we get here: "regtest"
 }
 
 bool GetStartOnSystemStartup() {

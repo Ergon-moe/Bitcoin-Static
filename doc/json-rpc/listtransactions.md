@@ -27,11 +27,11 @@ Result
   {
     "address":"address",    (string) The bitcoin address of the transaction.
     "category":"send|receive", (string) The transaction category.
-    "amount": x.xxx,          (numeric) The amount in BCH. This is negative for the 'send' category, and is positive
+    "amount": x.xxx,          (numeric) The amount in ERG. This is negative for the 'send' category, and is positive
                                         for the 'receive' category,
     "label": "label",       (string) A comment for the address/transaction, if any
     "vout": n,                (numeric) the vout value
-    "fee": x.xxx,             (numeric) The amount of the fee in BCH. This is negative and only available for the
+    "fee": x.xxx,             (numeric) The amount of the fee in ERG. This is negative and only available for the
                                          'send' category of transactions.
     "confirmations": n,       (numeric) The number of confirmations for the transaction. Negative confirmations indicate the
                                          transaction conflicts with the block chain
@@ -65,4 +65,4 @@ As a JSON-RPC call
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

@@ -1,4 +1,4 @@
-Bitcoin Cash Node Release Process
+Bitcoin Static Release Process
 =================================
 
 
@@ -69,5 +69,5 @@ Bitcoin Cash Node Release Process
 14. Announce Release:
     - [Reddit](https://www.reddit.com/r/bitcoincashnode/)
     - Twitter @bitcoincashnode
-    - Public slack channels friendly to Bitcoin Cash Node announcements
+    - Public slack channels friendly to Bitcoin Static announcements
 

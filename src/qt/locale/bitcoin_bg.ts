@@ -2346,7 +2346,7 @@
         <translation>Въведете Ваш публичен адрес</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>Биткойн ядро</translation>
     </message>
     <message>

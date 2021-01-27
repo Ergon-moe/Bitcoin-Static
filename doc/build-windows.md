@@ -1,16 +1,16 @@
 # WINDOWS BUILD NOTES
 
-Below are some notes on how to build Bitcoin Cash Node for Windows.
+Below are some notes on how to build Bitcoin Static for Windows.
 
-Please note that from BCHN v0.21.3 onwards, building for Win32 is no longer
+Please note that from ERGN v0.21.3 onwards, building for Win32 is no longer
 officially supported (and build system capabilities related to this may
 be removed).
 
-The options known to work for building Bitcoin Cash Node on Windows are:
+The options known to work for building Bitcoin Static on Windows are:
 
 * On Linux, using the [Mingw-w64](https://mingw-w64.org/doku.php) cross compiler
   tool chain. Debian Buster is recommended and is the platform used to build the
-  Bitcoin Cash Node Windows release binaries.
+  Bitcoin Static Windows release binaries.
 * On Windows, using [Windows Subsystem for Linux (WSL)](https://msdn.microsoft.com/commandline/wsl/about)
   and the Mingw-w64 cross compiler tool chain. This is covered in these notes.
 
@@ -25,9 +25,9 @@ Other options which may work, but which have not been extensively tested are
 In any case please make sure that the compiler supports C++14.
 
 **Note** These notes cover building binaries from source, for running Bitcoin
-Cash Node natively under Windows. If you just want to run Bitcoin Cash Node,
-you can download binaries from the [Bitcoin Cash Node website](https://bitcoincashnode.org/en/download.html).
-If you wish to both compile and run Bitcoin Cash Node on Windows, *under WSL*,
+Cash Node natively under Windows. If you just want to run Bitcoin Static,
+you can download binaries from the [Bitcoin Static website](https://bitcoincashnode.org/en/download.html).
+If you wish to both compile and run Bitcoin Static on Windows, *under WSL*,
 you can refer to the [Unix build guide](build-unix.md),
 and follow those instructions from within WSL.
 
@@ -103,7 +103,7 @@ Next, configure the `mingw-w64` to the posix<sup>[1](#footnote1)</sup> compiler 
     sudo update-alternatives --config x86_64-w64-mingw32-gcc # Set the default mingw32 gcc compiler option to posix.
 ```
 
-Note that for WSL 2 the Bitcoin Cash Node source path MUST be somewhere in the default
+Note that for WSL 2 the Bitcoin Static source path MUST be somewhere in the default
 mount file system, for example `/usr/src/bitcoin-cash-node`, AND not under `/mnt/d/`.
 This means you cannot use a directory that is located directly on the host Windows
 file system to perform the build.
@@ -185,7 +185,7 @@ First, install the general dependencies:
 ```
 
 The `cmake` version packaged with Ubuntu Bionic is too old for building Building
-Bitcoin Cash Node. To install the latest version:
+Bitcoin Static. To install the latest version:
 
 ```bash
     sudo apt-get install apt-transport-https ca-certificates gnupg software-properties-common wget
@@ -216,7 +216,7 @@ Next, configure the `mingw-w64` to the posix<sup>[1](#footnote1)</sup> compiler 
     sudo update-alternatives --config x86_64-w64-mingw32-gcc # Set the default mingw32 gcc compiler option to posix.
 ```
 
-Note that for WSL the Bitcoin Cash Node source path MUST be somewhere in the default
+Note that for WSL the Bitcoin Static source path MUST be somewhere in the default
 mount file system, for example `/usr/src/bitcoin-cash-node`, AND not under `/mnt/d/`.
 This means you cannot use a directory that is located directly on the host Windows
 file system to perform the build.
@@ -241,9 +241,9 @@ Once the source code is ready the build steps are below:
     ninja
 ```
 
-### Building BCHN installer
+### Building ERGN installer
 
-To build a Windows installer for BCHN you need a newer version of the `nsis` package
+To build a Windows installer for ERGN you need a newer version of the `nsis` package
 than is available in Ubuntu 18.04. To install a newer `nsis` from Ubuntu 19.10
 Eoan you can do:
 
@@ -283,6 +283,6 @@ between either posix or win32 threads. The default option is win32 threads which
 is the more efficient since it will result in binary code that links directly with
 the Windows kernel32.lib. Unfortunately, the headers required to support win32
 threads conflict with some of the classes in the C++11 standard library, in particular
-`std::mutex`. It's not possible to build the Bitcoin Cash Node code using the win32
+`std::mutex`. It's not possible to build the Bitcoin Static code using the win32
 version of the Mingw-w64 cross compilers (at least not without modifying headers
-in the Bitcoin Cash Node source code).
+in the Bitcoin Static source code).

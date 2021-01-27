@@ -1,6 +1,6 @@
 # Benchmarking
 
-Bitcoin Cash Node has an internal benchmarking framework, with benchmarks
+Bitcoin Static has an internal benchmarking framework, with benchmarks
 for cryptographic algorithms (e.g. SHA1, SHA256, SHA512, RIPEMD160),
 as well as the rolling bloom filter, address encoding and decoding,
 CCoinsCaching, memory pool eviction, and wallet coin selection.
@@ -60,7 +60,7 @@ the system.
 
 ### Troubleshooting LFS
 
-If you did not install git-lfs before cloning the Bitcoin Cash Node project,
+If you did not install git-lfs before cloning the Bitcoin Static project,
 then you will run into compilation issues when building the benchmark tools.
 
 To fix this, run the following git commands in the project directory:

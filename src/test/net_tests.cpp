@@ -219,7 +219,7 @@ BOOST_AUTO_TEST_CASE(test_userAgent) {
     gArgs.ForceSetMultiArg("-uacomment", uacomment);
 
     const std::string versionMessage =
-        "/Bitcoin Cash Node:" + std::to_string(CLIENT_VERSION_MAJOR) + "." +
+        "/Bitcoin Static:" + std::to_string(CLIENT_VERSION_MAJOR) + "." +
         std::to_string(CLIENT_VERSION_MINOR) + "." +
         std::to_string(CLIENT_VERSION_REVISION) + "(EB8.0; " + uacomment + ")/";
 

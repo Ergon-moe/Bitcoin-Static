@@ -1,9 +1,9 @@
-# Bitcoin Cash Node RPC client version v22.2.0
+# Bitcoin Static RPC client version v22.2.0
 
 | Usage                                                    | Description                                              |
 | :------------------------------------------------------- | :------------------------------------------------------- |
-| `bitcoin-cli [options] <command> [params]`               | Send command to Bitcoin Cash Node                        |
-| `bitcoin-cli [options] -named <command> [name=value]...` | Send command to Bitcoin Cash Node (with named arguments) |
+| `bitcoin-cli [options] <command> [params]`               | Send command to Bitcoin Static                        |
+| `bitcoin-cli [options] -named <command> [name=value]...` | Send command to Bitcoin Static (with named arguments) |
 | `bitcoin-cli [options] help`                             | List commands                                            |
 | `bitcoin-cli [options] help <command>`                   | Get help for a command                                   |
 

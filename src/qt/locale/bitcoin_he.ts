@@ -1660,7 +1660,7 @@
         <translation>ריצה כסוכן ברקע וקבלת פקודות</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>

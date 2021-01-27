@@ -1,17 +1,17 @@
-# BCHN GitLab development working rules & guidelines
+# ERGN GitLab development working rules & guidelines
 
-This document describes the working rules, workflow, terminology and guidelines that developers and testers should be familiar with while working on the Bitcoin Cash Node repository and issue tracker at
+This document describes the working rules, workflow, terminology and guidelines that developers and testers should be familiar with while working on the Bitcoin Static repository and issue tracker at
 
 [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/)
 
 
-## BCHN GitLab workflow
+## ERGN GitLab workflow
 
 Below are common workflows users will encounter:
 
 * Raise an Issue if you experience a problem or have a suggestion for improving the product
 
-* Fork the BCHN Repository
+* Fork the ERGN Repository
 
 * Create a branch for your change
 
@@ -114,7 +114,7 @@ The issue/MR will attract intention soon, but you can also invite others for rev
 Occasionally, developers may ask for review of WIP items in the understanding that such review is preliminary and intended to gather input for revision which is believed to be needed still.
 
 
-### List of labels currently used on BCHN GitLab
+### List of labels currently used on ERGN GitLab
 
 NOTE: MR = "Merge Request"
 
@@ -174,7 +174,7 @@ NOTE: MR = "Merge Request"
 
 - "bounty": issue/MR has an associated open or in-progress bounty. NOTE: The label should be removed once a bounty is awarded.
 
-- "engineering-change-proposal": issue is a proposal for an engineering change to the BCHN software or infrastructure
+- "engineering-change-proposal": issue is a proposal for an engineering change to the ERGN software or infrastructure
 
 - "bitcoin-tx": issue/MR is classified as relating to bitcoin-tx tool
 
@@ -185,7 +185,7 @@ NOTE: MR = "Merge Request"
 
 These labels below are historical - you might see them when examining closed issues or MRs, but which should not be used for now in new ones without consulting maintainers:
 
-- "teamcity": related to removal of Teamcity CI during BCHN v0.21.0 software creation in 2020
+- "teamcity": related to removal of Teamcity CI during ERGN v0.21.0 software creation in 2020
 
 - "needs_tag": used to mark issues/MRs that need labeling, but deemed superfluous
 
@@ -214,7 +214,7 @@ The commit tags below are used reasonably frequently.
 
 - "[rebrand]": this commit is related to rebranding changes
 
-There are some more tags in older history, from ABC project and others, which are not used by BCHN developers currently, but may enter the recently history through backports.
+There are some more tags in older history, from ABC project and others, which are not used by ERGN developers currently, but may enter the recently history through backports.
 
 
 ## Notes

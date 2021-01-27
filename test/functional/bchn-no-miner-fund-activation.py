@@ -27,7 +27,7 @@ MINER_FUND_RATIO = 20
 
 MINER_FUND_ADDR = 'bchreg:pqv2r67sgz3qumufap3h2uuj0zfmnzuv8v7ej0fffv'
 MINER_FUND_ABC_ADDR = 'bchreg:qzvz0es48sf8wrqy7kn5j5cugka95ztskcra2r7ee7'
-MINER_FUND_BCHD_ADDR = 'bchreg:qrhea03074073ff3zv9whh0nggxc7k03ssffq2ylju'
+MINER_FUND_ERGD_ADDR = 'bchreg:qrhea03074073ff3zv9whh0nggxc7k03ssffq2ylju'
 MINER_FUND_ELECTRON_CASH_ADDR = 'bchreg:pp8d685l8kecnmtyy52ndvq625arz2qwmutyjlcyav'
 
 
@@ -71,7 +71,7 @@ class MinerFundTest(BitcoinTestFramework):
 
         run_test_for(0, 'minerfund', MINER_FUND_ADDR)
         run_test_for(1, 'minerfundabc', MINER_FUND_ABC_ADDR)
-        run_test_for(2, 'minerfundbchd', MINER_FUND_BCHD_ADDR)
+        run_test_for(2, 'minerfundbchd', MINER_FUND_ERGD_ADDR)
         run_test_for(3, 'minerfundelectroncash', MINER_FUND_ELECTRON_CASH_ADDR)
 
         # MAKE SURE THE MINER FUND CANNOT BE ENABLED.

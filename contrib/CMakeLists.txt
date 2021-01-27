@@ -19,7 +19,7 @@ exclude_from_source_package(
 	"qos/"
 	"seeds/"
 	"testgen/"
-	# FIXME Can be packaged once it gets updated to work with Bitcoin Cash Node
+	# FIXME Can be packaged once it gets updated to work with Bitcoin Static
 	"verifybinaries/"
 	"zmq/"
 

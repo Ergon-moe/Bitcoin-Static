@@ -1,9 +1,9 @@
 Currently supported Bitcoin Cash upgrades
 =========================================
 
-This page lists the Bitcoin Cash upgrade proposals that have currently been implemented in Bitcoin Cash Node, along with their implementation status. Note that the Bitcoin Cash Node project co-publishes the specifications of all Bitcoin Cash upgrades through a [separate repository](https://upgradespecs.bitcoincashnode.org).
+This page lists the Bitcoin Cash upgrade proposals that have currently been implemented in Bitcoin Static, along with their implementation status. Note that the Bitcoin Static project co-publishes the specifications of all Bitcoin Cash upgrades through a [separate repository](https://upgradespecs.bitcoincashnode.org).
 
-For implementation status of Bitcoin (Core) proposals in Bitcoin Cash Node, see [BIPs](bips.md).
+For implementation status of Bitcoin (Core) proposals in Bitcoin Static, see [BIPs](bips.md).
 
 Network upgrades
 ----------------
@@ -58,7 +58,7 @@ Other
 -----
 
 * **[CashAddr](https://upgradespecs.bitcoincashnode.org/cashaddr/)**: The address format for Bitcoin Cash is implemented as of [v0.16.2](release-notes/release-notes-0.16.2.md), with `bitcoin-tx` support completed in [v0.21.2](release-notes/release-notes-0.21.2.md) ([MR!274](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/274), [MR!275](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/275)). The preferred address format can be selected with the `-usecashaddr` option.
-* **[JSON-RPC](https://upgradespecs.bitcoincashnode.org/JSON-RPC/)**: Bitcoin Cash Node is compatible with the JSON-RPC specification, but the JSON-RPC functionality has significantly improved since. See our [JSON-RPC API documentation](json-rpc/README.md) for an up-to-date overview of what is available in Bitcoin Cash Node.
-* **[Block format](https://upgradespecs.bitcoincashnode.org/block/)**: Bitcoin Cash Node is compatible with the block data structure specification, albeit the transaction order has changed since the [November 15th 2018 network upgrade](https://upgradespecs.bitcoincashnode.org/2018-nov-upgrade/).
-* **[Transaction format](https://upgradespecs.bitcoincashnode.org/transaction/)**: Bitcoin Cash Node is compatible with the transaction data structure specification.
+* **[JSON-RPC](https://upgradespecs.bitcoincashnode.org/JSON-RPC/)**: Bitcoin Static is compatible with the JSON-RPC specification, but the JSON-RPC functionality has significantly improved since. See our [JSON-RPC API documentation](json-rpc/README.md) for an up-to-date overview of what is available in Bitcoin Static.
+* **[Block format](https://upgradespecs.bitcoincashnode.org/block/)**: Bitcoin Static is compatible with the block data structure specification, albeit the transaction order has changed since the [November 15th 2018 network upgrade](https://upgradespecs.bitcoincashnode.org/2018-nov-upgrade/).
+* **[Transaction format](https://upgradespecs.bitcoincashnode.org/transaction/)**: Bitcoin Static is compatible with the transaction data structure specification.
 

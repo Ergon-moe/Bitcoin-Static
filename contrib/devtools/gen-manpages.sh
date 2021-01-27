@@ -69,7 +69,7 @@ while IFS= read -r line; do
     indentation="${line%%-*}"
     # The list of RPC commands will be inserted into the new mkdocs file below the readme entry.
     # Get the list of RPC commands from the node and process it.
-    echo "Bitcoin Cash Node JSON-RPC commands" > "$TOPDIR/doc/json-rpc/README.md"
+    echo "Bitcoin Static JSON-RPC commands" > "$TOPDIR/doc/json-rpc/README.md"
     echo "===================================" >> "$TOPDIR/doc/json-rpc/README.md"
     "$BITCOINCLI" -rpcwait -regtest -datadir="$TOPDIR/doc/json-rpc/tmp" -rpcuser=gen-manpages -rpcpassword=gen-manpages help | while read -r helpline; do
       if [ -n "$helpline" ]; then

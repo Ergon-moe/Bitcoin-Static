@@ -17,7 +17,7 @@ Result
   [
     [
       "address",            (string) The bitcoin address
-      amount,                 (numeric) The amount in BCH
+      amount,                 (numeric) The amount in ERG
       "label"               (string, optional) The label
     ]
     ,...
@@ -36,4 +36,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

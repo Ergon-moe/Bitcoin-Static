@@ -72,7 +72,7 @@ add_functional_test_check(check-functional-extended
 )
 add_dependencies(check-extended check-functional-extended)
 
-set(TEST_SUITE_NAME_UPGRADE_ACTIVATED "Bitcoin Cash Node functional tests with the next upgrade activated")
+set(TEST_SUITE_NAME_UPGRADE_ACTIVATED "Bitcoin Static functional tests with the next upgrade activated")
 
 add_functional_test_check(check-functional-upgrade-activated
 	"Run the functional tests with the upgrade activated"

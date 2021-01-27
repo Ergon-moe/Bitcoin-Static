@@ -10,7 +10,7 @@ Authors: freetrader <freetrader@tuta.io>
          BigBlockIfTrue <info@bitcoinlogo.eu>
 License: CC0-1.0
 Comments-URI: https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/284
-Comments-Summary: BCHN internal review comments.
+Comments-Summary: ERGN internal review comments.
 ```
 
 # getblocktemplatelight
@@ -74,7 +74,7 @@ NOTE: The first element of the Merkle path list will be a transaction hash
       (the first transaction is hashed with the future coinbase transaction).
       Refer to Appendix B for information on how the Merkle root is computed.
       Implementations are allowed to impose more severe size restrictions
-      on the size of the job id string, for example the Bitcoin Cash Node
+      on the size of the job id string, for example the Bitcoin Static
       implementation uses 40 characters.
 
 
@@ -174,7 +174,7 @@ Notes:
 
 (2) The coinbase field has an enforced minimum size of 100 bytes.
     Also, block construction typically reserves some space for the coinbase.
-    For example, in the Bitcoin Cash Node software a maximum of 1000 bytes are
+    For example, in the Bitcoin Static software a maximum of 1000 bytes are
     reserved for the coinbase by default - this should be taken into account when
     a larger coinbase needs to be included.
 
@@ -218,7 +218,7 @@ implementations may use shorter job ids based on whatever they see fit.
 
 ## Reference implementation
 
-A C++ reference implementation is available in Bitcoin Cash Node
+A C++ reference implementation is available in Bitcoin Static
 [merge request 281](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/281).
 
 
@@ -274,7 +274,7 @@ $ bitcoin-cli getblocktemplatelight
 
 ### Appendix A - Historical context
 
-This specification is based on an adaptation by Bitcoin Cash Node of a
+This specification is based on an adaptation by Bitcoin Static of a
 concept originally implemented by BTC.com (at least as far as we know).
 The original implementation is available at [3].
 
@@ -283,7 +283,7 @@ of its client) consisting of two RPC calls called `getminingcandidate`
 and `submitminingsolution` [9].
 
 There is an ASCII diagram with additional explanations of the Merkle
-branch construction in the Bitcoin Cash Node source code [4].
+branch construction in the Bitcoin Static source code [4].
 
 
 ### Appendix B - Computation of Merkle root from coinbase + branch

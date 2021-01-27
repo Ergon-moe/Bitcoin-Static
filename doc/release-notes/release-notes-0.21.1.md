@@ -1,7 +1,7 @@
-Release Notes for Bitcoin Cash Node version 0.21.1
+Release Notes for Bitcoin Static version 0.21.1
 ==================================================
 
-Bitcoin Cash Node version 0.21.1 is now available from:
+Bitcoin Static version 0.21.1 is now available from:
 
   <https://bitcoincashnode.org>
 
@@ -9,12 +9,12 @@ Bitcoin Cash Node version 0.21.1 is now available from:
 Overview
 --------
 
-This is a second, minor release of Bitcoin Cash Node before the May 2020
+This is a second, minor release of Bitcoin Static before the May 2020
 network upgrade. While it contains many corrections and improvements that
 we feel are useful, it is not a required installation for the May 2020
 network upgrade.
 
-Bitcoin Cash Node is a drop-in replacement for Bitcoin ABC.
+Bitcoin Static is a drop-in replacement for Bitcoin ABC.
 It is based on Bitcoin ABC 0.21.0, with minimal changes necessary to
 disable the Infrastructure Funding Proposal (IFP) soft forks.
 For exchanges and users, this client will follow the longest chain whether
@@ -56,10 +56,10 @@ it can be relevant in certain operational and maintenance scenarios.
 Usage recommendations
 ---------------------
 
-We recommend Bitcoin Cash Node 0.21.1 as a drop-in replacement for
+We recommend Bitcoin Static 0.21.1 as a drop-in replacement for
 Bitcoin ABC 0.21.0.
 
-The update from Bitcoin Cash Node 0.21.0 to 0.21.1 is optional.
+The update from Bitcoin Static 0.21.0 to 0.21.1 is optional.
 Either version will work for May 2020 network upgrade.
 
 Windows users are recommended not to run multiple instances of bitcoin-qt
@@ -82,7 +82,7 @@ removed in a future release.
 Regressions
 -----------
 
-Bitcoin Cash Node 0.21.1 does not introduce any known regressions compared
+Bitcoin Static 0.21.1 does not introduce any known regressions compared
 to 0.21.0.
 
 
@@ -115,7 +115,7 @@ all of them on our GitLab repository.
   When building from source it is recommended to use BerkeleyDB 5.3 as this
   avoids wallet database incompatibility issues with the official release.
 
-- BCHN project is tracking some ongoing discussions related to details of the
+- ERGN project is tracking some ongoing discussions related to details of the
   SigChecks specification and the output of getblocktemplate RPC call after
   the May upgrade (ref. Issues #71, #72). In the event that software changes
   become necessary we will advise users via our communication channels and
@@ -123,14 +123,14 @@ all of them on our GitLab repository.
 
 ---
 
-Changes since Bitcoin Cash Node 0.21.0
+Changes since Bitcoin Static 0.21.0
 --------------------------------------
 
 ### New documents
 
 - [xversionmessage.md](../xversionmessage.md) : (protocol) xversion / extversion draft specification
 - [ninja_targets.md](../ninja_targets.md) : (development) describes build system targets
-- [bchn-gitlab-usage-rules-and-guidelines.md](../bchn-gitlab-usage-rules-and-guidelines.md) : (process) rules for working on BCHN
+- [bchn-gitlab-usage-rules-and-guidelines.md](../bchn-gitlab-usage-rules-and-guidelines.md) : (process) rules for working on ERGN
 - [release-notes/release-notes-0.21.0.md](release-notes-0.21.0.md) : previous version release notes
 - [build-unix-arch.md](../build-unix-arch.md) : (build, refactor) split out from [build-unix.md](../build-unix.md)
 - [build-unix-deb.md](../build-unix-deb.md) : (build, refactor) split out from [build-unix.md](../build-unix.md)
@@ -169,7 +169,7 @@ Changes since Bitcoin Cash Node 0.21.0
 - cd18a55 Decent testnet/regtest logo/icon colours (#27)
 - fc3ce07 Dark NSIS installer wizard image
 - d0c078b Reorganise main window title (#38)
-- b2bf997 Modify Bitcoin Qt desktop file to reflect we are Bitcoin Cash Node
+- b2bf997 Modify Bitcoin Qt desktop file to reflect we are Bitcoin Static
 
 #### Code quality
 
@@ -187,14 +187,14 @@ Changes since Bitcoin Cash Node 0.21.0
 - ff23d72 [doc] Add revised xversion spec (draft) - provided by Greg Griffith (Bitcoin Unlimited)
 - 41f2204 d50e0f2 939f729 f67fa40 ae737a6 335cdc0 Update contributing, build, developer and gitian docs
 - 86e229c 7dea808 Fix up obsolete ABC references
-- aaf8a1d 313ef3a Add confirmed disclosure relationships (BCHD, Flowee, Knuth, Verde)
+- aaf8a1d 313ef3a Add confirmed disclosure relationships (ERGD, Flowee, Knuth, Verde)
 - 2b2deda 4e61089 Describe correct steps to build and run the benchmarks
 - 90be3b5 961b7a3 Update FreeBSD instructions & add info to build bitcoin-qt
-- d8129cc [doc] Add BCHN Gitlab development working rules & guidelines
+- d8129cc [doc] Add ERGN Gitlab development working rules & guidelines
 - b1135cd Create a document to list and explain the Ninja targets for human consumption
 - 0e500f6 Add info about where to just download the software.
 - 9891620 [doc] Renaming from ABC in benchmarking.md
-- 49cbb01 Add link to Bitcoin Cash Node Doxygen documentation
+- 49cbb01 Add link to Bitcoin Static Doxygen documentation
 - 75da08c Update the backporting instructions
 - a2ae3aa Fix UAHF references in dnsseed-policy.md
 - 4ec61fb Fix help text dependency on number of cores (#23)
@@ -247,7 +247,7 @@ Changes since Bitcoin Cash Node 0.21.0
 
 #### Infrastructure
 
-- dcf4337 Use BCHN download server as fallback for dependencies (depends/)
+- dcf4337 Use ERGN download server as fallback for dependencies (depends/)
 
 #### Cleanup
 

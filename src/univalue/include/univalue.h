@@ -555,7 +555,7 @@ public:
      *
      * Complexity: linear in the amount of data to compare.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      */
     bool operator==(const UniValue& other) const noexcept;
 
@@ -565,7 +565,7 @@ public:
      *
      * Complexity: linear in the amount of data to compare.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      */
     bool operator!=(const UniValue& other) const noexcept { return !(*this == other); }
 
@@ -580,7 +580,7 @@ public:
      *
      * Complexity: constant.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      */
     const UniValue& front() const noexcept;
 
@@ -595,7 +595,7 @@ public:
      *
      * Complexity: constant.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      */
     const UniValue& back() const noexcept;
 
@@ -608,7 +608,7 @@ public:
      *
      * Complexity: linear in the number of elements.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      *
      * If you want to treat missing keys as null values, please use the [] operator instead.
      * If you want an exception thrown on missing keys, please use at() instead.
@@ -625,7 +625,7 @@ public:
      *
      * Complexity: linear in number of elements.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      *
      * If you don't want an exception thrown, please use locate() or the [] operator instead.
      */
@@ -643,7 +643,7 @@ public:
      *
      * Complexity: constant.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      *
      * If you don't want an exception thrown, please use the [] operator instead.
      */
@@ -669,7 +669,7 @@ public:
      * Use 0 (default) to disable pretty formatting and use compact formatting instead.
      * Note that pretty formatting only affects arrays and objects.
      *
-     * This is a Bitcoin Cash Node extension of the UniValue API.
+     * This is a Bitcoin Static extension of the UniValue API.
      */
     template<typename Value>
     static std::string stringify(const Value& value, unsigned int prettyIndent = 0) {
@@ -732,7 +732,7 @@ public:
      * Complexity: constant.
      *
      * Compatible with the upstream UniValue API.
-     * Non-const overload is a Bitcoin Cash Node extension.
+     * Non-const overload is a Bitcoin Static extension.
      */
     const std::string& get_str() const;
     std::string& get_str();
@@ -748,7 +748,7 @@ public:
      *
      * Compatible with the upstream UniValue API,
      * but with a different return type.
-     * Non-const overload is a Bitcoin Cash Node extension.
+     * Non-const overload is a Bitcoin Static extension.
      */
     const Object& get_obj() const;
     Object& get_obj();
@@ -764,7 +764,7 @@ public:
      *
      * Compatible with the upstream UniValue API,
      * but with a different return type.
-     * Non-const overload is a Bitcoin Cash Node extension.
+     * Non-const overload is a Bitcoin Static extension.
      */
     const Array& get_array() const;
     Array& get_array();

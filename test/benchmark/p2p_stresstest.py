@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2019-2020 Jonathan Toomim
-# Copyright (c) 2020 The Bitcoin Cash Node developers
+# Copyright (c) 2020 The Bitcoin Static developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''

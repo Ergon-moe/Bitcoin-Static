@@ -1,9 +1,9 @@
-Bitcoin Cash Node Setup
+Bitcoin Static Setup
 =======================
 
-Bitcoin Cash Node is a fork of Bitcoin ABC, which is an original Bitcoin Cash client and builds the backbone of the network. It downloads and, by default, stores the entire history of Bitcoin Cash transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Bitcoin Static is a fork of Bitcoin ABC, which is an original Bitcoin Cash client and builds the backbone of the network. It downloads and, by default, stores the entire history of Bitcoin Cash transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Bitcoin Cash Node, visit [bitcoincashnode.org](https://bitcoincashnode.org/).
+To download Bitcoin Static, visit [bitcoincashnode.org](https://bitcoincashnode.org/).
 
 Verify
 ---------------------
@@ -42,7 +42,7 @@ the presence of those warnings should be heeded with extreme caution.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Bitcoin Cash Node on your native platform.
+The following are some helpful notes on how to run Bitcoin Static on your native platform.
 
 ### Unix
 
@@ -63,7 +63,7 @@ Drag `bitcoin-cash-node` to your applications folder, and then run `bitcoin-cash
 
 * See the documentation at the [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page)
   for help and more information.
-* Ask for help on the [Bitcoin Cash Node Subreddit](https://www.reddit.com/r/bitcoincashnode/).
+* Ask for help on the [Bitcoin Static Subreddit](https://www.reddit.com/r/bitcoincashnode/).
 
 License
 ---------------------

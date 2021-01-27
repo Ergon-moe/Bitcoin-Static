@@ -19,7 +19,7 @@ Result
 ------
 
 ```
-amount   (numeric) The total amount in BCH received at this address.
+amount   (numeric) The total amount in ERG received at this address.
 ```
 
 Examples
@@ -41,4 +41,4 @@ As a JSON-RPC call
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

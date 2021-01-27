@@ -1028,7 +1028,7 @@
         <translation>Executar no fondo como un demo e aceptar comandos</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>Core de Bitcoin</translation>
     </message>
     <message>

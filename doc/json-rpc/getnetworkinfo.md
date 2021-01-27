@@ -30,8 +30,8 @@ Result
   }
   ,...
   ],
-  "relayfee": x.xxxxxxxx,                (numeric) minimum relay fee for transactions in BCH/kB
-  "excessutxocharge": x.xxxxxxxx,        (numeric) minimum charge for excess utxos in BCH
+  "relayfee": x.xxxxxxxx,                (numeric) minimum relay fee for transactions in ERG/kB
+  "excessutxocharge": x.xxxxxxxx,        (numeric) minimum charge for excess utxos in ERG
   "localaddresses": [                    (array) list of local addresses
   {
     "address": "xxxx",                 (string) network address
@@ -54,4 +54,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

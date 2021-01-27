@@ -13,18 +13,18 @@ BitcoinUnits::BitcoinUnits(QObject *parent)
 
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits() {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(BCH);
-    unitlist.append(mBCH);
-    unitlist.append(uBCH);
+    unitlist.append(ERG);
+    unitlist.append(mERG);
+    unitlist.append(uERG);
     unitlist.append(SAT);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit) {
     switch (unit) {
-        case BCH:
-        case mBCH:
-        case uBCH:
+        case ERG:
+        case mERG:
+        case uERG:
         case SAT:
             return true;
         default:
@@ -34,12 +34,12 @@ bool BitcoinUnits::valid(int unit) {
 
 QString BitcoinUnits::longName(int unit) {
     switch (unit) {
-        case BCH:
-            return QString("BCH");
-        case mBCH:
-            return QString("mBCH");
-        case uBCH:
-            return QString::fromUtf8("μBCH");
+        case ERG:
+            return QString("ERG");
+        case mERG:
+            return QString("mERG");
+        case uERG:
+            return QString::fromUtf8("μERG");
         case SAT:
             return QString("Satoshi (sat)");
         default:
@@ -58,11 +58,11 @@ QString BitcoinUnits::shortName(int unit) {
 
 QString BitcoinUnits::description(int unit) {
     switch (unit) {
-        case BCH:
+        case ERG:
             return QString("Bitcoins");
-        case mBCH:
+        case mERG:
             return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
-        case uBCH:
+        case uERG:
             return QString("Micro-Bitcoins (1 / 1" THIN_SP_UTF8
                            "000" THIN_SP_UTF8 "000)");
         case SAT:
@@ -75,11 +75,11 @@ QString BitcoinUnits::description(int unit) {
 
 qint64 BitcoinUnits::factor(int unit) {
     switch (unit) {
-        case BCH:
+        case ERG:
             return 100000000;
-        case mBCH:
+        case mERG:
             return 100000;
-        case uBCH:
+        case uERG:
             return 100;
         case SAT:
             return 1;
@@ -90,11 +90,11 @@ qint64 BitcoinUnits::factor(int unit) {
 
 int BitcoinUnits::decimals(int unit) {
     switch (unit) {
-        case BCH:
+        case ERG:
             return 8;
-        case mBCH:
+        case mERG:
             return 5;
-        case uBCH:
+        case uERG:
             return 2;
         case SAT:
             return 0;

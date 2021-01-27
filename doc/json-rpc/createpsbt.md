@@ -24,7 +24,7 @@ Arguments
 2. "outputs"               (array, required) a json array with outputs (key-value pairs)
    [
     {
-      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in BCH
+      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in ERG
     },
     {
       "data": "hex"        (obj, optional) A key-value pair. The key must be "data", the value is hex-encoded data
@@ -51,4 +51,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

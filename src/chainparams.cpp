@@ -410,13 +410,13 @@ public:
 
         // May 15, 2020 12:00:00 UTC protocol upgrade
         // Note: We must set this to 0 here because "historical" sigop code has
-        //       been removed from the BCHN codebase. All sigop checks really
+        //       been removed from the ERGN codebase. All sigop checks really
         //       use the new post-May2020 sigcheck code unconditionally in this
         //       codebase, regardless of what this height is set to. So it's
         //       "as-if" the activation height really is 0 for all intents and
         //       purposes. If other node implementations wish to use this code
         //       as a reference, they need to be made aware of this quirk of
-        //       BCHN, so we explicitly set the activation height to zero here.
+        //       ERGN, so we explicitly set the activation height to zero here.
         //       For example, BU or other nodes do keep both sigop and sigcheck
         //       implementations in their execution paths so they will need to
         //       use 0 here to be able to synch to this chain.
@@ -545,13 +545,13 @@ public:
 
         // May 15, 2020 12:00:00 UTC protocol upgrade
         // Note: We must set this to 0 here because "historical" sigop code has
-        //       been removed from the BCHN codebase. All sigop checks really
+        //       been removed from the ERGN codebase. All sigop checks really
         //       use the new post-May2020 sigcheck code unconditionally in this
         //       codebase, regardless of what this height is set to. So it's
         //       "as-if" the activation height really is 0 for all intents and
         //       purposes. If other node implementations wish to use this code
         //       as a reference, they need to be made aware of this quirk of
-        //       BCHN, so we explicitly set the activation height to zero here.
+        //       ERGN, so we explicitly set the activation height to zero here.
         //       For example, BU or other nodes do keep both sigop and sigcheck
         //       implementations in their execution paths so they will need to
         //       use 0 here to be able to synch to this chain.

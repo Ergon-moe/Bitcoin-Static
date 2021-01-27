@@ -1,5 +1,5 @@
 [Unit]
-Description=Bitcoin Cash Node Daemon
+Description=Bitcoin Static Daemon
 After=network.target
 
 [Service]

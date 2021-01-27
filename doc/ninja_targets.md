@@ -1,7 +1,7 @@
 Ninja build system targets
 ==========================
 
-Bitcoin Cash Node currently has two build systems:
+Bitcoin Static currently has two build systems:
 
 1. CMake + Ninja (CMake is used to generate Ninja build files)
 
@@ -19,7 +19,7 @@ Please briefly acquaint yourself with the Ninja documentation at
    https://ninja-build.org/manual.html
 
 
-## Setting up an out-of-tree Ninja build of Bitcoin Cash Node
+## Setting up an out-of-tree Ninja build of Bitcoin Static
 
 An out-of-tree build creates build products in a separate folder where they do not interfere with the source code working area.
 

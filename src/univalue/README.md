@@ -1,4 +1,4 @@
-# BCHN UniValue
+# ERGN UniValue
 
 ## Summary
 
@@ -11,28 +11,28 @@ This class is aligned with the JSON standard, [RFC
 
 UniValue was originally created by [Jeff Garzik](https://github.com/jgarzik/univalue/)
 and is used in node software for many bitcoin-based cryptocurrencies.
-**BCHN UniValue** is a fork of UniValue designed and maintained for use in [Bitcoin Cash Node (BCHN)](https://bitcoincashnode.org/).
+**ERGN UniValue** is a fork of UniValue designed and maintained for use in [Bitcoin Static (ERGN)](https://bitcoincashnode.org/).
 Unlike the [Bitcoin Core fork](https://github.com/bitcoin-core/univalue/),
-BCHN UniValue contains large changes that improve *code quality* and *performance*.
-The BCHN UniValue API deviates from the original UniValue API where necessary.
+ERGN UniValue contains large changes that improve *code quality* and *performance*.
+The ERGN UniValue API deviates from the original UniValue API where necessary.
 
-Development of BCHN UniValue is fully integrated with development of Bitcoin Cash Node.
-The BCHN UniValue library and call sites can be changed simultaneously, allowing rapid iterations.
+Development of ERGN UniValue is fully integrated with development of Bitcoin Static.
+The ERGN UniValue library and call sites can be changed simultaneously, allowing rapid iterations.
 
 ## License
 
-Like BCHN, BCHN UniValue is released under the terms of the MIT license. See
+Like ERGN, ERGN UniValue is released under the terms of the MIT license. See
 [COPYING](COPYING) for more information or see
 <https://opensource.org/licenses/MIT>.
 
 ## Build instructions
 
-### Bitcoin Cash Node build
+### Bitcoin Static build
 
-BCHN UniValue is fully integrated in the Bitcoin Cash Node build system.
+ERGN UniValue is fully integrated in the Bitcoin Static build system.
 The library is built automatically while building the node.
 
-Command to build and run tests in the BCHN build system:
+Command to build and run tests in the ERGN build system:
 
 ```
 ninja check-univalue
@@ -53,4 +53,4 @@ Commands to build the library stand-alone:
 make
 ```
 
-BCHN UniValue requires C++14 or later.
+ERGN UniValue requires C++14 or later.

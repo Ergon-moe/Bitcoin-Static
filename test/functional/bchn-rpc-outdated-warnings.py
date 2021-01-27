@@ -12,8 +12,8 @@ DUMMY_ACTIVATION_TIME = 2000000000
 
 # Warning should show up this many seconds before activation.
 OUTDATED_WARN_START = 3600 * 24 * 30  # 30 days.
-WARNING_TEXT_SOON = "Warning: This version of Bitcoin Cash Node is old and may fall out of network consensus in"
-WARNING_TEXT_EXPIRED = "Warning: This version of Bitcoin Cash Node is old and may have fallen out of network consensus 2 day(s) ago"
+WARNING_TEXT_SOON = "Warning: This version of Bitcoin Static is old and may fall out of network consensus in"
+WARNING_TEXT_EXPIRED = "Warning: This version of Bitcoin Static is old and may have fallen out of network consensus 2 day(s) ago"
 # The amount of "lead" time we give the goodNode below before it expires.
 # It is necessary to use this mechanism because the scheduler does not
 # use mocktime -- so we must actually wait for it to expire.

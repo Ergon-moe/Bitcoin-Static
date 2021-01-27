@@ -1,4 +1,4 @@
-# Bitcoin Cash Node bitcoin-tx utility version v22.2.0
+# Bitcoin Static bitcoin-tx utility version v22.2.0
 
 | Usage                                      | Description                            |
 | :----------------------------------------- | :------------------------------------- |

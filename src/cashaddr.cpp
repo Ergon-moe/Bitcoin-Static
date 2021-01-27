@@ -50,9 +50,9 @@ uint64_t PolyMod(const data &v) {
      * The output is a 40-bit integer whose 5-bit groups are the coefficients of
      * the remainder of v(x) mod g(x), where g(x) is the cashaddr generator, x^8
      * + {19}*x^7 + {3}*x^6 + {25}*x^5 + {11}*x^4 + {25}*x^3 + {3}*x^2 + {19}*x
-     * + {1}. g(x) is chosen in such a way that the resulting code is a BCH
+     * + {1}. g(x) is chosen in such a way that the resulting code is a ERG
      * code, guaranteeing detection of up to 4 errors within a window of 1025
-     * characters. Among the various possible BCH codes, one was selected to in
+     * characters. Among the various possible ERG codes, one was selected to in
      * fact guarantee detection of up to 5 errors within a window of 160
      * characters and 6 erros within a window of 126 characters. In addition,
      * the code guarantee the detection of a burst of up to 8 errors.

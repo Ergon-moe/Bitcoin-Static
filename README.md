@@ -1,7 +1,7 @@
-Bitcoin Cash Node
+Bitcoin Static
 =================
 
-The goal of Bitcoin Cash Node is to create sound money that is usable by everyone
+The goal of Bitcoin Static is to create sound money that is usable by everyone
 in the world. We believe this is a civilization-changing technology which will
 dramatically increase human flourishing, freedom, and prosperity. The project
 aims to achieve this goal by implementing a series of optimizations and
@@ -19,10 +19,10 @@ a separate currency from the version supported by Bitcoin Core when the two
 split on August 1, 2017. Bitcoin Cash and the Bitcoin Core version of Bitcoin
 share the same transaction history up until the split.
 
-What is Bitcoin Cash Node?
+What is Bitcoin Static?
 --------------------
 
-[Bitcoin Cash Node](https://www.bitcoincashnode.org) is the name of open-source
+[Bitcoin Static](https://www.bitcoincashnode.org) is the name of open-source
 software which enables the use of Bitcoin Cash. It is a descendant of the
 [Bitcoin Core](https://bitcoincore.org) and [Bitcoin ABC](https://www.bitcoinabc.org)
 software projects.
@@ -30,14 +30,14 @@ software projects.
 License
 -------
 
-Bitcoin Cash Node is released under the terms of the MIT license. See
+Bitcoin Static is released under the terms of the MIT license. See
 [COPYING](COPYING) for more information or see
 [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).
 
 Development Process
 -------------------
 
-Bitcoin Cash Node development takes place at [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node)
+Bitcoin Static development takes place at [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node)
 
 This Github repository contains only source code of releases.
 

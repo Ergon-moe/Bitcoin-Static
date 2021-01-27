@@ -10,10 +10,10 @@ manual intervention. Also optionally follow the next step: 'Seed the Gitian sour
 and offline git repositories' which will fetch the remaining files required for building
 offline.
 
-Building Bitcoin Cash Node
+Building Bitcoin Static
 --------------------------
 
-To build Bitcoin Cash Node (for Linux, OS X and Windows) just follow the steps under 'perform
+To build Bitcoin Static (for Linux, OS X and Windows) just follow the steps under 'perform
 Gitian builds' in [https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/release-process.md#setup-and-perform-gitian-builds) in the bitcoin repository.
 
 This may take some time as it will build all the dependencies needed for each descriptor.

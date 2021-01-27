@@ -6,7 +6,7 @@ bitcoin-qt \- manual page for bitcoin-qt v22.2.0
 .B bitcoin-qt
 [\fI\,command-line options\/\fR]
 .SH DESCRIPTION
-Bitcoin Cash Node version v22.2.0 (64\-bit)
+Bitcoin Static version v22.2.0 (64\-bit)
 .SH OPTIONS
 .HP
 \-?, \fB\-h\fR, \fB\-help\fR
@@ -342,7 +342,7 @@ Do not load the wallet and disable wallet RPC calls
 .HP
 \fB\-fallbackfee=\fR<amt>
 .IP
-A fee rate (in BCH/kB) that will be used when fee estimation has
+A fee rate (in ERG/kB) that will be used when fee estimation has
 insufficient data (default: 0.0002)
 .HP
 \fB\-keypool=\fR<n>
@@ -351,12 +351,12 @@ Set key pool size to <n> (default: 1000)
 .HP
 \fB\-mintxfee=\fR<amt>
 .IP
-Fees (in BCH/kB) smaller than this are considered zero fee for
+Fees (in ERG/kB) smaller than this are considered zero fee for
 transaction creation (default: 0.00001)
 .HP
 \fB\-paytxfee=\fR<amt>
 .IP
-Fee (in BCH/kB) to add to transactions you send (default: 0.00)
+Fee (in ERG/kB) to add to transactions you send (default: 0.00)
 .HP
 \fB\-rescan\fR
 .IP
@@ -452,7 +452,7 @@ Prepend debug output with timestamp (default: 1)
 .HP
 \fB\-maxtxfee=\fR<amt>
 .IP
-Maximum total fees (in BCH) to use in a single wallet transaction or raw
+Maximum total fees (in ERG) to use in a single wallet transaction or raw
 transaction; setting this too low may abort large transactions (default:
 0.10)
 .HP
@@ -509,7 +509,7 @@ Set maximum block size in bytes (default: 2000000)
 .HP
 \fB\-blockmintxfee=\fR<amt>
 .IP
-Set lowest fee rate (in BCH/kB) for transactions to be included in block
+Set lowest fee rate (in ERG/kB) for transactions to be included in block
 creation. (default: 0.00001)
 .PP
 RPC server options:
@@ -616,7 +616,7 @@ Show splash screen on startup (default: 1)
 .SH COPYRIGHT
 Copyright (C) 2009-2020 The Bitcoin developers
 
-Please contribute if you find Bitcoin Cash Node useful. Visit
+Please contribute if you find Bitcoin Static useful. Visit
 <https://www.bitcoincashnode.org> for further information about the software.
 The source code is available from
 <https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node>.

@@ -67,7 +67,7 @@ pkg install qt5-qmake qt5-buildtools qt5-linguisttools qt5-widgets protobuf qt5-
 
 You can do without the `libqrencode-4.0.0` package, just pass `-DENABLE_QRCODE=OFF` on the `cmake` command line.
 
-## Building Bitcoin Cash Node
+## Building Bitcoin Static
 
 Download the source code:
 

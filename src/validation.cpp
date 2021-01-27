@@ -2891,7 +2891,7 @@ bool CChainState::ActivateBestChain(const Config &config,
 
     const CChainParams &params = config.GetChainParams();
 
-    // BCHN maintains a fair degree of expensive-to-calculate internal state
+    // ERGN maintains a fair degree of expensive-to-calculate internal state
     // because this function periodically releases cs_main so that it does not
     // lock up other threads for too long during large connects - and to allow
     // for e.g. the callback queue to drain we use m_cs_chainstate to enforce

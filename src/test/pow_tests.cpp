@@ -783,7 +783,7 @@ BOOST_AUTO_TEST_CASE(asert_activation_anchor_test) {
         gArgs.GetArg("-axionactivationtime", params.axionActivationTime);
     CBlockHeader blkHeaderDummy;
 
-    // an arbitrary compact target for our chain (based on BCH chain ~ Aug 10 2020).
+    // an arbitrary compact target for our chain (based on ERG chain ~ Aug 10 2020).
     uint32_t initialBits = 0x1802a842;
 
     // Block store for anonymous blocks; needs to be big enough to fit all generated

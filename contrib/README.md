@@ -26,7 +26,7 @@ for Debian-based Linux systems. If you compile bitcoind/bitcoin-qt yourself, the
 Notes on getting Gitian builds up and running using KVM.
 
 ### [Gitian-keys](gitian-signing/)
-PGP keys used for signing Bitcoin Cash Node [Gitian release](../doc/release-process.md) results.
+PGP keys used for signing Bitcoin Static [Gitian release](../doc/release-process.md) results.
 
 ### [MacDeploy](macdeploy/) ###
 Scripts and notes for Mac builds. 

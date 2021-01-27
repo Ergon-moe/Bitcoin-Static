@@ -1,6 +1,6 @@
 # Gitian building
 
-*Setup instructions for a Gitian build of Bitcoin Cash Node using a VM or physical system.*
+*Setup instructions for a Gitian build of Bitcoin Static using a VM or physical system.*
 
 Gitian is the deterministic build process that is used to build the Bitcoin
 Cash Node executables. It provides a way to be reasonably sure that the

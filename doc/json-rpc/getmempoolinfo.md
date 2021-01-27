@@ -17,7 +17,7 @@ Result
   "bytes": xxxxx,              (numeric) Transaction size.
   "usage": xxxxx,              (numeric) Total memory usage for the mempool
   "maxmempool": xxxxx,         (numeric) Maximum memory usage for the mempool
-  "mempoolminfee": xxxxx       (numeric) Minimum fee rate in BCH/kB for tx to be accepted. Is the maximum of minrelaytxfee and minimum mempool fee
+  "mempoolminfee": xxxxx       (numeric) Minimum fee rate in ERG/kB for tx to be accepted. Is the maximum of minrelaytxfee and minimum mempool fee
   "minrelaytxfee": xxxxx       (numeric) Current minimum relay fee for transactions
 }
 ```
@@ -32,4 +32,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

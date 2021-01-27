@@ -1,6 +1,6 @@
 # UNIX BUILD NOTES
 
-Some notes on how to build Bitcoin Cash Node in Unix.
+Some notes on how to build Bitcoin Static in Unix.
 
 * For Ubuntu & Debian specific instructions, see [build-unix-deb.md](build-unix-deb.md) in this directory.
 * For Fedora & CentOS specific instructions, see [build-unix-rpm.md](build-unix-rpm.md) in this directory.
@@ -22,7 +22,7 @@ Some notes on how to build Bitcoin Cash Node in Unix.
 
 ## To Build
 
-To build Bitcoin Cash Node you first need to install all the needed dependencies.
+To build Bitcoin Static you first need to install all the needed dependencies.
 See [dependencies.md](dependencies.md) or your OS specific guide in build-*.md.
 If you wish to compile the dependencies from source yourself, please see
 instructions in [depends](/depends/README.md).
@@ -52,7 +52,7 @@ ninja install #optional
 
 ### Disable-wallet mode
 
-When the intention is to run only a P2P node without a wallet, Bitcoin Cash Node
+When the intention is to run only a P2P node without a wallet, Bitcoin Static
 may be compiled in disable-wallet mode by passing `-DBUILD_BITCOIN_WALLET=OFF`
 on the `cmake` command line.
 
@@ -128,7 +128,7 @@ From the build subdirectory (see above), run `cmake -LH ..`.
 ### Memory Requirements
 
 C++ compilers are memory-hungry. It is recommended to have at least 1.5 GB of
-memory available when compiling Bitcoin Cash Node. On systems with less, gcc can
+memory available when compiling Bitcoin Static. On systems with less, gcc can
 be tuned to conserve memory with additional CXXFLAGS:
 
 ```bash
@@ -152,7 +152,7 @@ See the cmake options for upnp behavior desired:
 
 ## Security
 
-To help make your Bitcoin Cash Node installation more secure by making certain
+To help make your Bitcoin Static installation more secure by making certain
 attacks impossible to exploit even if a vulnerability is found, binaries are hardened by default.
 This can be disabled by passing `-DENABLE_HARDENING=OFF`.
 
@@ -181,7 +181,7 @@ Hardening enables the following features:
 ```
 
 * _Non-executable Stack_: If the stack is executable then trivial stack-based buffer overflow exploits are possible if
-    vulnerable buffers are found. By default, Bitcoin Cash Node should be built with a non-executable stack,
+    vulnerable buffers are found. By default, Bitcoin Static should be built with a non-executable stack,
     but if one of the libraries it uses asks for an executable stack or someone makes a mistake
     and uses a compiler extension which requires an executable stack, it will silently build an
     executable without the non-executable stack protection.

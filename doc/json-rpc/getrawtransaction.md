@@ -59,7 +59,7 @@ Result (if verbose is set to true)
   ],
   "vout" : [              (array of json objects)
      {
-       "value" : x.xxx,            (numeric) The value in BCH
+       "value" : x.xxx,            (numeric) The value in ERG
        "n" : n,                    (numeric) index
        "scriptPubKey" : {          (json object)
          "asm" : "asm",          (string) the asm
@@ -94,4 +94,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

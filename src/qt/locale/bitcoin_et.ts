@@ -1758,7 +1758,7 @@
         <translation>Tööta taustal ning aktsepteeri käsklusi</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
+        <source>Bitcoin Static</source>
         <translation>Bitcoini Cash Node</translation>
     </message>
     <message>

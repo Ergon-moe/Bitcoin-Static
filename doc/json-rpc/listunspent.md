@@ -24,10 +24,10 @@ Arguments
                   See description of "safe" attribute below.
 5. query_options    (json, optional) JSON with query options
     {
-      "minimumAmount"    (numeric or string, default=0) Minimum value of each UTXO in BCH
-      "maximumAmount"    (numeric or string, default=unlimited) Maximum value of each UTXO in BCH
+      "minimumAmount"    (numeric or string, default=0) Minimum value of each UTXO in ERG
+      "maximumAmount"    (numeric or string, default=unlimited) Maximum value of each UTXO in ERG
       "maximumCount"     (numeric or string, default=unlimited) Maximum number of UTXOs
-      "minimumSumAmount" (numeric or string, default=unlimited) Minimum sum value of all UTXOs in BCH
+      "minimumSumAmount" (numeric or string, default=unlimited) Minimum sum value of all UTXOs in ERG
     }
 
 Result
@@ -38,7 +38,7 @@ Result
     "address" : "address",    (string) the bitcoin address
     "label" : "label",        (string) The associated label, or "" for the default label
     "scriptPubKey" : "key",   (string) the script key
-    "amount" : x.xxx,         (numeric) the transaction output amount in BCH
+    "amount" : x.xxx,         (numeric) the transaction output amount in ERG
     "confirmations" : n,      (numeric) The number of confirmations
     "redeemScript" : n        (string) The redeemScript if scriptPubKey is P2SH
     "spendable" : xxx,        (bool) Whether we have the private keys to spend this output
@@ -60,4 +60,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

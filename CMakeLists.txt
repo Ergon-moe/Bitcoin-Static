@@ -8,12 +8,12 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE
 
 project(bitcoin-cash-node
 	VERSION 22.3.0
-	DESCRIPTION "Bitcoin Cash Node is a full node implementation of the Bitcoin Cash protocol."
+	DESCRIPTION "Bitcoin Static is a full node implementation of the Bitcoin Cash protocol."
 	HOMEPAGE_URL "https://www.bitcoincashnode.org"
 )
 
 # Package information
-set(PACKAGE_NAME "Bitcoin Cash Node")
+set(PACKAGE_NAME "Bitcoin Static")
 
 # Copyright
 set(COPYRIGHT_YEAR 2020)

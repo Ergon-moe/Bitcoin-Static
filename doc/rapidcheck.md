@@ -1,8 +1,8 @@
-# RapidCheck property-based testing for Bitcoin Cash Node
+# RapidCheck property-based testing for Bitcoin Static
 
 ## Concept
 
-Property-based testing is experimentally being added to Bitcoin Cash Node with
+Property-based testing is experimentally being added to Bitcoin Static with
 [RapidCheck](https://github.com/emil-e/rapidcheck), a C++ framework for
 property-based testing inspired by the Haskell library
 [QuickCheck](https://hackage.haskell.org/package/QuickCheck).
@@ -38,9 +38,9 @@ The following instructions have been tested with Linux Debian and macOS.
     sudo ninja install/strip
     ```
 
-3. Configure Bitcoin Cash Node with RapidCheck.
+3. Configure Bitcoin Static with RapidCheck.
 
-    `cd` to the directory of your local Bitcoin Cash Node repository, create a build
+    `cd` to the directory of your local Bitcoin Static repository, create a build
     directory and run cmake:
 
     ```shell
@@ -58,7 +58,7 @@ The following instructions have been tested with Linux Debian and macOS.
     [...]
     ```
 
-4. Build Bitcoin Cash Node with RapidCheck.
+4. Build Bitcoin Static with RapidCheck.
 
     Now you can run `ninja check` to build and run the unit tests, including the
     property-based tests. You can also build and run a single test by using
@@ -66,4 +66,4 @@ The following instructions have been tested with Linux Debian and macOS.
 
     Example: `ninja check-bitcoin-key_properties`
 
-That's it! You are now running property-based tests in Bitcoin Cash Node.
+That's it! You are now running property-based tests in Bitcoin Static.

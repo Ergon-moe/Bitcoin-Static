@@ -32,7 +32,7 @@ Result (for verbose = true)
 {                           (json object)
   "transactionid" : {       (json object)
     "size" : n,             (numeric) transaction size.
-    "fee" : n,              (numeric) transaction fee in BCH(DEPRECATED)
+    "fee" : n,              (numeric) transaction fee in ERG(DEPRECATED)
     "modifiedfee" : n,      (numeric) transaction fee with fee deltas used for mining priority (DEPRECATED)
     "time" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT
     "height" : n,           (numeric) block height when transaction entered pool
@@ -43,10 +43,10 @@ Result (for verbose = true)
     "ancestorsize" : n,     (numeric) transaction size of in-mempool ancestors (including this one)
     "ancestorfees" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) (DEPRECATED)
     "fees" : {
-        "base" : n,         (numeric) transaction fee in BCH
-        "modified" : n,     (numeric) transaction fee with fee deltas used for mining priority in BCH
-        "ancestor" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) in BCH
-        "descendant" : n,   (numeric) modified fees (see above) of in-mempool descendants (including this one) in BCH
+        "base" : n,         (numeric) transaction fee in ERG
+        "modified" : n,     (numeric) transaction fee with fee deltas used for mining priority in ERG
+        "ancestor" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) in ERG
+        "descendant" : n,   (numeric) modified fees (see above) of in-mempool descendants (including this one) in ERG
     }
     "depends" : [           (array) unconfirmed transactions used as inputs for this transaction
         "transactionid",    (string) parent transaction id
@@ -68,4 +68,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

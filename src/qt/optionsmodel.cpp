@@ -72,14 +72,14 @@ void OptionsModel::Init(bool resetSettings) {
     fMinimizeOnClose = settings.value("fMinimizeOnClose").toBool();
 
     // Display
-    constexpr auto defaultDisplayUnit = BitcoinUnits::BCH;
+    constexpr auto defaultDisplayUnit = BitcoinUnits::ERG;
     if (!settings.contains("nDisplayUnit_v2")) {
         settings.setValue("nDisplayUnit_v2", defaultDisplayUnit);
     }
     nDisplayUnit = settings.value("nDisplayUnit_v2").toInt();
     if (!BitcoinUnits::valid(nDisplayUnit)) {
         // User might be running us after having run a new version that saved
-        // a unit we don't know about, so just default back to BCH.
+        // a unit we don't know about, so just default back to ERG.
         qWarning() << "Unrecognized display unit (" << nDisplayUnit << ") read from settings, setting display unit back to"
                    <<  BitcoinUnits::shortName(defaultDisplayUnit);
         nDisplayUnit = defaultDisplayUnit;

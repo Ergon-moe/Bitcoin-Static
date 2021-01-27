@@ -1,9 +1,9 @@
 BACKPORTING
 ===========
 
-The official guide to backporting code between Bitcoin Cash Node and the Core or ABC clients. When searching
+The official guide to backporting code between Bitcoin Static and the Core or ABC clients. When searching
 for items to backport, especially be on the lookout for bug fixes, code cleanup, and
-important refactors, as these help improve Bitcoin Cash Node despite consensus-level differences
+important refactors, as these help improve Bitcoin Static despite consensus-level differences
 between Bitcoin Cash and Bitcoin Core.
 
 Identifying commits
@@ -40,13 +40,13 @@ with this PR and likely to be needed.
 
 When trying to find a patch worth backporting, it's generally a good idea to
 backport significant refactors or bugfixes.  This will help clean up the code
-in the Bitcoin Cash Node repository, fix bugs, and make future backports significantly
+in the Bitcoin Static repository, fix bugs, and make future backports significantly
 easier. Backports are easiest done in topological order of commits.
 
 Adding remotes for backporting
 ------------------------------
 
-Before you begin backporting commits, you will need to add an additional remote to your Bitcoin Cash Node repo.
+Before you begin backporting commits, you will need to add an additional remote to your Bitcoin Static repo.
 
 For Bitcoin ABC, this repository would be added as:
 
@@ -74,6 +74,6 @@ Backporting one or more commits
 5. Run `git show` side-by-side with `git show <commit-of-interest>` and verify that the changes are reasonable. Resolve any merge conflicts you encounter.
 6. Run the build, and the rpc test suite and verify completion.
 7. Repeat steps 2 through 6 if you want to backport more than one commit. (You can choose to squash commits later in step 9.)
-8. Commit and push the staged backport to a feature/fix branch on your clone of the Bitcoin Cash Node repository.
+8. Commit and push the staged backport to a feature/fix branch on your clone of the Bitcoin Static repository.
 9. Create a Merge Request from that branch in GitLab. In the overview of your Merge Request, mention "Backport of Bitcoin ABC Dxxxxx" and/or "Backport of Bitcoin Core PR#xxxxx". The differential number (ABC) or pull request number (Core) can be obtained by searching [Phabricator (ABC)](https://reviews.bitcoinabc.org/differential/query/all/) or [GitHub (Core)](https://github.com/bitcoin/bitcoin/pulls/) for the commit you are backporting. If you are backporting a commit which depends on another commit from the same D/PR, note that you are backporting "Part 1 of X".
 

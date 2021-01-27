@@ -1,4 +1,4 @@
-Bitcoin Cash Node JSON-RPC commands
+Bitcoin Static JSON-RPC commands
 ===================================
 
 ## Blockchain
@@ -160,4 +160,4 @@ Bitcoin Cash Node JSON-RPC commands
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

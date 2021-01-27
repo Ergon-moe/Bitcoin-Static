@@ -29,7 +29,7 @@ Result
   "inputs" : [                 (array of json objects)
     {
       "utxo" : {            (json object, optional) Transaction output for UTXOs
-        "amount" : x.xxx,           (numeric) The value in BCH
+        "amount" : x.xxx,           (numeric) The value in ERG
         "scriptPubKey" : {          (json object)
           "asm" : "asm",            (string) The asm
           "hex" : "hex",            (string) The hex
@@ -101,4 +101,4 @@ Examples
 
 ***
 
-*Bitcoin Cash Node Daemon version v22.2.0*
+*Bitcoin Static Daemon version v22.2.0*

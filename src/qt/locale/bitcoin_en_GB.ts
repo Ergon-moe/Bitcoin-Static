@@ -1906,8 +1906,8 @@
         <translation>Unable to start HTTP server. See debug log for details.</translation>
     </message>
     <message>
-        <source>Bitcoin Cash Node</source>
-        <translation>Bitcoin Cash Node</translation>
+        <source>Bitcoin Static</source>
+        <translation>Bitcoin Static</translation>
     </message>
     <message>
         <source>The %s developers</source>
