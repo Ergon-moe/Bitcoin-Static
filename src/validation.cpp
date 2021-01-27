@@ -943,19 +943,19 @@ Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
     if (fNegative || fOverflow || bnTarget == 0) {
         return Amount::zero();
     }
-    arith_uint256 work = (~bnTarget / (bnTarget + 1)) + 1;
-
-    uint256 uWork = ArithToUint256(work);
+    arith_uint256 aWork = (~bnTarget / (bnTarget + 1)) + 1;
 
     int divisions = nHeight / consensusParams.nSubsidyHalvingInterval;
 
-    int64_t iWork = uWork.GetUint64(0);
     for(int a=0; a<divisions; a++)  {
         // to be tunned in few years based on high quality empirical research
-        iWork *= 99826;
-        iWork /= 100000;
+        aWork *= 99826;
+        aWork /= 100000;
     }
-    Amount nSubsidy = (iWork /200000000) * Amount::satoshi();//142000000000
+    aWork /= 200000000; //14200000000000
+    uint256 uWork = ArithToUint256(aWork);
+    int64_t iWork = uWork.GetUint64(0);
+    Amount nSubsidy = iWork * Amount::fixoshi();
     nSubsidy = nSubsidy;
     return nSubsidy;
 }
