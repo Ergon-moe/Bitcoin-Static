@@ -187,7 +187,7 @@ void TestGUI() {
     // Amount input
     BitcoinAmountField *amountInput =
         receiveCoinsDialog.findChild<BitcoinAmountField *>("reqAmount");
-    amountInput->setValue(1 * SATOSHI);
+    amountInput->setValue(1 * FIXOSHI);
 
     // Message input
     QLineEdit *messageInput =

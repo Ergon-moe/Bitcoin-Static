@@ -150,11 +150,11 @@ WalletModel::prepareTransaction(WalletModelTransaction &transaction,
                     continue;
                 }
 
-                subtotal += int64_t(out.amount()) * SATOSHI;
+                subtotal += int64_t(out.amount()) * FIXOSHI;
                 const uint8_t *scriptStr = (const uint8_t *)out.script().data();
                 CScript scriptPubKey(scriptStr,
                                      scriptStr + out.script().size());
-                Amount nAmount = int64_t(out.amount()) * SATOSHI;
+                Amount nAmount = int64_t(out.amount()) * FIXOSHI;
                 CRecipient recipient = {scriptPubKey, nAmount,
                                         rcp.fSubtractFeeFromAmount};
                 vecSend.push_back(recipient);

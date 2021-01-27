@@ -261,15 +261,15 @@ public:
         // Compare feerate with descendants to feerate of the transaction, and
         // return the fee/size for the max.
         double f1 =
-            a.GetVirtualSizeWithDescendants() * (a.GetModifiedFee() / SATOSHI);
+            a.GetVirtualSizeWithDescendants() * (a.GetModifiedFee() / FIXOSHI);
         double f2 =
-            a.GetTxVirtualSize() * (a.GetModFeesWithDescendants() / SATOSHI);
+            a.GetTxVirtualSize() * (a.GetModFeesWithDescendants() / FIXOSHI);
 
         if (f2 > f1) {
-            mod_fee = a.GetModFeesWithDescendants() / SATOSHI;
+            mod_fee = a.GetModFeesWithDescendants() / FIXOSHI;
             size = a.GetVirtualSizeWithDescendants();
         } else {
-            mod_fee = a.GetModifiedFee() / SATOSHI;
+            mod_fee = a.GetModifiedFee() / FIXOSHI;
             size = a.GetTxVirtualSize();
         }
     }
@@ -285,8 +285,8 @@ public:
 class CompareTxMemPoolEntryByScore {
 public:
     bool operator()(const CTxMemPoolEntry &a, const CTxMemPoolEntry &b) const {
-        double f1 = b.GetTxSize() * (a.GetFee() / SATOSHI);
-        double f2 = a.GetTxSize() * (b.GetFee() / SATOSHI);
+        double f1 = b.GetTxSize() * (a.GetFee() / FIXOSHI);
+        double f2 = a.GetTxSize() * (b.GetFee() / FIXOSHI);
         if (f1 == f2) {
             return b.GetTx().GetId() < a.GetTx().GetId();
         }
@@ -330,15 +330,15 @@ public:
         // Compare feerate with ancestors to feerate of the transaction, and
         // return the fee/size for the min.
         double f1 =
-            a.GetVirtualSizeWithAncestors() * (a.GetModifiedFee() / SATOSHI);
+            a.GetVirtualSizeWithAncestors() * (a.GetModifiedFee() / FIXOSHI);
         double f2 =
-            a.GetTxVirtualSize() * (a.GetModFeesWithAncestors() / SATOSHI);
+            a.GetTxVirtualSize() * (a.GetModFeesWithAncestors() / FIXOSHI);
 
         if (f1 > f2) {
-            mod_fee = a.GetModFeesWithAncestors() / SATOSHI;
+            mod_fee = a.GetModFeesWithAncestors() / FIXOSHI;
             size = a.GetVirtualSizeWithAncestors();
         } else {
-            mod_fee = a.GetModifiedFee() / SATOSHI;
+            mod_fee = a.GetModifiedFee() / FIXOSHI;
             size = a.GetTxVirtualSize();
         }
     }

@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(coins_cache_simulation_test) {
 
             if (InsecureRandRange(5) == 0 || coin.IsSpent()) {
                 CTxOut txout;
-                txout.nValue = int64_t(InsecureRand32()) * SATOSHI;
+                txout.nValue = int64_t(InsecureRand32()) * FIXOSHI;
                 if (InsecureRandRange(16) == 0 && coin.IsSpent()) {
                     txout.scriptPubKey.assign(1 + InsecureRandBits(6),
                                               OP_RETURN);
@@ -319,7 +319,7 @@ BOOST_AUTO_TEST_CASE(updatecoins_simulation_test) {
             tx.vin.resize(1);
             tx.vout.resize(1);
             // Keep txs unique unless intended to duplicate.
-            tx.vout[0].nValue = i * SATOSHI;
+            tx.vout[0].nValue = i * FIXOSHI;
             // Random sizes so we can test memory usage accounting
             tx.vout[0].scriptPubKey.assign(InsecureRand32() & 0x3F, 0);
             unsigned int height = InsecureRand32();
@@ -515,7 +515,7 @@ BOOST_AUTO_TEST_CASE(coin_serialization) {
     ss1 >> c1;
     BOOST_CHECK_EQUAL(c1.IsCoinBase(), false);
     BOOST_CHECK_EQUAL(c1.GetHeight(), 203998U);
-    BOOST_CHECK_EQUAL(c1.GetTxOut().nValue, int64_t(60000000000) * SATOSHI);
+    BOOST_CHECK_EQUAL(c1.GetTxOut().nValue, int64_t(60000000000) * FIXOSHI);
     BOOST_CHECK_EQUAL(HexStr(c1.GetTxOut().scriptPubKey),
                       HexStr(GetScriptForDestination(CKeyID(uint160(ParseHex(
                           "816115944e077fe7c803cfa57f29b36bf87c1d35"))))));
@@ -528,7 +528,7 @@ BOOST_AUTO_TEST_CASE(coin_serialization) {
     ss2 >> c2;
     BOOST_CHECK_EQUAL(c2.IsCoinBase(), true);
     BOOST_CHECK_EQUAL(c2.GetHeight(), 120891U);
-    BOOST_CHECK_EQUAL(c2.GetTxOut().nValue, 110397 * SATOSHI);
+    BOOST_CHECK_EQUAL(c2.GetTxOut().nValue, 110397 * FIXOSHI);
     BOOST_CHECK_EQUAL(HexStr(c2.GetTxOut().scriptPubKey),
                       HexStr(GetScriptForDestination(CKeyID(uint160(ParseHex(
                           "8c988f1a4a4de2161e0f50aac7f17e7f9555caa4"))))));
@@ -566,12 +566,12 @@ BOOST_AUTO_TEST_CASE(coin_serialization) {
 }
 
 static const COutPoint OUTPOINT;
-static const Amount PRUNED(-1 * SATOSHI);
-static const Amount ABSENT(-2 * SATOSHI);
-static const Amount FAIL(-3 * SATOSHI);
-static const Amount VALUE1(100 * SATOSHI);
-static const Amount VALUE2(200 * SATOSHI);
-static const Amount VALUE3(300 * SATOSHI);
+static const Amount PRUNED(-1 * FIXOSHI);
+static const Amount ABSENT(-2 * FIXOSHI);
+static const Amount FAIL(-3 * FIXOSHI);
+static const Amount VALUE1(100 * FIXOSHI);
+static const Amount VALUE2(200 * FIXOSHI);
+static const Amount VALUE3(300 * FIXOSHI);
 static const char DIRTY = CCoinsCacheEntry::DIRTY;
 static const char FRESH = CCoinsCacheEntry::FRESH;
 static const char NO_ENTRY = -1;

@@ -490,10 +490,10 @@ static UniValue::Object entryToJSON(const CTxMemPool &pool, const CTxMemPoolEntr
     info.emplace_back("height", e.GetHeight());
     info.emplace_back("descendantcount", e.GetCountWithDescendants());
     info.emplace_back("descendantsize", e.GetSizeWithDescendants());
-    info.emplace_back("descendantfees", e.GetModFeesWithDescendants() / SATOSHI);
+    info.emplace_back("descendantfees", e.GetModFeesWithDescendants() / FIXOSHI);
     info.emplace_back("ancestorcount", e.GetCountWithAncestors());
     info.emplace_back("ancestorsize", e.GetSizeWithAncestors());
-    info.emplace_back("ancestorfees", e.GetModFeesWithAncestors() / SATOSHI);
+    info.emplace_back("ancestorfees", e.GetModFeesWithAncestors() / FIXOSHI);
 
     const CTransaction &tx = e.GetTx();
 
@@ -1038,7 +1038,7 @@ static void ApplyStats(CCoinsStats &stats, CHashWriter &ss, const uint256 &hash,
     for (const auto &output : outputs) {
         ss << VARINT(output.first + 1);
         ss << output.second.GetTxOut().scriptPubKey;
-        ss << VARINT(output.second.GetTxOut().nValue / SATOSHI,
+        ss << VARINT(output.second.GetTxOut().nValue / FIXOSHI,
                      VarIntMode::NONNEGATIVE_SIGNED);
         stats.nTransactionOutputs++;
         stats.nTotalAmount += output.second.GetTxOut().nValue;

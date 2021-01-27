@@ -1123,7 +1123,7 @@ CTxMemPool::GetMemPoolChildren(txiter entry) const {
 CFeeRate CTxMemPool::GetMinFee(size_t sizelimit) const {
     LOCK(cs);
     if (!blockSinceLastRollingFeeBump || rollingMinimumFeeRate == 0) {
-        return CFeeRate(int64_t(ceill(rollingMinimumFeeRate)) * SATOSHI);
+        return CFeeRate(int64_t(ceill(rollingMinimumFeeRate)) * FIXOSHI);
     }
 
     int64_t time = GetTime();
@@ -1140,13 +1140,13 @@ CFeeRate CTxMemPool::GetMinFee(size_t sizelimit) const {
             pow(2.0, (time - lastRollingFeeUpdate) / halflife);
         lastRollingFeeUpdate = time;
     }
-    return CFeeRate(int64_t(ceill(rollingMinimumFeeRate)) * SATOSHI);
+    return CFeeRate(int64_t(ceill(rollingMinimumFeeRate)) * FIXOSHI);
 }
 
 void CTxMemPool::trackPackageRemoved(const CFeeRate &rate) {
     AssertLockHeld(cs);
-    if ((rate.GetFeePerK() / SATOSHI) > rollingMinimumFeeRate) {
-        rollingMinimumFeeRate = rate.GetFeePerK() / SATOSHI;
+    if ((rate.GetFeePerK() / FIXOSHI) > rollingMinimumFeeRate) {
+        rollingMinimumFeeRate = rate.GetFeePerK() / FIXOSHI;
         blockSinceLastRollingFeeBump = false;
     }
 }

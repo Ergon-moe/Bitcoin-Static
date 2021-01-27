@@ -38,7 +38,7 @@ static bool Verify(const CScript &scriptSig, const CScript &scriptPubKey,
     txTo.vout.resize(1);
     txTo.vin[0].prevout = COutPoint(txFrom.GetId(), 0);
     txTo.vin[0].scriptSig = scriptSig;
-    txTo.vout[0].nValue = SATOSHI;
+    txTo.vout[0].nValue = FIXOSHI;
 
     return VerifyScript(
         scriptSig, scriptPubKey,
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(sign) {
         txTo[i].vin.resize(1);
         txTo[i].vout.resize(1);
         txTo[i].vin[0].prevout = COutPoint(txFrom.GetId(), i);
-        txTo[i].vout[0].nValue = SATOSHI;
+        txTo[i].vout[0].nValue = FIXOSHI;
         BOOST_CHECK_MESSAGE(IsMine(keystore, txFrom.vout[i].scriptPubKey),
                             strprintf("IsMine %d", i));
     }
@@ -339,13 +339,13 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard) {
 
     // P2SH (OP_CHECKSIG)
     txFrom.vout[0].scriptPubKey = GetScriptForDestination(CScriptID(pay1));
-    txFrom.vout[0].nValue = 1000 * SATOSHI;
+    txFrom.vout[0].nValue = 1000 * FIXOSHI;
     // ordinary OP_CHECKSIG
     txFrom.vout[1].scriptPubKey = pay1;
-    txFrom.vout[1].nValue = 2000 * SATOSHI;
+    txFrom.vout[1].nValue = 2000 * FIXOSHI;
     // ordinary OP_CHECKMULTISIG
     txFrom.vout[2].scriptPubKey = pay1of3;
-    txFrom.vout[2].nValue = 3000 * SATOSHI;
+    txFrom.vout[2].nValue = 3000 * FIXOSHI;
 
     // vout[3] is complicated 1-of-3 AND 2-of-3
     // ... that is OK if wrapped in P2SH:
@@ -360,7 +360,7 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard) {
     oneAndTwo << OP_3 << OP_CHECKMULTISIG;
     keystore.AddCScript(oneAndTwo);
     txFrom.vout[3].scriptPubKey = GetScriptForDestination(CScriptID(oneAndTwo));
-    txFrom.vout[3].nValue = 4000 * SATOSHI;
+    txFrom.vout[3].nValue = 4000 * FIXOSHI;
 
     AddCoins(coins, CTransaction(txFrom), 0);
 

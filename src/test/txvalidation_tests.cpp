@@ -70,7 +70,7 @@ BOOST_FIXTURE_TEST_CASE(tx_mempool_reject_dup_txin, TestChain100Setup) {
       tx.nVersion = 1;
       tx.vin.resize(vinSize);
       tx.vout.resize(1);
-      tx.vout[0].nValue = 400 * SATOSHI;
+      tx.vout[0].nValue = 400 * FIXOSHI;
       tx.vout[0].scriptPubKey = scriptPubKey;
       for (size_t i=0; i<vinSize; i++) {
         tx.vin[i].prevout = COutPoint(TxId(InsecureRand256()), 0);

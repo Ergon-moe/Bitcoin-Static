@@ -3071,7 +3071,7 @@ CreateTransactionResult CWallet::CreateTransaction(
         // make it as fast as we can here to ease the upgrade transition
         if (coinsel == CoinSelectionHint::Fast || coinsel == CoinSelectionHint::FastReserved) {
             AvailableCoins(*locked_chain, vAvailableCoins, true, &coinControl,
-                SATOSHI,   // nMinimumAmount
+                FIXOSHI,   // nMinimumAmount
                 MAX_MONEY, // nMaximumAmount
                 10 * nValue, // nMinimumSumAmount
                 0, 0, 9999999,

@@ -29,7 +29,7 @@ static Amount GetFee(size_t nBytes_, Amount nSatoshisPerK) {
     Amount nFee = Amount::zero();
     if (ceil) {
         nFee = Amount(nSize * nSatoshisPerK % 1000 > Amount::zero()
-                          ? nSize * nSatoshisPerK / 1000 + SATOSHI
+                          ? nSize * nSatoshisPerK / 1000 + FIXOSHI
                           : nSize * nSatoshisPerK / 1000);
     } else {
         nFee = nSize * nSatoshisPerK / 1000;
@@ -37,10 +37,10 @@ static Amount GetFee(size_t nBytes_, Amount nSatoshisPerK) {
 
     if (nFee == Amount::zero() && nSize != 0) {
         if (nSatoshisPerK > Amount::zero()) {
-            nFee = SATOSHI;
+            nFee = FIXOSHI;
         }
         if (nSatoshisPerK < Amount::zero()) {
-            nFee = -SATOSHI;
+            nFee = -FIXOSHI;
         }
     }
 
@@ -57,5 +57,5 @@ Amount CFeeRate::GetFeeCeiling(size_t nBytes) const {
 
 std::string CFeeRate::ToString() const {
     return strprintf("%d.%08d %s/kB", nSatoshisPerK / COIN,
-                     (nSatoshisPerK % COIN) / SATOSHI, CURRENCY_UNIT);
+                     (nSatoshisPerK % COIN) / FIXOSHI, CURRENCY_UNIT);
 }

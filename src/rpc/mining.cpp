@@ -297,7 +297,7 @@ static UniValue prioritisetransaction(const Config &config,
     LOCK(cs_main);
 
     TxId txid(ParseHashV(request.params[0], "txid"));
-    Amount nAmount = request.params[2].get_int64() * SATOSHI;
+    Amount nAmount = request.params[2].get_int64() * FIXOSHI;
 
     if (!(request.params[1].isNull() || request.params[1].get_real() == 0)) {
         throw JSONRPCError(RPC_INVALID_PARAMETER,
@@ -767,7 +767,7 @@ static UniValue getblocktemplatecommon(bool fLight, const Config &config, const 
             entry.emplace_back("data", EncodeHexTx(tx));
             entry.emplace_back("txid", tx.GetId().GetHex());
             entry.emplace_back("hash", tx.GetHash().GetHex());
-            entry.emplace_back("fee", pblocktemplate->entries[index_in_template].fees / SATOSHI);
+            entry.emplace_back("fee", pblocktemplate->entries[index_in_template].fees / FIXOSHI);
             entry.emplace_back("sigops", pblocktemplate->entries[index_in_template].sigOpCount);
 
             transactions.emplace_back(std::move(entry));
@@ -804,7 +804,7 @@ static UniValue getblocktemplatecommon(bool fLight, const Config &config, const 
         result.emplace_back("merkle", std::move(merkle));
     }
     result.emplace_back("coinbaseaux", std::move(aux));
-    result.emplace_back("coinbasevalue", pblock->vtx[0]->vout[0].nValue / SATOSHI);
+    result.emplace_back("coinbasevalue", pblock->vtx[0]->vout[0].nValue / FIXOSHI);
     result.emplace_back("longpollid", ::ChainActive().Tip()->GetBlockHash().GetHex() + i64tostr(nTransactionsUpdatedLast));
     result.emplace_back("target", hashTarget.GetHex());
     result.emplace_back("mintime", pindexPrev->GetMedianTimePast() + 1);

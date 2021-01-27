@@ -57,7 +57,7 @@ public:
         Amount amount(
             int64_t(
                 index.data(TransactionTableModel::AmountRole).toLongLong()) *
-            SATOSHI);
+            FIXOSHI);
         bool confirmed =
             index.data(TransactionTableModel::ConfirmedRole).toBool();
         QVariant value = index.data(Qt::ForegroundRole);
@@ -120,7 +120,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent)
       txdelegate(new TxViewDelegate(platformStyle, this)) {
     ui->setupUi(this);
 
-    m_balances.balance = -SATOSHI;
+    m_balances.balance = -FIXOSHI;
 
     // use a SingleColorIcon for the "out of sync warning" icon
     QIcon icon = platformStyle->SingleColorIcon(":/icons/warning");
@@ -272,7 +272,7 @@ void OverviewPage::setWalletModel(WalletModel *model) {
 
 void OverviewPage::updateDisplayUnit() {
     if (walletModel && walletModel->getOptionsModel()) {
-        if (m_balances.balance != -SATOSHI) {
+        if (m_balances.balance != -FIXOSHI) {
             setBalance(m_balances);
         }
 

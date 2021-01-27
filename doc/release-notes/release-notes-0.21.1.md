@@ -162,7 +162,7 @@ Changes since Bitcoin Static 0.21.0
 
 #### GUI
 
-- 6ce344f Qt: Fix #47; quirk when switching versions after selecting Satoshi (sats)
+- 6ce344f Qt: Fix #47; quirk when switching versions after selecting fix
 - 9f1598b Qt: Set AA_EnableHighDpiScaling before QApplication instance creation
 - a512311 Add 'GRAPHENE' and 'CF' GUI labels in nodes' supported services
 - bbf89bb New splash screens (#29)

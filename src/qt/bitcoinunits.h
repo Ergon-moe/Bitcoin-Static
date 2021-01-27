@@ -56,7 +56,7 @@ public:
      * @note Source: https://en.bitcoin.it/wiki/Units.
      * Please add only sensible ones.
      */
-    enum Unit { ERG, mERG, uERG, SAT };
+    enum Unit { ERG, mERG, uERG, FIX };
 
     enum SeparatorStyle { separatorNever, separatorStandard, separatorAlways };
 

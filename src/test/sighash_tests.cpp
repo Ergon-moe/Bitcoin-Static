@@ -117,7 +117,7 @@ static void RandomTransaction(CMutableTransaction &tx, bool fSingle) {
     for (int out = 0; out < outs; out++) {
         tx.vout.push_back(CTxOut());
         CTxOut &txout = tx.vout.back();
-        txout.nValue = int64_t(InsecureRandRange(100000000)) * SATOSHI;
+        txout.nValue = int64_t(InsecureRandRange(100000000)) * FIXOSHI;
         RandomScript(txout.scriptPubKey);
     }
 }

@@ -5628,7 +5628,7 @@ bool LoadMempool(const Config &config, CTxMemPool &pool) {
             file >> nTime;
             file >> nFeeDelta;
 
-            Amount amountdelta = nFeeDelta * SATOSHI;
+            Amount amountdelta = nFeeDelta * FIXOSHI;
             if (amountdelta != Amount::zero()) {
                 pool.PrioritiseTransaction(tx->GetId(), amountdelta);
             }

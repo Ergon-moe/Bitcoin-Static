@@ -149,7 +149,7 @@ bool DecompressScript(CScript &script, unsigned int nSize,
 // - 1) + 9
 // (this is decodable, as d is in [1-9] and e is in [0-9])
 uint64_t CompressAmount(Amount amt) {
-    uint64_t n = amt / SATOSHI;
+    uint64_t n = amt / FIXOSHI;
     if (n == 0) {
         return 0;
     }
@@ -191,5 +191,5 @@ Amount DecompressAmount(uint64_t x) {
         n *= 10;
         e--;
     }
-    return int64_t(n) * SATOSHI;
+    return int64_t(n) * FIXOSHI;
 }

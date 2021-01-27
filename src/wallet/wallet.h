@@ -78,11 +78,11 @@ static constexpr unsigned int DEFAULT_KEYPOOL_SIZE = 1000;
 //! -paytxfee default
 constexpr Amount DEFAULT_PAY_TX_FEE = Amount::zero();
 //! -fallbackfee default
-static constexpr Amount DEFAULT_FALLBACK_FEE(20000 * SATOSHI);
+static constexpr Amount DEFAULT_FALLBACK_FEE(20000 * FIXOSHI);
 //! -mintxfee default
-static constexpr Amount DEFAULT_TRANSACTION_MINFEE_PER_KB = 1000 * SATOSHI;
+static constexpr Amount DEFAULT_TRANSACTION_MINFEE_PER_KB = 1000 * FIXOSHI;
 //! minimum recommended increment for BIP 125 replacement txs
-static constexpr Amount WALLET_INCREMENTAL_RELAY_FEE(5000 * SATOSHI);
+static constexpr Amount WALLET_INCREMENTAL_RELAY_FEE(5000 * FIXOSHI);
 //! Default for -spendzeroconfchange
 static constexpr bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -walletrejectlongchains
@@ -910,7 +910,7 @@ public:
     void AvailableCoins(interfaces::Chain::Lock &locked_chain,
                         std::vector<COutput> &vCoins, bool fOnlySafe = true,
                         const CCoinControl *coinControl = nullptr,
-                        const Amount nMinimumAmount = SATOSHI,
+                        const Amount nMinimumAmount = FIXOSHI,
                         const Amount nMaximumAmount = MAX_MONEY,
                         const Amount nMinimumSumAmount = MAX_MONEY,
                         const uint64_t nMaximumCount = 0,

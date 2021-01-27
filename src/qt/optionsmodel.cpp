@@ -585,7 +585,7 @@ void OptionsModel::checkAndMigrate() {
 
     // Previous to version 0.21.1, we called this config key "nDisplayUnit",
     // but then we subsequently renamed it to "nDiplayUnit_v2" after adding the
-    // Satoshi (sats) unit type. See issue #47.
+    // fix unit type. See issue #47.
     if (settings.contains("nDisplayUnit") && !settings.contains("nDisplayUnit_v2")) {
         const int oldVal = settings.value("nDisplayUnit").toInt();
         if (BitcoinUnits::valid(oldVal))

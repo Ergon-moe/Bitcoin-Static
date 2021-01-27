@@ -31,7 +31,7 @@ from test_framework.messages import (
     ToHex,
 )
 
-SATOSHI = Decimal('0.00000001')
+FIXOSHI = Decimal('0.00000001')
 
 
 class WalletStandardnessTest(BitcoinTestFramework):
@@ -105,14 +105,14 @@ class WalletStandardnessTest(BitcoinTestFramework):
             balance_change = std_node.getbalance() - balance_initial
             if shouldBeInWallet:
                 assert (txid, 0) in wallet_outpoints
-                assert balance_change == amount * SATOSHI
+                assert balance_change == amount * FIXOSHI
             else:
                 assert (txid, 0) not in wallet_outpoints
                 assert balance_change == 0
 
             # try spending the funds using the wallet.
-            outamount = (amount - spendfee) * SATOSHI
-            if outamount < 546 * SATOSHI:
+            outamount = (amount - spendfee) * FIXOSHI
+            if outamount < 546 * FIXOSHI:
                 # If the final amount would be too small, then just donate
                 # to miner fees.
                 outputs = [{"data": b"to miner, with love".hex()}]

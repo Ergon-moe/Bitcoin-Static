@@ -64,7 +64,7 @@ bool TransactionFilterProxy::filterAcceptsRow(
     Amount amount(
         int64_t(
             llabs(index.data(TransactionTableModel::AmountRole).toLongLong())) *
-        SATOSHI);
+        FIXOSHI);
     if (amount < minAmount) {
         return false;
     }

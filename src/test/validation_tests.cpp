@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test) {
         nSum += 1000 * nSubsidy;
         BOOST_CHECK(MoneyRange(nSum));
     }
-    BOOST_CHECK_EQUAL(nSum, int64_t(2099999997690000LL) * SATOSHI);
+    BOOST_CHECK_EQUAL(nSum, int64_t(2099999997690000LL) * FIXOSHI);
 }
 
 static CBlock makeLargeDummyBlock(const size_t num_tx) {

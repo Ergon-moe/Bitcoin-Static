@@ -93,10 +93,10 @@ static Amount make_hard_case(const CWallet &wallet, int utxos,
     utxo_pool.clear();
     Amount target = Amount::zero();
     for (int i = 0; i < utxos; ++i) {
-        const Amount base = (int64_t(1) << (utxos + i)) * SATOSHI;
+        const Amount base = (int64_t(1) << (utxos + i)) * FIXOSHI;
         target += base;
         add_coin(wallet, base, 2 * i, utxo_pool);
-        add_coin(wallet, base + (int64_t(1) << (utxos - 1 - i)) * SATOSHI,
+        add_coin(wallet, base + (int64_t(1) << (utxos - 1 - i)) * FIXOSHI,
                  2 * i + 1, utxo_pool);
     }
     return target;

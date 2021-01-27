@@ -248,13 +248,13 @@ BOOST_AUTO_TEST_CASE(rpc_createraw_op_return) {
 
 BOOST_AUTO_TEST_CASE(rpc_format_monetary_values) {
     BOOST_CHECK(UniValue::stringify(ValueFromAmount(Amount::zero())) == "0.00000000");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(SATOSHI)) == "0.00000001");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(17622195 * SATOSHI)) == "0.17622195");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(50000000 * SATOSHI)) == "0.50000000");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(89898989 * SATOSHI)) == "0.89898989");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(100000000 * SATOSHI)) == "1.00000000");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(int64_t(2099999999999990) * SATOSHI)) == "20999999.99999990");
-    BOOST_CHECK(UniValue::stringify(ValueFromAmount(int64_t(2099999999999999) * SATOSHI)) == "20999999.99999999");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(FIXOSHI)) == "0.00000001");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(17622195 * FIXOSHI)) == "0.17622195");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(50000000 * FIXOSHI)) == "0.50000000");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(89898989 * FIXOSHI)) == "0.89898989");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(100000000 * FIXOSHI)) == "1.00000000");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(int64_t(2099999999999990) * FIXOSHI)) == "20999999.99999990");
+    BOOST_CHECK(UniValue::stringify(ValueFromAmount(int64_t(2099999999999999) * FIXOSHI)) == "20999999.99999999");
 
     BOOST_CHECK_EQUAL(UniValue::stringify(ValueFromAmount(Amount::zero())), "0.00000000");
     BOOST_CHECK_EQUAL(UniValue::stringify(ValueFromAmount(123456789 * (COIN / 10000))), "12345.67890000");
@@ -292,21 +292,21 @@ BOOST_AUTO_TEST_CASE(rpc_parse_monetary_values) {
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0")), Amount::zero());
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.00000000")),
                       Amount::zero());
-    BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.00000001")), SATOSHI);
+    BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.00000001")), FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.17622195")),
-                      17622195 * SATOSHI);
+                      17622195 * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.5")),
-                      50000000 * SATOSHI);
+                      50000000 * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.50000000")),
-                      50000000 * SATOSHI);
+                      50000000 * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.89898989")),
-                      89898989 * SATOSHI);
+                      89898989 * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("1.00000000")),
-                      100000000 * SATOSHI);
+                      100000000 * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("20999999.9999999")),
-                      int64_t(2099999999999990) * SATOSHI);
+                      int64_t(2099999999999990) * FIXOSHI);
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("20999999.99999999")),
-                      int64_t(2099999999999999) * SATOSHI);
+                      int64_t(2099999999999999) * FIXOSHI);
 
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("1e-8")),
                       COIN / 100000000);
@@ -336,12 +336,12 @@ BOOST_AUTO_TEST_CASE(rpc_parse_monetary_values) {
     BOOST_CHECK_THROW(AmountFromValue(ValueFromString("0.000000019")), JSONRPCError);
     // should pass, cut trailing 0
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.00000001000000")),
-                      SATOSHI);
+                      FIXOSHI);
     // should fail
     BOOST_CHECK_THROW(AmountFromValue(ValueFromString("19e-9")), JSONRPCError);
     // should pass, leading 0 is present
     BOOST_CHECK_EQUAL(AmountFromValue(ValueFromString("0.19e-6")),
-                      19 * SATOSHI);
+                      19 * FIXOSHI);
 
     // overflow error
     BOOST_CHECK_THROW(AmountFromValue(ValueFromString("92233720368.54775808")), JSONRPCError);
@@ -498,74 +498,74 @@ BOOST_AUTO_TEST_CASE(rpc_getblockstats_calculate_percentiles_by_size)
     Amount result[NUM_GETBLOCKSTATS_PERCENTILES] = { Amount::zero() };
 
     for (int64_t i = 0; i < 100; i++) {
-        feerates.emplace_back(std::make_pair(Amount(1 * SATOSHI) ,1));
+        feerates.emplace_back(std::make_pair(Amount(1 * FIXOSHI) ,1));
     }
 
     for (int64_t i = 0; i < 100; i++) {
-        feerates.emplace_back(std::make_pair(Amount(2 * SATOSHI) ,1));
+        feerates.emplace_back(std::make_pair(Amount(2 * FIXOSHI) ,1));
     }
 
     CalculatePercentilesBySize(result, feerates, total_size);
-    BOOST_CHECK_EQUAL(result[0], Amount(1 * SATOSHI));
-    BOOST_CHECK_EQUAL(result[1], Amount(1 * SATOSHI));
-    BOOST_CHECK_EQUAL(result[2], Amount(1 * SATOSHI));
-    BOOST_CHECK_EQUAL(result[3], Amount(2 * SATOSHI));
-    BOOST_CHECK_EQUAL(result[4], Amount(2 * SATOSHI));
+    BOOST_CHECK_EQUAL(result[0], Amount(1 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result[1], Amount(1 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result[2], Amount(1 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result[3], Amount(2 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result[4], Amount(2 * FIXOSHI));
 
     // Test with more pairs, and two pairs overlapping 2 percentiles.
     total_size = 100;
     Amount result2[NUM_GETBLOCKSTATS_PERCENTILES] = { Amount::zero() };
     feerates.clear();
 
-    feerates.emplace_back(std::make_pair(Amount(1 * SATOSHI), 9));
-    feerates.emplace_back(std::make_pair(Amount(2 * SATOSHI), 16)); //10th + 25th percentile
-    feerates.emplace_back(std::make_pair(Amount(4 * SATOSHI), 50)); //50th + 75th percentile
-    feerates.emplace_back(std::make_pair(Amount(5 * SATOSHI), 10));
-    feerates.emplace_back(std::make_pair(Amount(9 * SATOSHI), 15));  // 90th percentile
+    feerates.emplace_back(std::make_pair(Amount(1 * FIXOSHI), 9));
+    feerates.emplace_back(std::make_pair(Amount(2 * FIXOSHI), 16)); //10th + 25th percentile
+    feerates.emplace_back(std::make_pair(Amount(4 * FIXOSHI), 50)); //50th + 75th percentile
+    feerates.emplace_back(std::make_pair(Amount(5 * FIXOSHI), 10));
+    feerates.emplace_back(std::make_pair(Amount(9 * FIXOSHI), 15));  // 90th percentile
 
     CalculatePercentilesBySize(result2, feerates, total_size);
 
-    BOOST_CHECK_EQUAL(result2[0], Amount(2 * SATOSHI));
-    BOOST_CHECK_EQUAL(result2[1], Amount(2 * SATOSHI));
-    BOOST_CHECK_EQUAL(result2[2], Amount(4 * SATOSHI));
-    BOOST_CHECK_EQUAL(result2[3], Amount(4 * SATOSHI));
-    BOOST_CHECK_EQUAL(result2[4], Amount(9 * SATOSHI));
+    BOOST_CHECK_EQUAL(result2[0], Amount(2 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result2[1], Amount(2 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result2[2], Amount(4 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result2[3], Amount(4 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result2[4], Amount(9 * FIXOSHI));
 
     // Same test as above, but one of the percentile-overlapping pairs is split in 2.
     total_size = 100;
     Amount result3[NUM_GETBLOCKSTATS_PERCENTILES] = { Amount::zero() };
     feerates.clear();
 
-    feerates.emplace_back(std::make_pair(Amount(1 * SATOSHI), 9));
-    feerates.emplace_back(std::make_pair(Amount(2 * SATOSHI), 11)); // 10th percentile
-    feerates.emplace_back(std::make_pair(Amount(2 * SATOSHI), 5)); // 25th percentile
-    feerates.emplace_back(std::make_pair(Amount(4 * SATOSHI), 50)); //50th + 75th percentile
-    feerates.emplace_back(std::make_pair(Amount(5 * SATOSHI), 10));
-    feerates.emplace_back(std::make_pair(Amount(9 * SATOSHI), 15)); // 90th percentile
+    feerates.emplace_back(std::make_pair(Amount(1 * FIXOSHI), 9));
+    feerates.emplace_back(std::make_pair(Amount(2 * FIXOSHI), 11)); // 10th percentile
+    feerates.emplace_back(std::make_pair(Amount(2 * FIXOSHI), 5)); // 25th percentile
+    feerates.emplace_back(std::make_pair(Amount(4 * FIXOSHI), 50)); //50th + 75th percentile
+    feerates.emplace_back(std::make_pair(Amount(5 * FIXOSHI), 10));
+    feerates.emplace_back(std::make_pair(Amount(9 * FIXOSHI), 15)); // 90th percentile
 
     CalculatePercentilesBySize(result3, feerates, total_size);
 
-    BOOST_CHECK_EQUAL(result3[0], Amount(2 * SATOSHI));
-    BOOST_CHECK_EQUAL(result3[1], Amount(2 * SATOSHI));
-    BOOST_CHECK_EQUAL(result3[2], Amount(4 * SATOSHI));
-    BOOST_CHECK_EQUAL(result3[3], Amount(4 * SATOSHI));
-    BOOST_CHECK_EQUAL(result3[4], Amount(9 * SATOSHI));
+    BOOST_CHECK_EQUAL(result3[0], Amount(2 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result3[1], Amount(2 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result3[2], Amount(4 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result3[3], Amount(4 * FIXOSHI));
+    BOOST_CHECK_EQUAL(result3[4], Amount(9 * FIXOSHI));
 
     // Test with one transaction spanning all percentiles.
     total_size = 104;
     Amount result4[NUM_GETBLOCKSTATS_PERCENTILES] = { Amount::zero() };
     feerates.clear();
 
-    feerates.emplace_back(std::make_pair(Amount(1 * SATOSHI), 100));
-    feerates.emplace_back(std::make_pair(Amount(2 * SATOSHI), 1));
-    feerates.emplace_back(std::make_pair(Amount(3 * SATOSHI), 1));
-    feerates.emplace_back(std::make_pair(Amount(3 * SATOSHI), 1));
-    feerates.emplace_back(std::make_pair(Amount(999999 * SATOSHI), 1));
+    feerates.emplace_back(std::make_pair(Amount(1 * FIXOSHI), 100));
+    feerates.emplace_back(std::make_pair(Amount(2 * FIXOSHI), 1));
+    feerates.emplace_back(std::make_pair(Amount(3 * FIXOSHI), 1));
+    feerates.emplace_back(std::make_pair(Amount(3 * FIXOSHI), 1));
+    feerates.emplace_back(std::make_pair(Amount(999999 * FIXOSHI), 1));
 
     CalculatePercentilesBySize(result4, feerates, total_size);
 
     for (int64_t i = 0; i < NUM_GETBLOCKSTATS_PERCENTILES; i++) {
-        BOOST_CHECK_EQUAL(result4[i], Amount(1 * SATOSHI));
+        BOOST_CHECK_EQUAL(result4[i], Amount(1 * FIXOSHI));
     }
 }
 

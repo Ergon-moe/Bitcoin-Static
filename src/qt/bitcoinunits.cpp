@@ -16,7 +16,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits() {
     unitlist.append(ERG);
     unitlist.append(mERG);
     unitlist.append(uERG);
-    unitlist.append(SAT);
+    unitlist.append(FIX);
     return unitlist;
 }
 
@@ -25,7 +25,7 @@ bool BitcoinUnits::valid(int unit) {
         case ERG:
         case mERG:
         case uERG:
-        case SAT:
+        case FIX:
             return true;
         default:
             return false;
@@ -40,8 +40,8 @@ QString BitcoinUnits::longName(int unit) {
             return QString("mERG");
         case uERG:
             return QString::fromUtf8("μERG");
-        case SAT:
-            return QString("Satoshi (sat)");
+        case FIX:
+            return QString("fix");
         default:
             return QString("???");
     }
@@ -49,7 +49,7 @@ QString BitcoinUnits::longName(int unit) {
 
 QString BitcoinUnits::shortName(int unit) {
     switch (unit) {
-        case SAT:
+        case FIX:
             return QString("sat");
         default:
             return longName(unit);
@@ -65,8 +65,8 @@ QString BitcoinUnits::description(int unit) {
         case uERG:
             return QString("Micro-Bitcoins (1 / 1" THIN_SP_UTF8
                            "000" THIN_SP_UTF8 "000)");
-        case SAT:
-            return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8
+        case FIX:
+            return QString("fix (1 / 100" THIN_SP_UTF8
                            "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
@@ -81,7 +81,7 @@ qint64 BitcoinUnits::factor(int unit) {
             return 100000;
         case uERG:
             return 100;
-        case SAT:
+        case FIX:
             return 1;
         default:
             return 100000000;
@@ -96,7 +96,7 @@ int BitcoinUnits::decimals(int unit) {
             return 5;
         case uERG:
             return 2;
-        case SAT:
+        case FIX:
             return 0;
         default:
             return 0;
@@ -111,7 +111,7 @@ QString BitcoinUnits::format(int unit, const Amount nIn, bool fPlus,
         // Refuse to format invalid unit
         return QString();
     }
-    qint64 n = qint64(nIn / SATOSHI);
+    qint64 n = qint64(nIn / FIXOSHI);
     qint64 coin = factor(unit);
     int num_decimals = decimals(unit);
     qint64 n_abs = (n > 0 ? n : -n);
@@ -198,7 +198,7 @@ bool BitcoinUnits::parse(int unit, const QString &value, Amount *val_out) {
         // Longer numbers will exceed 63 bits
         return false;
     }
-    Amount retvalue(int64_t(str.toLongLong(&ok)) * SATOSHI);
+    Amount retvalue(int64_t(str.toLongLong(&ok)) * FIXOSHI);
     if (val_out) {
         *val_out = retvalue;
     }

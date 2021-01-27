@@ -76,7 +76,7 @@ static void add_coin(CWallet &wallet, const Amount nValue, int nAge = 6 * 24,
         std::make_unique<CWalletTx>(&wallet, MakeTransactionRef(std::move(tx)));
     if (fIsFromMe) {
         wtx->fDebitCached = true;
-        wtx->nDebitCached = SATOSHI;
+        wtx->nDebitCached = FIXOSHI;
     }
     COutput output(wtx.get(), nInput, nAge, true /* spendable */,
                    true /* solvable */, true /* safe */);
@@ -101,10 +101,10 @@ static Amount make_hard_case(int utxos, std::vector<CInputCoin> &utxo_pool) {
     utxo_pool.clear();
     Amount target = Amount::zero();
     for (int i = 0; i < utxos; ++i) {
-        const Amount base = (int64_t(1) << (utxos + i)) * SATOSHI;
+        const Amount base = (int64_t(1) << (utxos + i)) * FIXOSHI;
         target += base;
         add_coin(base, 2 * i, utxo_pool);
-        add_coin(base + (int64_t(1) << (utxos - 1 - i)) * SATOSHI, 2 * i + 1,
+        add_coin(base + (int64_t(1) << (utxos - 1 - i)) * FIXOSHI, 2 * i + 1,
                  utxo_pool);
     }
     return target;
@@ -127,7 +127,7 @@ inline std::vector<OutputGroup> &GroupCoins(const std::vector<COutput> &coins) {
         // HACK: we can't figure out the is_me flag so we use the conditions
         // defined below; perhaps set safe to false for !fIsFromMe in add_coin()
         const bool is_me =
-            coin.tx->fDebitCached && coin.tx->nDebitCached == SATOSHI;
+            coin.tx->fDebitCached && coin.tx->nDebitCached == FIXOSHI;
         static_groups.emplace_back(coin.GetInputCoin(), coin.nDepth, is_me, 0,
                                    0);
     }
@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_CASE(bnb_search_test) {
     add_coin(5 * CENT, 5, actual_selection);
     add_coin(3 * CENT, 3, actual_selection);
     add_coin(2 * CENT, 2, actual_selection);
-    BOOST_CHECK(SelectCoinsBnB(GroupCoins(utxo_pool), 10 * CENT, 5000 * SATOSHI,
+    BOOST_CHECK(SelectCoinsBnB(GroupCoins(utxo_pool), 10 * CENT, 5000 * FIXOSHI,
                                selection, value_ret, not_input_fees));
     BOOST_CHECK_EQUAL(value_ret, 10 * CENT);
     // FIXME: this test is redundant with the above, because 1 Cent is selected,
@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE(bnb_search_test) {
     for (int i = 0; i < 50000; ++i) {
         add_coin(5 * CENT, 7, utxo_pool);
     }
-    BOOST_CHECK(SelectCoinsBnB(GroupCoins(utxo_pool), 30 * CENT, 5000 * SATOSHI,
+    BOOST_CHECK(SelectCoinsBnB(GroupCoins(utxo_pool), 30 * CENT, 5000 * FIXOSHI,
                                selection, value_ret, not_input_fees));
     BOOST_CHECK_EQUAL(value_ret, 30 * CENT);
     BOOST_CHECK(equal_sets(selection, actual_selection));
@@ -271,12 +271,12 @@ BOOST_AUTO_TEST_CASE(bnb_search_test) {
     // Make sure that effective value is working in SelectCoinsMinConf when BnB
     // is used
     CoinSelectionParams coin_selection_params_bnb(true, 0, 0,
-                                                  CFeeRate(3000 * SATOSHI), 0);
+                                                  CFeeRate(3000 * FIXOSHI), 0);
     CoinSet setCoinsRet;
     Amount nValueRet;
     bool bnb_used;
     empty_wallet();
-    add_coin(m_wallet, SATOSHI);
+    add_coin(m_wallet, FIXOSHI);
     // Make sure that it has a negative effective value. The next check should
     // assert if this somehow got through. Otherwise it will fail
     vCoins.at(0).nInputBytes = 40;
@@ -602,7 +602,7 @@ BOOST_AUTO_TEST_CASE(knapsack_solver_test) {
     }
 
     // test with many inputs
-    for (Amount amt = 1500 * SATOSHI; amt < COIN; amt = 10 * amt) {
+    for (Amount amt = 1500 * FIXOSHI; amt < COIN; amt = 10 * amt) {
         empty_wallet();
         // Create 676 inputs (=  (old MAX_STANDARD_TX_SIZE == 100000)  / 148
         // bytes per input)
@@ -614,13 +614,13 @@ BOOST_AUTO_TEST_CASE(knapsack_solver_test) {
         // coin selection RUN_TESTS times.
         for (int i = 0; i < RUN_TESTS; i++) {
             BOOST_CHECK(testWallet.SelectCoinsMinConf(
-                2000 * SATOSHI, filter_confirmed, GroupCoins(vCoins),
+                2000 * FIXOSHI, filter_confirmed, GroupCoins(vCoins),
                 setCoinsRet, nValueRet, coin_selection_params, bnb_used));
 
-            if (amt - 2000 * SATOSHI < MIN_CHANGE) {
+            if (amt - 2000 * FIXOSHI < MIN_CHANGE) {
                 // needs more than one input:
                 uint16_t returnSize = std::ceil(
-                    (2000.0 + (MIN_CHANGE / SATOSHI)) / (amt / SATOSHI));
+                    (2000.0 + (MIN_CHANGE / FIXOSHI)) / (amt / FIXOSHI));
                 Amount returnValue = returnSize * amt;
                 BOOST_CHECK_EQUAL(nValueRet, returnValue);
                 BOOST_CHECK_EQUAL(setCoinsRet.size(), returnSize);
@@ -745,15 +745,15 @@ BOOST_AUTO_TEST_CASE(SelectCoins_test) {
         // Make a wallet with 1000 exponentially distributed random inputs
         for (int j = 0; j < 1000; ++j) {
             add_coin(testWallet,
-                     int64_t(10000000 * distribution(generator)) * SATOSHI);
+                     int64_t(10000000 * distribution(generator)) * FIXOSHI);
         }
 
         // Generate a random fee rate in the range of 100 - 400
-        CFeeRate rate(int64_t(rand.randrange(300) + 100) * SATOSHI);
+        CFeeRate rate(int64_t(rand.randrange(300) + 100) * FIXOSHI);
 
         // Generate a random target value between 1000 and wallet balance
         Amount target =
-            int64_t(rand.randrange(balance / SATOSHI - 1000) + 1000) * SATOSHI;
+            int64_t(rand.randrange(balance / FIXOSHI - 1000) + 1000) * FIXOSHI;
 
         // Perform selection
         CoinSelectionParams coin_selection_params_knapsack(

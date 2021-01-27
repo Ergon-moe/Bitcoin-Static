@@ -157,11 +157,11 @@ public:
     }
 
     void SetNull() {
-        nValue = -SATOSHI;
+        nValue = -FIXOSHI;
         scriptPubKey.clear();
     }
 
-    bool IsNull() const { return nValue == -SATOSHI; }
+    bool IsNull() const { return nValue == -FIXOSHI; }
 
     friend bool operator==(const CTxOut &a, const CTxOut &b) {
         return (a.nValue == b.nValue && a.scriptPubKey == b.scriptPubKey);

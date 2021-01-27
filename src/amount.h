@@ -148,9 +148,9 @@ public:
     }
 };
 
-static constexpr Amount SATOSHI = Amount::satoshi();
-static constexpr Amount CASH = 100 * SATOSHI;
-static constexpr Amount COIN = 100000000 * SATOSHI;
+static constexpr Amount FIXOSHI = Amount::satoshi();
+static constexpr Amount CASH = 100 * FIXOSHI;
+static constexpr Amount COIN = 100000000 * FIXOSHI;
 
 extern const std::string CURRENCY_UNIT;
 

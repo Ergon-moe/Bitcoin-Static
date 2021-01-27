@@ -13,7 +13,7 @@
 BOOST_FIXTURE_TEST_SUITE(amount_tests, BasicTestingSetup)
 
 static void CheckAmounts(int64_t aval, int64_t bval) {
-    Amount a(aval * SATOSHI), b(bval * SATOSHI);
+    Amount a(aval * FIXOSHI), b(bval * FIXOSHI);
 
     // Equality
     BOOST_CHECK_EQUAL(a == b, aval == bval);
@@ -36,40 +36,40 @@ static void CheckAmounts(int64_t aval, int64_t bval) {
     BOOST_CHECK_EQUAL(b >= a, bval >= aval);
 
     // Unary minus
-    BOOST_CHECK_EQUAL(-a, -aval * SATOSHI);
-    BOOST_CHECK_EQUAL(-b, -bval * SATOSHI);
+    BOOST_CHECK_EQUAL(-a, -aval * FIXOSHI);
+    BOOST_CHECK_EQUAL(-b, -bval * FIXOSHI);
 
     // Addition and subtraction.
     BOOST_CHECK_EQUAL(a + b, b + a);
-    BOOST_CHECK_EQUAL(a + b, (aval + bval) * SATOSHI);
+    BOOST_CHECK_EQUAL(a + b, (aval + bval) * FIXOSHI);
 
     BOOST_CHECK_EQUAL(a - b, -(b - a));
-    BOOST_CHECK_EQUAL(a - b, (aval - bval) * SATOSHI);
+    BOOST_CHECK_EQUAL(a - b, (aval - bval) * FIXOSHI);
 
     // Multiplication
     BOOST_CHECK_EQUAL(aval * b, bval * a);
-    BOOST_CHECK_EQUAL(aval * b, (aval * bval) * SATOSHI);
+    BOOST_CHECK_EQUAL(aval * b, (aval * bval) * FIXOSHI);
 
     // Division
     if (b != Amount::zero()) {
         BOOST_CHECK_EQUAL(a / b, aval / bval);
-        BOOST_CHECK_EQUAL(a / bval, (a / b) * SATOSHI);
+        BOOST_CHECK_EQUAL(a / bval, (a / b) * FIXOSHI);
     }
 
     if (a != Amount::zero()) {
         BOOST_CHECK_EQUAL(b / a, bval / aval);
-        BOOST_CHECK_EQUAL(b / aval, (b / a) * SATOSHI);
+        BOOST_CHECK_EQUAL(b / aval, (b / a) * FIXOSHI);
     }
 
     // Modulus
     if (b != Amount::zero()) {
         BOOST_CHECK_EQUAL(a % b, a % bval);
-        BOOST_CHECK_EQUAL(a % b, (aval % bval) * SATOSHI);
+        BOOST_CHECK_EQUAL(a % b, (aval % bval) * FIXOSHI);
     }
 
     if (a != Amount::zero()) {
         BOOST_CHECK_EQUAL(b % a, b % aval);
-        BOOST_CHECK_EQUAL(b % a, (bval % aval) * SATOSHI);
+        BOOST_CHECK_EQUAL(b % a, (bval % aval) * FIXOSHI);
     }
 
     // OpAssign
@@ -103,17 +103,17 @@ BOOST_AUTO_TEST_CASE(AmountTests) {
 }
 
 BOOST_AUTO_TEST_CASE(MoneyRangeTest) {
-    BOOST_CHECK_EQUAL(MoneyRange(-SATOSHI), false);
+    BOOST_CHECK_EQUAL(MoneyRange(-FIXOSHI), false);
     BOOST_CHECK_EQUAL(MoneyRange(Amount::zero()), true);
-    BOOST_CHECK_EQUAL(MoneyRange(SATOSHI), true);
+    BOOST_CHECK_EQUAL(MoneyRange(FIXOSHI), true);
     BOOST_CHECK_EQUAL(MoneyRange(MAX_MONEY), true);
-    BOOST_CHECK_EQUAL(MoneyRange(MAX_MONEY + SATOSHI), false);
+    BOOST_CHECK_EQUAL(MoneyRange(MAX_MONEY + FIXOSHI), false);
 }
 
 BOOST_AUTO_TEST_CASE(BinaryOperatorTest) {
     CFeeRate a, b;
-    a = CFeeRate(1 * SATOSHI);
-    b = CFeeRate(2 * SATOSHI);
+    a = CFeeRate(1 * FIXOSHI);
+    b = CFeeRate(2 * FIXOSHI);
     BOOST_CHECK(a < b);
     BOOST_CHECK(b > a);
     BOOST_CHECK(a == a);
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(BinaryOperatorTest) {
 
 BOOST_AUTO_TEST_CASE(ToStringTest) {
     CFeeRate feeRate;
-    feeRate = CFeeRate(1 * SATOSHI);
+    feeRate = CFeeRate(1 * FIXOSHI);
     BOOST_CHECK_EQUAL(feeRate.ToString(), "0.00000001 ERG/kB");
 }
 

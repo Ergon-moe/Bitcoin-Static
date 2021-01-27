@@ -633,7 +633,7 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog *dialog) {
            "than the current dust threshold.");
 
     // how many satoshis the estimated fee can vary per byte we guess wrong
-    double dFeeVary = (nBytes != 0) ? double(nPayFee / SATOSHI) / nBytes : 0;
+    double dFeeVary = (nBytes != 0) ? double(nPayFee / FIXOSHI) / nBytes : 0;
 
     QString toolTip4 =
         tr("Can vary +/- %1 satoshi(s) per input.").arg(dFeeVary);
@@ -771,7 +771,7 @@ void CoinControlDialog::updateView() {
             // padding so that sorting works correctly
             itemOutput->setData(
                 COLUMN_AMOUNT, Qt::UserRole,
-                QVariant(qlonglong(out.txout.nValue / SATOSHI)));
+                QVariant(qlonglong(out.txout.nValue / FIXOSHI)));
 
             // date
             itemOutput->setText(COLUMN_DATE, GUIUtil::dateTimeStr(out.time));
@@ -815,7 +815,7 @@ void CoinControlDialog::updateView() {
             itemWalletAddress->setText(
                 COLUMN_AMOUNT, BitcoinUnits::format(nDisplayUnit, nSum));
             itemWalletAddress->setData(COLUMN_AMOUNT, Qt::UserRole,
-                                       QVariant(qlonglong(nSum / SATOSHI)));
+                                       QVariant(qlonglong(nSum / FIXOSHI)));
         }
     }
 
