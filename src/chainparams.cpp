@@ -81,21 +81,21 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
-        consensus.nSubsidyHalvingInterval = 210000;
+        consensus.nSubsidyHalvingInterval = 144;
         // 00000000000000ce80a7e057163a4db1d5ad7b20fb6f598c9597b9665c8fb0d4 -
         // April 1, 2012
-        consensus.BIP16Height = 173805;
-        consensus.BIP34Height = 227931;
+        consensus.BIP16Height = 0;
+        consensus.BIP34Height = 0;
         consensus.BIP34Hash = BlockHash::fromHex(
             "000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
         // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
-        consensus.BIP65Height = 388381;
+        consensus.BIP65Height = 0;
         // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.BIP66Height = 363725;
+        consensus.BIP66Height = 0;
         // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
-        consensus.CSVHeight = 419328;
+        consensus.CSVHeight = 0;
         consensus.powLimit = uint256S(
-            "00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+            "0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // two weeks
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60;
         consensus.nPowTargetSpacing = 10 * 60;
@@ -109,37 +109,36 @@ public:
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork =
-            ChainParamsConstants::MAINNET_MINIMUM_CHAIN_WORK;
+            ChainParamsConstants::TESTNET_MINIMUM_CHAIN_WORK;
 
         // By default assume that the signatures in ancestors of this block are
         // valid.
         consensus.defaultAssumeValid =
-            ChainParamsConstants::MAINNET_DEFAULT_ASSUME_VALID;
+            ChainParamsConstants::TESTNET_DEFAULT_ASSUME_VALID;
 
         // August 1, 2017 hard fork
-        consensus.uahfHeight = 478558;
+        consensus.uahfHeight = 0;
 
         // November 13, 2017 hard fork
-        consensus.daaHeight = 504031;
+        consensus.daaHeight = 0;
 
         // November 15, 2018 hard fork
-        consensus.magneticAnomalyHeight = 556766;
+        consensus.magneticAnomalyHeight = 0;
 
         // November 15, 2019 protocol upgrade
-        consensus.gravitonHeight = 609135;
+        consensus.gravitonHeight = 0;
 
         // May 15, 2020 12:00:00 UTC protocol upgrade
-        consensus.phononHeight = 635258;
+        consensus.phononHeight = 0;
 
         // Nov 15, 2020 12:00:00 UTC protocol upgrade
-        consensus.axionActivationTime = 1605441600;
+        consensus.axionActivationTime  = 1583000000;
 
         // May 15, 2021 12:00:00 UTC tentative protocol upgrade
         consensus.tachyonActivationTime = 1621080000;
 
         // Default limit for block size (in bytes)
         consensus.nDefaultExcessiveBlockSize = DEFAULT_EXCESSIVE_BLOCK_SIZE;
-
         // Anchor params: Note that the block after this height *must* also be checkpointed below.
         consensus.asertAnchorParams = Consensus::Params::ASERTAnchor{
             661647,       // anchor block height
@@ -152,52 +151,53 @@ public:
          * normal data. The characters are rarely used upper ASCII, not valid as
          * UTF-8, and produce a large 32-bit integer with any alignment.
          */
-        diskMagic[0] = 0xf9;
-        diskMagic[1] = 0xbe;
-        diskMagic[2] = 0xb4;
-        diskMagic[3] = 0xd9;
-        netMagic[0] = 0xe3;
-        netMagic[1] = 0xe1;
-        netMagic[2] = 0xf3;
-        netMagic[3] = 0xe8;
+        diskMagic[0] = 194;
+        diskMagic[1] = 95;
+        diskMagic[2] = 143;
+        diskMagic[3] = 196;
+        netMagic[0] = 135;
+        netMagic[1] = 215;
+        netMagic[2] = 51;
+        netMagic[3] = 46;
         nDefaultPort = 8333;
         nPruneAfterHeight = 100000;
-        m_assumed_blockchain_size = 200;
-        m_assumed_chain_state_size = 3;
+        m_assumed_blockchain_size = 0;
+        m_assumed_chain_state_size = 0;
 
-        genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1,
-                                     50 * COIN);
+        genesis =
+            CreateGenesisBlock(1607003022, 92586649, 0x1d0fffff,
+                               1, 0 * COIN);
+        consensus.hashGenesisBlock = BlockHash::fromHex("0x000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5");
+
+        genesis.nNonce = 92586649;
+
+        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
+                {
+                    printf("recalculating params for MAINNET.\n");
+                    printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    printf("old MAINNET genesis nonce: %u\n",genesis.nNonce);
+                    printf("old MAINNET genesis hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+                    for(genesis.nNonce = 0; genesis.GetHash() > BlockHash::fromHex("0000000897062db8d1fd00000000000000000000000000000000000000000000"); genesis.nNonce++){ }
+                    printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    printf("new MAINNET genesis nonce: %u\n", genesis.nNonce);
+                    printf("new MAINNET genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+                }
+
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1"
-                        "b60a8ce26f"));
+               BlockHash::fromHex("000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b"
-                        "7afdeda33b"));
+               BlockHash::fromHex("dc6c10ad2a26613ae9b8a156ed9ca15e3e355a994a7e32cd7a4c3d7a478f57d2"));
+        vFixedSeeds.clear();
+        vSeeds.clear();
 
-        vSeeds.emplace_back("seed.flowee.cash");
-        // Note that of those which support the service bits prefix, most only
-        // support a subset of possible options. This is fine at runtime as
-        // we'll fall back to using them as a oneshot if they don't support the
-        // service bits we want, but we should get them updated to support all
-        // service bits wanted by any release ASAP to avoid it where possible.
-        // bitcoinforks seeders
-        vSeeds.emplace_back("seed-bch.bitcoinforks.org");
-        // BU backed seeder
-        vSeeds.emplace_back("btccash-seeder.bitcoinunlimited.info");
-        // BCHD
-        vSeeds.emplace_back("seed.bchd.cash");
-        // Loping.net
-        vSeeds.emplace_back("seed.bch.loping.net");
-        // Electroncash.de
-        vSeeds.emplace_back("dnsseed.electroncash.de");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<uint8_t>(1, 5);
         base58Prefixes[SECRET_KEY] = std::vector<uint8_t>(1, 128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-        cashaddrPrefix = "bitcoincash";
+        cashaddrPrefix = "ergon";
 
         vFixedSeeds = std::vector<SeedSpec6>(
             pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -207,95 +207,35 @@ public:
         m_is_test_chain = false;
 
         checkpointData = {
-            /* .mapCheckpoints = */ {
-                {11111, BlockHash::fromHex("0000000069e244f73d78e8fd29ba2fd2ed6"
-                                           "18bd6fa2ee92559f542fdb26e7c1d")},
-                {33333, BlockHash::fromHex("000000002dd5588a74784eaa7ab0507a18a"
-                                           "d16a236e7b1ce69f00d7ddfb5d0a6")},
-                {74000, BlockHash::fromHex("0000000000573993a3c9e41ce34471c079d"
-                                           "cf5f52a0e824a81e7f953b8661a20")},
-                {105000, BlockHash::fromHex("00000000000291ce28027faea320c8d2b0"
-                                            "54b2e0fe44a773f3eefb151d6bdc97")},
-                {134444, BlockHash::fromHex("00000000000005b12ffd4cd315cd34ffd4"
-                                            "a594f430ac814c91184a0d42d2b0fe")},
-                {168000, BlockHash::fromHex("000000000000099e61ea72015e79632f21"
-                                            "6fe6cb33d7899acb35b75c8303b763")},
-                {193000, BlockHash::fromHex("000000000000059f452a5f7340de6682a9"
-                                            "77387c17010ff6e6c3bd83ca8b1317")},
-                {210000, BlockHash::fromHex("000000000000048b95347e83192f69cf03"
-                                            "66076336c639f9b7228e9ba171342e")},
-                {216116, BlockHash::fromHex("00000000000001b4f4b433e81ee46494af"
-                                            "945cf96014816a4e2370f11b23df4e")},
-                {225430, BlockHash::fromHex("00000000000001c108384350f74090433e"
-                                            "7fcf79a606b8e797f065b130575932")},
-                {250000, BlockHash::fromHex("000000000000003887df1f29024b06fc22"
-                                            "00b55f8af8f35453d7be294df2d214")},
-                {279000, BlockHash::fromHex("0000000000000001ae8c72a0b0c301f67e"
-                                            "3afca10e819efa9041e458e9bd7e40")},
-                {295000, BlockHash::fromHex("00000000000000004d9b4ef50f0f9d686f"
-                                            "d69db2e03af35a100370c64632a983")},
-                // UAHF fork block.
-                {478558, BlockHash::fromHex("0000000000000000011865af4122fe3b14"
-                                            "4e2cbeea86142e8ff2fb4107352d43")},
-                // Nov, 13 DAA activation block.
-                {504031, BlockHash::fromHex("0000000000000000011ebf65b60d0a3de8"
-                                            "0b8175be709d653b4c1a1beeb6ab9c")},
-                // Monolith activation.
-                {530359, BlockHash::fromHex("0000000000000000011ada8bd08f46074f"
-                                            "44a8f155396f43e38acf9501c49103")},
-                // Magnetic anomaly activation.
-                {556767, BlockHash::fromHex("0000000000000000004626ff6e3b936941"
-                                            "d341c5932ece4357eeccac44e6d56c")},
-                // Great wall activation.
-                {582680, BlockHash::fromHex("000000000000000001b4b8e36aec7d4f96"
-                                            "71a47872cb9a74dc16ca398c7dcc18")},
-                // Graviton activation.
-                {609136, BlockHash::fromHex("000000000000000000b48bb207faac5ac6"
-                                            "55c313e41ac909322eaa694f5bc5b1")},
-                // Phonon activation.
-                {635259, BlockHash::fromHex("00000000000000000033dfef1fc2d6a5d5"
-                                            "520b078c55193a9bf498c5b27530f7")},
-                // Axion activation.
-                {661648, BlockHash::fromHex("0000000000000000029e471c41818d24b8"
-                                            "b74c911071c4ef0b4a0509f9b5a8ce")},
-            }};
+            .mapCheckpoints = {}};
 
-        // Data as of block
-        // 000000000000000000579879b7e78971b8f08c00159fc62e6d5fa0631d984a27
-        // (height 662856).
-        chainTxData = ChainTxData{
-            // UNIX timestamp of last known number of transactions.
-            1606131279,
-            // Total number of transactions between genesis and that timestamp
-            // (the tx=... number in the ChainStateFlushed debug.log lines)
-            292682542,
-            // Estimated number of transactions per second after that timestamp.
-            0.2238301417498387,
-        };
+        chainTxData = ChainTxData{0, 1607003022, 0.};
     }
 };
 
 /**
  * Testnet (v3)
  */
+
 class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
+        printf("Testnet Params.\n");
         strNetworkID = CBaseChainParams::TESTNET;
-        consensus.nSubsidyHalvingInterval = 210000;
+        consensus.nSubsidyHalvingInterval = 144;
         // 00000000040b4e986385315e14bee30ad876d8b47f748025b26683116d21aa65
-        consensus.BIP16Height = 514;
-        consensus.BIP34Height = 21111;
+        consensus.BIP16Height = 0;
+        consensus.BIP34Height = 0;
         consensus.BIP34Hash = BlockHash::fromHex(
-            "0000000023b3a96d3484e5abb3755c413e7d41500f8e2a5c3f0dd01299cd8ef8");
+            "0x000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5");
         // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
-        consensus.BIP65Height = 581885;
+        consensus.BIP65Height = 0;
         // 000000002104c8c45e99a8853285a3b592602a3ccde2b832481da85e9e4ba182
-        consensus.BIP66Height = 330776;
+        consensus.BIP66Height = 0;
         // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
-        consensus.CSVHeight = 770112;
+        consensus.CSVHeight = 0;
         consensus.powLimit = uint256S(
-            "00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+            "0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // two weeks
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60;
         consensus.nPowTargetSpacing = 10 * 60;
@@ -317,69 +257,86 @@ public:
             ChainParamsConstants::TESTNET_DEFAULT_ASSUME_VALID;
 
         // August 1, 2017 hard fork
-        consensus.uahfHeight = 1155875;
+        consensus.uahfHeight = 0;
 
         // November 13, 2017 hard fork
-        consensus.daaHeight = 1188697;
+        consensus.daaHeight = 0;
 
         // November 15, 2018 hard fork
-        consensus.magneticAnomalyHeight = 1267996;
+        consensus.magneticAnomalyHeight = 0;
 
         // November 15, 2019 protocol upgrade
-        consensus.gravitonHeight = 1341711;
+        consensus.gravitonHeight = 0;
 
         // May 15, 2020 12:00:00 UTC protocol upgrade
-        consensus.phononHeight = 1378460;
+        consensus.phononHeight = 0;
 
         // Nov 15, 2020 12:00:00 UTC protocol upgrade
-        consensus.axionActivationTime = 1605441600;
+        consensus.axionActivationTime  = 1583000000;
 
         // May 15, 2021 12:00:00 UTC tentative protocol upgrade
         consensus.tachyonActivationTime = 1621080000;
 
         // Default limit for block size (in bytes)
         consensus.nDefaultExcessiveBlockSize = DEFAULT_EXCESSIVE_BLOCK_SIZE;
-
         // Anchor params: Note that the block after this height *must* also be checkpointed below.
         consensus.asertAnchorParams = Consensus::Params::ASERTAnchor{
             1421481,      // anchor block height
             0x1d00ffff,   // anchor block nBits
             1605445400,   // anchor block previous block timestamp
         };
-
-        diskMagic[0] = 0x0b;
-        diskMagic[1] = 0x11;
-        diskMagic[2] = 0x09;
-        diskMagic[3] = 0x07;
-        netMagic[0] = 0xf4;
-        netMagic[1] = 0xe5;
-        netMagic[2] = 0xf3;
-        netMagic[3] = 0xf4;
+        diskMagic[0] = 98;
+        diskMagic[1] = 82;
+        diskMagic[2] = 153;
+        diskMagic[3] = 83;
+        netMagic[0] = 151;
+        netMagic[1] = 212;
+        netMagic[2] = 31;
+        netMagic[3] = 144;
         nDefaultPort = 18333;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 60;
         m_assumed_chain_state_size = 2;
 
         genesis =
-            CreateGenesisBlock(1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
+            CreateGenesisBlock(1607003022, 92586649, 0x1d0fffff, 1, 0 * COIN);
+consensus.hashGenesisBlock = BlockHash::fromHex("0x000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5");
+
+        genesis.nNonce = 92586649;
+        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
+                {
+                    printf("recalculating params for TESTNET.\n");
+                    printf("new TESTNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    printf("old TESTNET genesis nonce: %u\n",genesis.nNonce);
+                    printf("old TESTNET genesis hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+                    // deliberately empty for loop finds nonce value.
+                    //measure my pc hashrate
+                    //time_t start_time;
+                    //time_t end_time;
+	                //time(&start_time);
+                    //for(genesis.nNonce = 0; genesis.nNonce <9999999 ;genesis.nNonce++){genesis.GetHash();}
+                    //time(&end_time);
+                    //double diff = difftime(start_time,end_time);
+                    //printf("Diff: %d\n", diff);
+                    //double hash = 10000000. / diff;
+                    //printf("End time: %d\n", end_time);
+                    //printf("Start time: %d\n", start_time);
+                    //printf("my Hash Rate: %d\n", hash);
+                    for(genesis.nNonce = 0; genesis.GetHash() > BlockHash::fromHex("0000000897062db8d1fd00000000000000000000000000000000000000000000"); genesis.nNonce++){ }
+                    printf("new TESTNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    printf("new TESTNET genesis nonce: %u\n", genesis.nNonce);
+
+                    printf("new TESTNET genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+                }
+
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("000000000933ea01ad0ee984209779baaec3ced90fa3f408719526"
-                        "f8d77f4943"));
+               BlockHash::fromHex("000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b"
-                        "7afdeda33b"));
-
+               BlockHash::fromHex("dc6c10ad2a26613ae9b8a156ed9ca15e3e355a994a7e32cd7a4c3d7a478f57d2"));
         vFixedSeeds.clear();
         vSeeds.clear();
-        // nodes with support for servicebits filtering should be at the top
-        // bitcoinforks seeders
-        vSeeds.emplace_back("testnet-seed-bch.bitcoinforks.org");
-        // BCHD
-        vSeeds.emplace_back("testnet-seed.bchd.cash");
-        // Loping.net
-        vSeeds.emplace_back("seed.tbch.loping.net");
-
+        vSeeds.emplace_back("dnsseed.ergon.moe");
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<uint8_t>(1, 196);
         base58Prefixes[SECRET_KEY] = std::vector<uint8_t>(1, 239);
@@ -393,39 +350,10 @@ public:
         fRequireStandard = false;
         m_is_test_chain = true;
 
-        checkpointData = {
-            /* .mapCheckpoints = */ {
-                {546, BlockHash::fromHex("000000002a936ca763904c3c35fce2f3556c5"
-                                         "59c0214345d31b1bcebf76acb70")},
-                // UAHF fork block.
-                {1155875,
-                 BlockHash::fromHex("00000000f17c850672894b9a75b63a1e72830bbd5f"
-                                    "4c8889b5c1a80e7faef138")},
-                // Nov, 13. DAA activation block.
-                {1188697,
-                 BlockHash::fromHex("0000000000170ed0918077bde7b4d36cc4c91be69f"
-                                    "a09211f748240dabe047fb")},
-                // Great wall activation.
-                {1303885,
-                 BlockHash::fromHex("00000000000000479138892ef0e4fa478ccc938fb9"
-                                    "4df862ef5bde7e8dee23d3")},
-                // Graviton activation.
-                {1341712,
-                 BlockHash::fromHex("00000000fffc44ea2e202bd905a9fbbb9491ef9e9d"
-                                    "5a9eed4039079229afa35b")},
-                // Phonon activation.
-                {1378461, BlockHash::fromHex(
-                              "0000000099f5509b5f36b1926bcf82b21d936ebeade"
-                              "e811030dfbbb7fae915d7")},
-                // Axion activation.
-                {1421482, BlockHash::fromHex(
-                              "0000000023e0680a8a062b3cc289a4a341124ce7fcb6340ede207e194d73b60a")},
-            }};
-
         // Data as of block
-        // 0000000000000254086ac437468c103861615f5d0cb55cf63e3066215241cf24
-        // (height 1422758)
-        chainTxData = ChainTxData{1606132652, 63698833, 0.005277641328637945};
+        // 000000000005b07ecf85563034d13efd81c1a29e47e22b20f4fc6919d5b09cd6
+        // (height 1223263)
+        chainTxData = ChainTxData{0, 1607003022, 0.};
     }
 };
 

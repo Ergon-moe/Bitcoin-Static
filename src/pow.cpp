@@ -354,14 +354,8 @@ uint32_t GetNextWorkRequired(const CBlockIndex *pindexPrev,
         return pindexPrev->nBits;
     }
 
-    if (IsAxionEnabled(params, pindexPrev)) {
-        const CBlockIndex *panchorBlock = nullptr;
-        if (!params.asertAnchorParams) {
-            // No hard-coded anchor params -- find the anchor block dynamically
-            panchorBlock = GetASERTAnchorBlock(pindexPrev, params);
-        }
-
-        return GetNextASERTWorkRequired(pindexPrev, pblock, params, panchorBlock);
+    if (IsPhononEnabled(params, pindexPrev)) {
+        return GetNextExpWorkRequired(pindexPrev, pblock, params);
     }
 
     if (IsDAAEnabled(params, pindexPrev)) {
@@ -545,3 +539,89 @@ uint32_t GetNextCashWorkRequired(const CBlockIndex *pindexPrev,
     return nextTarget.GetCompact();
 }
 
+
+static arith_uint256 ComputeExpTarget(const CBlockIndex *pindexPrev,
+                                   const Consensus::Params &params) {
+
+    arith_uint256 work = pindexPrev->nChainWork - pindexPrev->pprev->nChainWork;
+    //arith_uint256 work =GetBlockProof(pindexPrev)
+    const CBlockIndex *p1 = GetSuitableBlock(pindexPrev);
+    const CBlockIndex *p0 = GetSuitableBlock(pindexPrev->pprev);
+
+
+    int64_t t = p1->nTime - p0->nTime;
+
+    int64_t resistance = 1000;
+
+    /*
+        Next block difficulty will be calculated with the quadratic
+        approximation of the formula:
+
+        diff' = diff / (1 + (t/T-1) / r)
+
+        where t is the recent solve time difference guarded by 3 block median,
+        T is the target spacing and r is resistance, namely
+
+        diff' = diff[ 1 - (t/T-1) / r + (t/T-1)^2 / r^2 ]
+
+        The function has a minimum around t_0/T = r/2 - 1 and then starts
+        growing. For resistance = 1000 t_0 is around 3.5 days. In the event
+        of a massive hashrate drop, the the difficulty would go up instead
+        of going down. To prevent that we flatten the parabola
+        after the minimum.
+    */
+
+    int minimum = resistance / 2 -1;
+    int normalized_time = t / params.nPowTargetSpacing;
+
+    if(normalized_time > minimum) {
+        work -= (work * minimum) / resistance
+            - work / resistance
+            - (work * minimum * minimum)
+            / (resistance*resistance)
+            + 2 * (work * minimum)
+            / (resistance*resistance)
+            - work / (resistance*resistance);
+    }
+    else {
+        work -= (work * t / params.nPowTargetSpacing) / resistance
+                    - work / resistance
+                    - (work * (t*t)
+                    / (params.nPowTargetSpacing*params.nPowTargetSpacing))
+                    / (resistance*resistance)
+                    + 2 * (work * t / params.nPowTargetSpacing)
+                    / (resistance*resistance)
+                    - work / (resistance*resistance);
+    }
+
+    /**
+     * We need to compute T = (2^256 / W) - 1 but 2^256 doesn't fit in 256 bits.
+     * By expressing 1 as W / W, we get (2^256 - W) / W, and we can compute
+     * 2^256 - W as the complement of W.
+     */
+    return (-work) / work;
+}
+
+
+uint32_t GetNextExpWorkRequired(const CBlockIndex *pindex,
+                        const CBlockHeader *pblock,
+                        const Consensus::Params &params) {
+    // This cannot handle the genesis block and early blocks in general.
+    assert(pindex);
+    if (pindex->nHeight<4) {
+        return pindex->nBits;
+    }
+    const arith_uint256 nextTarget =
+        ComputeExpTarget(pindex , params);
+    const arith_uint256 powLimit = UintToArith256(params.powLimit);
+    if (nextTarget > powLimit) {
+        return powLimit.GetCompact();
+    }
+    //const arith_uint256 powLimit = UintToArith256(params.powLimit);
+
+    //if (nextTarget > powLimit) {
+    //    return powLimit.GetCompact();
+    //}
+
+    return nextTarget.GetCompact();
+}

@@ -2265,7 +2265,7 @@ static UniValue getblockstats(const Config &config,
                                                              : minfeerate));
     ret.emplace_back("mintxsize", mintxsize == excessiveBlockSize ? 0 : mintxsize);
     ret.emplace_back("outs", outputs);
-    ret.emplace_back("subsidy", ValueFromAmount(GetBlockSubsidy(
+    ret.emplace_back("subsidy", ValueFromAmount(GetBlockSubsidy(pindex->nBits,
                                   pindex->nHeight, Params().GetConsensus())));
     ret.emplace_back("time", pindex->GetBlockTime());
     ret.emplace_back("total_out", ValueFromAmount(total_out));

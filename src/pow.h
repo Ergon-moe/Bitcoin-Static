@@ -66,4 +66,9 @@ void ResetASERTAnchorBlockCache() noexcept;
  */
 const CBlockIndex *GetASERTAnchorBlockCache() noexcept;
 
+uint32_t GetNextExpWorkRequired(const CBlockIndex *pindex,
+                        const CBlockHeader *pblock,
+                        const Consensus::Params &params) ;
+
+
 #endif // BITCOIN_POW_H

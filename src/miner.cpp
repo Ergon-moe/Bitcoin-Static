@@ -27,7 +27,7 @@
 #include <util/system.h>
 #include <validation.h>
 #include <validationinterface.h>
-
+#include <pow.h>
 #include <algorithm>
 #include <queue>
 #include <utility>
@@ -184,7 +184,7 @@ BlockAssembler::CreateNewBlock(const CScript &scriptPubKeyIn) {
 
     nLastBlockTx = nBlockTx;
     nLastBlockSize = nBlockSize;
-
+    pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;
     coinbaseTx.vin.resize(1);
@@ -192,7 +192,7 @@ BlockAssembler::CreateNewBlock(const CScript &scriptPubKeyIn) {
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
     coinbaseTx.vout[0].nValue =
-        nFees + GetBlockSubsidy(nHeight, consensusParams);
+        nFees + GetBlockSubsidy(pblock->nBits, nHeight, consensusParams);
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
     // Make sure the coinbase is big enough.
@@ -214,7 +214,7 @@ BlockAssembler::CreateNewBlock(const CScript &scriptPubKeyIn) {
     // Fill in header.
     pblock->hashPrevBlock = pindexPrev->GetBlockHash();
     UpdateTime(pblock, consensusParams, pindexPrev);
-    pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
+
     pblock->nNonce = 0;
     pblocktemplate->entries[0].sigOpCount = 0;
 

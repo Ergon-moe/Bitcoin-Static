@@ -933,17 +933,31 @@ bool ReadBlockFromDisk(CBlock &block, const CBlockIndex *pindex,
     return true;
 }
 
-Amount GetBlockSubsidy(int nHeight, const Consensus::Params &consensusParams) {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64) {
+Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
+                       const Consensus::Params &consensusParams) {
+    //calculate work based on nBits like in GetBlockProof from chain.cpp
+    arith_uint256 bnTarget;
+    bool fNegative;
+    bool fOverflow;
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+    if (fNegative || fOverflow || bnTarget == 0) {
         return Amount::zero();
     }
+    arith_uint256 work = (~bnTarget / (bnTarget + 1)) + 1;
 
-    Amount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur
-    // approximately every 4 years.
-    return ((nSubsidy / SATOSHI) >> halvings) * SATOSHI;
+    uint256 uWork = ArithToUint256(work);
+
+    int divisions = nHeight / consensusParams.nSubsidyHalvingInterval;
+
+    int64_t iWork = uWork.GetUint64(0);
+    for(int a=0; a<divisions; a++)  {
+        // to be tunned in few years based on high quality empirical research
+        iWork *= 99826;
+        iWork /= 100000;
+    }
+    Amount nSubsidy = (iWork /200000000) * Amount::satoshi();//142000000000
+    nSubsidy = nSubsidy;
+    return nSubsidy;
 }
 
 bool IsInitialBlockDownload() {
@@ -1913,7 +1927,8 @@ bool CChainState::ConnectBlock(const CBlock &block, CValidationState &state,
              nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
 
     Amount blockReward =
-        nFees + GetBlockSubsidy(pindex->nHeight, consensusParams);
+        nFees + GetBlockSubsidy(pindex->nBits, pindex->nHeight,
+                                consensusParams);
     if (block.vtx[0]->GetValueOut() > blockReward) {
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much "
