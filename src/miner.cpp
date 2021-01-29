@@ -192,7 +192,7 @@ BlockAssembler::CreateNewBlock(const CScript &scriptPubKeyIn) {
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
     coinbaseTx.vout[0].nValue =
-        nFees + GetBlockSubsidy(pblock->nBits, nHeight, consensusParams);
+        nFees/2 + GetBlockSubsidy(pblock->nBits, nHeight, consensusParams);
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
     // Make sure the coinbase is big enough.

@@ -8,7 +8,8 @@
  * IPv6 hex notation, followed by a colon and a port.
  */
 static const SeedSpec6 pnSeed6_main[] = {
-    { "85.195.104.232:2137" }
+    { "85.195.104.232:2137" },
+    { "199.192.16.55:2137" }
 };
 
 static const SeedSpec6 pnSeed6_testnet3[] = {

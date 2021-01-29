@@ -1927,7 +1927,7 @@ bool CChainState::ConnectBlock(const CBlock &block, CValidationState &state,
              nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
 
     Amount blockReward =
-        nFees + GetBlockSubsidy(pindex->nBits, pindex->nHeight,
+        nFees/2 + GetBlockSubsidy(pindex->nBits, pindex->nHeight,
                                 consensusParams);
     if (block.vtx[0]->GetValueOut() > blockReward) {
         return state.DoS(100,
