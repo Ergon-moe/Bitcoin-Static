@@ -550,7 +550,6 @@ static arith_uint256 ComputeExpTarget(const CBlockIndex *pindexPrev,
 
 
     int64_t t = p1->nTime - p0->nTime;
-
     int64_t resistance = 1000;
 
     /*

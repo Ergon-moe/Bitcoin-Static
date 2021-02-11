@@ -31,6 +31,7 @@
 #include <algorithm>
 #include <queue>
 #include <utility>
+#include <iostream>
 
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
@@ -191,9 +192,12 @@ BlockAssembler::CreateNewBlock(const CScript &scriptPubKeyIn) {
     coinbaseTx.vin[0].prevout = COutPoint();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
+
     coinbaseTx.vout[0].nValue =
         nFees/2 + GetBlockSubsidy(pblock->nBits, nHeight, consensusParams);
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
+    std::cout << "nBits " << pblock->nBits;
+    std::cout << "subsidy " << coinbaseTx.vout[0].nValue;
 
     // Make sure the coinbase is big enough.
     uint64_t coinbaseSize = ::GetSerializeSize(coinbaseTx, PROTOCOL_VERSION);
