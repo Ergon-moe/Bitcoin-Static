@@ -27,8 +27,11 @@
 #include <boost/test/unit_test.hpp>
 
 #include <memory>
-
-BOOST_FIXTURE_TEST_SUITE(miner_tests, TestingSetup)
+// we need increased inflation to have larger coinbase
+struct TestnetSetup : public TestingSetup {
+    TestnetSetup() : TestingSetup(CBaseChainParams::TESTNET) {}
+};
+BOOST_FIXTURE_TEST_SUITE(miner_tests, TestnetSetup)
 
 // BOOST_CHECK_EXCEPTION predicates to check the specific validation error
 class HasReason {
@@ -282,13 +285,9 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
     entry.nHeight = 11;
 
     fCheckpointsEnabled = false;
-
     // Simple block creation, nothing special yet:
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams, g_mempool)
                                      .CreateNewBlock(scriptPubKey));
-    // We set nBits high to make the reward big enough
-
-    pblocktemplate->block.nBits = 0x1b0d21b9;
 
 
     // We can't make transactions until we have inputs.
@@ -309,8 +308,8 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
             txCoinbase.vin[0].scriptSig.push_back(::ChainActive().Height());
             txCoinbase.vout.resize(1);
             txCoinbase.vout[0].scriptPubKey = CScript();
-            txCoinbase.vout[0].nValue = GetBlockSubsidy(0x1b0d21b9, 0, chainparams.GetConsensus());
-            BOOST_TEST_MESSAGE("subsidy MESSAGE " <<txCoinbase.vout[0].nValue);
+            txCoinbase.vout[0].nValue = GetBlockSubsidy(pblock->nBits, 0, chainparams.GetConsensus());
+            BOOST_TEST_MESSAGE("subsidy MESSAGE " << txCoinbase.vout[0].nValue);
             pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
             if (txFirst.size() == 0) {
                 baseheight = ::ChainActive().Height();
@@ -324,7 +323,6 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
         }
         std::shared_ptr<const CBlock> shared_pblock =
             std::make_shared<const CBlock>(*pblock);
-        // I dont have nonces for large nBits
         //BOOST_CHECK(ProcessNewBlock(config, shared_pblock, true, nullptr));
         pblock->hashPrevBlock = pblock->GetHash();
     }

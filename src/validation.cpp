@@ -952,7 +952,7 @@ Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
         aWork *= 99826;
         aWork /= 100000;
     }
-    aWork /= 200000000; //14200000000000
+    aWork /= consensusParams.nValueCalibration; //14200000000000
     uint256 uWork = ArithToUint256(aWork);
     int64_t iWork = uWork.GetUint64(0);
     Amount nSubsidy = iWork * Amount::fixoshi();

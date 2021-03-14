@@ -101,6 +101,7 @@ public:
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
+        consensus.nValueCalibration = 200000000;
 
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
@@ -223,7 +224,7 @@ public:
     CTestNetParams() {
         printf("Testnet Params.\n");
         strNetworkID = CBaseChainParams::TESTNET;
-        consensus.nSubsidyHalvingInterval = 144;
+        consensus.nSubsidyHalvingInterval = 1440;
         // 00000000040b4e986385315e14bee30ad876d8b47f748025b26683116d21aa65
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 0;
@@ -239,10 +240,10 @@ public:
             "0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // two weeks
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60;
-        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-
+        consensus.nValueCalibration = 1;
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
         // One hour
@@ -304,31 +305,6 @@ public:
 consensus.hashGenesisBlock = BlockHash::fromHex("0x000000070e37bfee7e84b94f997f38155a85b22172f5ca25fd4eb3d64c5ad7c5");
 
         genesis.nNonce = 92586649;
-        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
-                {
-                    printf("recalculating params for TESTNET.\n");
-                    printf("new TESTNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-                    printf("old TESTNET genesis nonce: %u\n",genesis.nNonce);
-                    printf("old TESTNET genesis hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
-                    // deliberately empty for loop finds nonce value.
-                    //measure my pc hashrate
-                    //time_t start_time;
-                    //time_t end_time;
-	                //time(&start_time);
-                    //for(genesis.nNonce = 0; genesis.nNonce <9999999 ;genesis.nNonce++){genesis.GetHash();}
-                    //time(&end_time);
-                    //double diff = difftime(start_time,end_time);
-                    //printf("Diff: %d\n", diff);
-                    //double hash = 10000000. / diff;
-                    //printf("End time: %d\n", end_time);
-                    //printf("Start time: %d\n", start_time);
-                    //printf("my Hash Rate: %d\n", hash);
-                    for(genesis.nNonce = 0; genesis.GetHash() > BlockHash::fromHex("0000000897062db8d1fd00000000000000000000000000000000000000000000"); genesis.nNonce++){ }
-                    printf("new TESTNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-                    printf("new TESTNET genesis nonce: %u\n", genesis.nNonce);
-
-                    printf("new TESTNET genesis hash: %s\n", genesis.GetHash().ToString().c_str());
-                }
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -365,7 +341,7 @@ class CTestNet4Params : public CChainParams {
 public:
     CTestNet4Params() {
         strNetworkID = CBaseChainParams::TESTNET4;
-        consensus.nSubsidyHalvingInterval = 210000;
+        consensus.nSubsidyHalvingInterval = 1440;
         consensus.BIP16Height = 1;
         // Note: Because BIP34Height is less than 17, clients will face an unusual corner case with BIP34 encoding.
         // The "correct" encoding for BIP34 blocks at height <= 16 uses OP_1 (0x81) through OP_16 (0x90) as a single
@@ -381,10 +357,10 @@ public:
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // two weeks
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60;
-        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-
+        consensus.nValueCalibration = 1;
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
         // One hour
@@ -519,7 +495,7 @@ public:
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-
+        consensus.nValueCalibration = 200000000;
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
         // Two days
@@ -654,7 +630,7 @@ public:
         consensus.nPowTargetSpacing = 10 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
-
+        consensus.nValueCalibration = 200000000;
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
         // Two days. Note regtest has no DAA checks, so this unused parameter is here merely for completeness.
