@@ -27,6 +27,14 @@
 #include <boost/test/unit_test.hpp>
 
 #include <memory>
+
+
+#include <protocol.h>
+#include <rpc/protocol.h>
+#include <univalue.h>
+#include <streams.h>
+#include <primitives/block.h>
+#include <pow.h>
 // we need increased inflation to have larger coinbase
 struct TestnetSetup : public TestingSetup {
     TestnetSetup() : TestingSetup(CBaseChainParams::TESTNET) {}
@@ -267,8 +275,133 @@ BOOST_AUTO_TEST_CASE(CheckCoinbase_EB) {
     TestCoinbaseMessageEB(8320000, "/EB8.3/");
 }
 
+#include <event2/buffer.h>
+#include <event2/bufferevent.h>
+#include <event2/event.h>
+#include <event2/thread.h>
+#include <event2/http.h>
+#include <event2/util.h>
+
+static uint8_t lastExtraNonce = 0;
+static std::map<uint256, uint8_t> merkleRootToExtraNonce;
+static event_base *mine_event_base;
+static size_t blockIdx = 0;
+
+void updateExtraNonce(CBlock *pblock, uint8_t extraNonce) {
+    CMutableTransaction txCoinbase(*pblock->vtx[0]);
+    txCoinbase.nVersion = 1;
+    txCoinbase.vin[0].scriptSig[0] = extraNonce;
+    pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
+    pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
+}
+
+static void mine_request_cb(struct evhttp_request *req, void *arg) {
+    CBlock *pblock = (CBlock *)arg;
+    struct evbuffer *buf = evhttp_request_get_input_buffer(req);
+    if (!buf) {
+        return;
+    }
+    size_t size = evbuffer_get_length(buf);
+    const char *data = (const char *)evbuffer_pullup(buf, size);
+    if (!data) {
+        return;
+    }
+    std::string body(data, size);
+    evbuffer_drain(buf, size);
+    UniValue jsonBody;
+    jsonBody.read(body);
+    BOOST_TEST_MESSAGE("d not empty " << UniValue::stringify(jsonBody));
+    const UniValue::Array &d = jsonBody["params"].get_array();
+    std::string reply;
+    bool stop = false;
+
+    if (!d.empty()) {
+        BOOST_TEST_MESSAGE("d not empty " << UniValue::stringify(d));
+        std::vector<uint8_t> powData = ParseHex(d[0].get_str());
+        BOOST_TEST_MESSAGE("Reading d");
+        std::vector<uint8_t> headerData(powData.begin(), powData.begin() + 80);
+        for (size_t idx = 0; idx < headerData.size(); idx += 4) {
+            std::reverse(headerData.begin() + idx, headerData.begin() + idx + 4);
+        }
+        CDataStream headerStream(headerData, SER_NETWORK, PROTOCOL_VERSION);
+        CBlockHeader header;
+        headerStream >> header;
+        LogPrintf("Got hash: %s\n", header.GetHash());
+        BOOST_TEST_MESSAGE("Got hash: " << header.GetHash());
+        std::map<uint256, uint8_t>::iterator nonceEntry = merkleRootToExtraNonce.find(header.hashMerkleRoot);
+        if (nonceEntry != merkleRootToExtraNonce.end()) {
+            LogPrintf("Got PoW: extranonce=%d, nonce=%d\n", nonceEntry->second, header.nNonce);
+            pblock->nNonce = header.nNonce;
+            updateExtraNonce(pblock, nonceEntry->second);
+            LogPrintf("Merkle roots: pblock=%s, header=%s\n", pblock->hashMerkleRoot.ToString(), header.hashMerkleRoot.ToString());
+            if (pblock->hashMerkleRoot != header.hashMerkleRoot) {
+                reply = "{\"result\":false}";
+            } else {
+                reply = "{\"result\":true}";
+                stop = true;
+                blockinfo[blockIdx] = {nonceEntry->second, header.nNonce};
+                LogPrintf("New blockinfo: \n");
+                for (size_t i = 0; i < sizeof(blockinfo) / sizeof(*blockinfo); ++i) {
+                    LogPrintf("{%d, 0x%x},\n", blockinfo[i].extranonce, blockinfo[i].nonce);
+                }
+            }
+        } else {
+            LogPrintf("Unknown merkle root: %s\n", header.hashMerkleRoot.ToString());
+            reply = "{\"result\":false}";
+        }
+    } else {
+        lastExtraNonce++;
+        updateExtraNonce(pblock, lastExtraNonce);
+        merkleRootToExtraNonce[pblock->hashMerkleRoot] = lastExtraNonce;
+        CDataStream headerStream(SER_NETWORK, PROTOCOL_VERSION);
+        headerStream << pblock->GetBlockHeader();
+        for (size_t idx = 0; idx < headerStream.size(); idx += 4) {
+            std::reverse(headerStream.begin() + idx, headerStream.begin() + idx + 4);
+        }
+
+        arith_uint256 bnTarget;
+        bool fNegative;
+        bool fOverflow;
+        bnTarget.SetCompact(pblock->nBits, &fNegative, &fOverflow);
+
+        std::ostringstream replyStream;
+        replyStream << "{\"result\":{\"data\":\"";
+        replyStream << HexStr(headerStream);
+        replyStream << "000000800000000000000000000000000000000000000000000000000000000000000000000000000000000080020000";
+        replyStream << "\",\"target\":\"";
+        replyStream << HexStr(ArithToUint256(bnTarget));
+        replyStream << "\"},\"error\": null}";
+
+        reply = replyStream.str();
+    }
+
+    struct evbuffer *evb = evhttp_request_get_output_buffer(req);
+    assert(evb);
+    evbuffer_add(evb, reply.data(), reply.size());
+    evhttp_send_reply(req, 200, nullptr, nullptr);
+    if (stop) {
+        sleep(1);
+        event_base_loopbreak(mine_event_base);
+    }
+}
+
+/** libevent event log callback */
+static void libevent_log_cb(int severity, const char *msg) {
+#ifndef EVENT_LOG_WARN
+// EVENT_LOG_WARN was added in 2.0.19; but before then _EVENT_LOG_WARN existed.
+#define EVENT_LOG_WARN _EVENT_LOG_WARN
+#endif
+    // Log warn messages and higher without debug category.
+    if (severity >= EVENT_LOG_WARN) {
+        LogPrintf("libevent: %s\n", msg);
+    } else {
+        LogPrint(BCLog::LIBEVENT, "libevent: %s\n", msg);
+    }
+}
+
 // NOTE: These tests rely on CreateNewBlock doing its own self-validation!
 BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
+    BOOST_TEST_MESSAGE("Validity test\n");
     // Note that by default, these tests run with size accounting enabled.
     GlobalConfig config;
     const CChainParams &chainparams = config.GetChainParams();
@@ -295,6 +428,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
     int baseheight = 0;
     std::vector<CTransactionRef> txFirst;
     for (size_t i = 0; i < sizeof(blockinfo) / sizeof(*blockinfo); ++i) {
+        blockIdx = i;
         // pointer for convenience.
         CBlock *pblock = &pblocktemplate->block;
         {
@@ -308,8 +442,9 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
             txCoinbase.vin[0].scriptSig.push_back(::ChainActive().Height());
             txCoinbase.vout.resize(1);
             txCoinbase.vout[0].scriptPubKey = CScript();
+            CBlockHeader header = pblock->GetBlockHeader();
+            pblock->nBits = GetNextWorkRequired(::ChainActive().Tip(), &header, chainparams.GetConsensus());
             txCoinbase.vout[0].nValue = GetBlockSubsidy(pblock->nBits, 0, chainparams.GetConsensus());
-            BOOST_TEST_MESSAGE("subsidy MESSAGE " << txCoinbase.vout[0].nValue);
             pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
             if (txFirst.size() == 0) {
                 baseheight = ::ChainActive().Height();
@@ -320,10 +455,37 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
             BOOST_TEST_MESSAGE("nBits  "<< pblock->nBits);
             pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
             pblock->nNonce = blockinfo[i].nonce;
+
+
+        }
+        arith_uint256 bnTarget;
+        bool fNegative;
+        bool fOverflow;
+        bnTarget.SetCompact(pblock->nBits, &fNegative, &fOverflow);
+        bool alreadyValid;
+        alreadyValid = UintToArith256(pblock->GetHash()) <= bnTarget;
+        if(!alreadyValid) {
+            event_set_log_callback(&libevent_log_cb);
+            evthread_use_pthreads();
+            mine_event_base = event_base_new();
+            evhttp *mine_http = evhttp_new(mine_event_base);
+            evhttp_set_gencb(mine_http, mine_request_cb, pblock);
+            //run an old cgminer to GPU mine those blocks
+            evhttp_bind_socket(mine_http, "127.0.0.1", 3000);
+            BOOST_TEST_MESSAGE("Waiting for getwork requests...\n");
+            LogPrintf("Waiting for getwork requests...\n");
+            event_base_dispatch(mine_event_base);
+            merkleRootToExtraNonce.clear();
+            lastExtraNonce = 0;
+            evhttp_free(mine_http);
+            event_base_free(mine_event_base);
         }
         std::shared_ptr<const CBlock> shared_pblock =
             std::make_shared<const CBlock>(*pblock);
-        //BOOST_CHECK(ProcessNewBlock(config, shared_pblock, true, nullptr));
+        CDataStream headerStream(SER_NETWORK, PROTOCOL_VERSION);
+        headerStream << shared_pblock->GetBlockHeader();
+        LogPrintf("Made header: %s\n", HexStr(headerStream));
+        ProcessNewBlock(config, shared_pblock, true, nullptr);
         pblock->hashPrevBlock = pblock->GetHash();
     }
 
@@ -333,8 +495,8 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
     // Just to make sure we can still make simple blocks.
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams, g_mempool)
                                      .CreateNewBlock(scriptPubKey));
-
-    const Amount BLOCKSUBSIDY = GetBlockSubsidy(0x1b0d21b9, 0, chainparams.GetConsensus());;
+    CBlock *pblock = &pblocktemplate->block;
+    const Amount BLOCKSUBSIDY = GetBlockSubsidy(pblock->nBits, 0, chainparams.GetConsensus());
     const Amount LOWFEE = CENT;
     const Amount HIGHFEE = COIN;
     const Amount HIGHERFEE = 4 * COIN;
@@ -352,7 +514,9 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
     tx.vin[0].prevout = COutPoint(txFirst[0]->GetId(), 0);
     tx.vout.resize(1);
     tx.vout[0].nValue = BLOCKSUBSIDY;
-    for (unsigned int i = 0; i < 128; ++i) {
+    BOOST_TEST_MESSAGE("BLOCKSUBSIDY " << BLOCKSUBSIDY);
+    BOOST_TEST_MESSAGE("LOWFEE " << LOWFEE);
+    for (unsigned int i = 0; i < 1; ++i) {
         tx.vout[0].nValue -= LOWFEE;
         const TxId txid = tx.GetId();
         // Only first tx spends coinbase.

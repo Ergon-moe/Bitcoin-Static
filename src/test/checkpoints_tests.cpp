@@ -26,24 +26,24 @@
 
 BOOST_FIXTURE_TEST_SUITE(checkpoints_tests, TestingSetup)
 
-BOOST_AUTO_TEST_CASE(sanity) {
-    const auto params = CreateChainParams(CBaseChainParams::MAIN);
-    const CCheckpointData &checkpoints = params->Checkpoints();
-    BlockHash p11111 = BlockHash::fromHex(
-        "0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d");
-    BlockHash p134444 = BlockHash::fromHex(
-        "00000000000005b12ffd4cd315cd34ffd4a594f430ac814c91184a0d42d2b0fe");
-    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 11111, p11111));
-    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 134444, p134444));
+//BOOST_AUTO_TEST_CASE(sanity) {
+//    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+//    const CCheckpointData &checkpoints = params->Checkpoints();
+//    BlockHash p11111 = BlockHash::fromHex(
+//        "0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d");
+//    BlockHash p134444 = BlockHash::fromHex(
+//        "00000000000005b12ffd4cd315cd34ffd4a594f430ac814c91184a0d42d2b0fe");
+//    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 11111, p11111));
+//    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 134444, p134444));
 
     // Wrong hashes at checkpoints should fail:
-    BOOST_CHECK(!Checkpoints::CheckBlock(checkpoints, 11111, p134444));
-    BOOST_CHECK(!Checkpoints::CheckBlock(checkpoints, 134444, p11111));
+//    BOOST_CHECK(!Checkpoints::CheckBlock(checkpoints, 11111, p134444));
+//    BOOST_CHECK(!Checkpoints::CheckBlock(checkpoints, 134444, p11111));
 
     // ... but any hash not at a checkpoint should succeed:
-    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 11111 + 1, p134444));
-    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 134444 + 1, p11111));
-}
+//    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 11111 + 1, p134444));
+//    BOOST_CHECK(Checkpoints::CheckBlock(checkpoints, 134444 + 1, p11111));
+//}
 
 BOOST_AUTO_TEST_CASE(ban_fork_at_genesis_block) {
     DummyConfig config;
@@ -114,9 +114,23 @@ BOOST_AUTO_TEST_CASE(ban_fork_prior_to_and_at_checkpoints) {
 
     CBlockHeader invalid;
     const CBlockIndex *pindex = nullptr;
+    CBlockHeader headerG, headerA, headerB, headerAA, headerAB;
+    // Start with bitcoi  mainnet genesis block
 
-    // Start with mainnet genesis block
-    CBlockHeader headerG = config.GetChainParams().GenesisBlock();
+    CDataStream stream = CDataStream(
+        ParseHex(
+            "0100000000000000000000000000000000000000000000000000000000000000000"
+            "000003BA3EDFD7A7B12B27AC72C3E67768F617FC81BC3888A51323A9FB8AA4B1E5E"
+            "4A29AB5F49FFFF001D1DAC2B7C01010000000100000000000000000000000000000"
+            "00000000000000000000000000000000000FFFFFFFF4D04FFFF001D010445546865"
+            "2054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206"
+            "272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73FF"
+            "FFFFFF0100F2052A01000000434104678AFDB0FE5548271967F1A67130B7105CD6A"
+            "828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7"
+            "BA0B8D578A4C702B6BF11D5FAC00000000"),
+        SER_NETWORK, PROTOCOL_VERSION);
+
+    stream >> headerG;
     BOOST_CHECK(headerG.GetHash() ==
                 uint256S("000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f"
                          "1b60a8ce26f"));
@@ -128,8 +142,8 @@ BOOST_AUTO_TEST_CASE(ban_fork_prior_to_and_at_checkpoints) {
         pindex = nullptr;
     }
 
-    CBlockHeader headerA, headerB, headerAA, headerAB;
-    CDataStream stream = CDataStream(
+
+    stream = CDataStream(
         ParseHex(
             "010000006fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000"
             "000000982051fd1e4ba744bbbe680e1fee14677ba1a3c3540bf7b1cdb606e85723"
@@ -139,11 +153,12 @@ BOOST_AUTO_TEST_CASE(ban_fork_prior_to_and_at_checkpoints) {
             "813a627c66fb8be7947be63c52da7589379515d4e0a604f8141781e62294721166"
             "bf621e73a82cbf2342c858eeac00000000"),
         SER_NETWORK, PROTOCOL_VERSION);
+
     stream >> headerA;
     BOOST_CHECK(headerA.GetHash() ==
                 uint256S("00000000839a8e6886ab5951d76f411475428afc90947ee320161"
                          "bbf18eb6048"));
-    BOOST_CHECK(headerA.hashPrevBlock == headerG.GetHash());
+    BOOST_CHECK(headerA.hashPrevBlock == uint256S("000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
 
     stream = CDataStream(
         ParseHex(
