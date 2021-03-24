@@ -956,7 +956,6 @@ Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
     uint256 uWork = ArithToUint256(aWork);
     int64_t iWork = uWork.GetUint64(0);
     Amount nSubsidy = iWork * Amount::fixoshi();
-    nSubsidy = nSubsidy;
     return nSubsidy;
 }
 
