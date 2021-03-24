@@ -608,7 +608,7 @@ uint32_t GetNextExpWorkRequired(const CBlockIndex *pindex,
     // This cannot handle the genesis block and early blocks in general.
     assert(pindex);
     if (pindex->nHeight<4) {
-        return pindex->nBits;
+        return 0x1a04b500; //should be about right for two s9
     }
     const arith_uint256 nextTarget =
         ComputeExpTarget(pindex , params);
