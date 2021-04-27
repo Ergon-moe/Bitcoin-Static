@@ -21,17 +21,17 @@ When reporting a bug or vulnerability, please provide the following to security@
 
 ## Encrypting the Disclosure
 
-We highly encourage all disclosures to be encrypted to prevent interception and exploitation by third-parties prior to a fix being developed and deployed.  Please encrypt using the PGP public key with fingerprint: `15BB B66E ACA6 F8B2 FE56  9445 7A90 DE1B F996 8031`
+We highly encourage all disclosures to be encrypted to prevent interception and exploitation by third-parties prior to a fix being developed and deployed.  Please encrypt using the PGP public key with fingerprint: `5C69 8AA6 589D ED27 EF36  D7FE 9845 1F54 97AB AABF`
 
 It may be obtained via:
 ```
-gpg --recv-keys "15BB B66E ACA6 F8B2 FE56  9445 7A90 DE1B F996 8031"
+gpg --recv-keys "5C69 8AA6 589D ED27 EF36  D7FE 9845 1F54 97AB AABF"
 ```
 
 After this succeeded you can encrypt your prepared disclosure document with the following line:
 
 ```
-gpg --armor --encrypt --recipient security@bitcoincashnode.org yourDisclosureDocument
+gpg --armor --encrypt --recipient [recipient email address] [yourDisclosureDocument]
 ```
 
 This will create a copy of your document with the file extension `.asc`, you can email this encrypted version of the document to Bitcoin Statics security team.
@@ -42,68 +42,12 @@ If you still have questions about how to do it, feel free to contact the Bitcoin
 
 These PGP fingerprints and emails are provided only as backups in case you are unable to contact Bitcoin Static via the security email above.
 
-#### freetrader
+#### Karol Trzeszczkowski
 ```
 Bitcoin Static Lead Maintainer
-contact at freetrader at tuta dot io
-CC329A4FB0E41392829505FEC07A7C345E86B06C
+contact at karol.trzeszczkowski at gmail dot com
+5C698AA6589DED27EF36D7FE98451F5497ABAABF
 ```
-
-#### emergent_reasons
-```
-Bitcoin Static Maintainer
-contact at emergentreasons at gmail dot com
-3F4F4CFA80488BA38DD45FF042D1A8643349D91F
-```
-
-#### Andrea Suisani
-```
-Bitcoin Static Developer and Maintainer
-contact at sickpig at gmail dot com
-17D16F72C0091B1FED7795FBA9CA1D0EE3789741
-```
-
-#### Dagur Valberg Johannsson
-```
-Bitcoin Static Developer and Maintainer
-contact at dagurval at pvv dot ntnu dot no
-7AA5D836BCC067566039C49425A0F479C0F086B6
-```
-
-#### imaginary_username
-```
-Bitcoin Static Developer and Maintainer
-contact at imaginary dot username dot btc at gmail dot com
-9ACAD88350645C0D7781337D451A17BA597CF529
-```
-
-## Disclosure Relationships
-
-Neighboring projects that may be affected by bugs, potential exploits, or other security vulnerabilities that are disclosed to Bitcoin Static will be passed along information regarding disclosures that we believe could impact them.  As per the standard referenced above, we are disclosing these relationships here:
-
-* [Bitcoin Unlimited](https://www.bitcoinunlimited.info)
-    * Security Contacts: security at bitcoinunlimited dot info
-    * Disclosure Policy: [https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/release/SECURITY.md](https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/release/SECURITY.md)
-
-* [ERGD](https://bchd.cash)
-    * Security Contacts: Chris Pacia (ctpacia at gmail dot com) and Josh Ellithorpe (quest at mac dot com)
-    * Disclosure Policy: see README information at [https://github.com/gcash/bchd/](https://github.com/gcash/bchd/)
-
-* [Flowee](https://flowee.org)
-    * Security Contact: tomz at freedommail dot ch
-    * Disclosure Policy: see [https://gitlab.com/FloweeTheHub/thehub](https://gitlab.com/FloweeTheHub/thehub)
-
-* [Knuth](https://github.com/k-nuth/kth/)
-    * Security Contact: fpelliccioni at gmail dot com
-    * Disclosure Policy: see [https://github.com/k-nuth/kth/blob/master/README.md#security-disclosures](https://github.com/k-nuth/kth/blob/master/README.md#security-disclosures)
-
-* [Bitcoin Verde](https://github.com/SoftwareVerde/bitcoin-verde/)
-    * Security Contact: josh at softwareverde dot com
-
-We have approached several other projects and are waiting for responses from them.
-
-If you feel your projects is closely related and would like to form a disclosure relationship with Bitcoin Static,
-please contact our security email address to discuss.
 
 ## Bounty Payments
 
@@ -111,10 +55,10 @@ Bitcoin Static cannot at this time commit to bounty payments ahead of time.  How
 
 ## Deviations from the Standard
 
-While Bitcoin Static believes that strong cohesion among neighoring projects and ethical behavior can be standardized to reduce poorly handled disclosure incidents, we also believe that it's in the best interest of Bitcoin Cash for us to deviate from the standard in the following ways:
+While Bitcoin Static believes that strong cohesion among neighoring projects and ethical behavior can be standardized to reduce poorly handled disclosure incidents, we also believe that it's in the best interest of Ergon for us to deviate from the standard in the following ways:
 
 * The standard calls for coordinated releases. While Bitcoin Static will make attempts to coordinate releases when possible, it's not always feasible to coordinate urgent fixes for catastrophic exploits (ie. chain splitting events).  For critical fixes, Bitcoin Static will release them in the next release when possible.
 
 ## Making changes to this disclosure policy
 
-Note that any changes to this disclosure policy should be mirrored in a pull request to the [Bitcoin Static repository](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node).
+Note that any changes to this disclosure policy should be mirrored in a pull request to the [Bitcoin Static repository](https://github.com/Ergon-moe/Bitcoin-Static).

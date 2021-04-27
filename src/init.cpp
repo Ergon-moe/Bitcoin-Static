@@ -2111,8 +2111,7 @@ bool AppInitMain(Config &config, RPCServer &rpcServer,
     if (gArgs.GetBoolArg("-expire", software_outdated::DEFAULT_EXPIRE)) {
         // The software outdated warning will start to happen 30 days before
         // tachyon activates which by default is 30 days before May 15th, 2021.
-        software_outdated::nTime = gArgs.GetArg("-tachyonactivationtime",
-                                                chainparams.GetConsensus().tachyonActivationTime);
+        software_outdated::nTime = -1;
         if (software_outdated::nTime > 0) {
             software_outdated::fDisableRPCOnExpiry =
                     gArgs.GetBoolArg("-expirerpc", software_outdated::DEFAULT_EXPIRE_RPC);

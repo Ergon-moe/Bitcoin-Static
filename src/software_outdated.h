@@ -14,11 +14,11 @@ class CScheduler;
 namespace software_outdated {
 
 //! Default for CLI arg -expire, which controls this facility
-static constexpr bool DEFAULT_EXPIRE = true;
+static constexpr bool DEFAULT_EXPIRE = false;
 
 //! Default for CLI arg -expirerpc, which controls whether we
 //! disable RPC when we enter the "expired" state
-static constexpr bool DEFAULT_EXPIRE_RPC = true;
+static constexpr bool DEFAULT_EXPIRE_RPC = false;
 
 //! This is set at startup by init.cpp. This is normally the unix time at which
 //! the next tentative network upgrade will occur that we do not yet have

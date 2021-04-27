@@ -4,28 +4,26 @@ Bitcoin Static
 The goal of Bitcoin Static is to create sound money that is usable by everyone
 in the world. We believe this is a civilization-changing technology which will
 dramatically increase human flourishing, freedom, and prosperity. The project
-aims to achieve this goal by implementing a series of optimizations and
-protocol upgrades that will enable peer-to-peer digital cash to scale many
-orders of magnitude beyond current limits.
+aims to achieve this goal by implementing [proportional reward system](https://ergon.moe/prop_reward.pdf) to stabilize
+the currency value over time.
 
-What is Bitcoin Cash?
+What is Ergon?
 ---------------------
 
-Bitcoin Cash is a digital currency that enables instant payments to anyone,
+Ergon is a digital currency that enables instant payments to anyone,
 anywhere in the world. It uses peer-to-peer technology to operate with no
 central authority: managing transactions and issuing money are carried out
-collectively by the network. Bitcoin Cash is a descendant of Bitcoin. It became
-a separate currency from the version supported by Bitcoin Core when the two
-split on August 1, 2017. Bitcoin Cash and the Bitcoin Core version of Bitcoin
-share the same transaction history up until the split.
+collectively by the network. Ergon is a descendant of Bitcoin Cash. It starts
+from a new genesis block but shares most of the features, except the reward
+structure and difficulty adjustment algorithm.
 
 What is Bitcoin Static?
 --------------------
 
-[Bitcoin Static](https://www.bitcoincashnode.org) is the name of open-source
-software which enables the use of Bitcoin Cash. It is a descendant of the
-[Bitcoin Core](https://bitcoincore.org) and [Bitcoin ABC](https://www.bitcoinabc.org)
-software projects.
+[Bitcoin Static](https://ergon.moe) is the name of open-source
+software which enables the use of Ergon. It is a descendant of the
+[Bitcoin Cash Node](https://bitcoincashnode.org), [Bitcoin ABC](https://www.bitcoinabc.org)
+and [Bitcoin Core](https://bitcoincore.org) software projects.
 
 License
 -------
@@ -37,12 +35,10 @@ Bitcoin Static is released under the terms of the MIT license. See
 Development Process
 -------------------
 
-Bitcoin Static development takes place at [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node)
-
-This Github repository contains only source code of releases.
+Bitcoin Static development takes place at [https://github.com/Ergon-moe/Bitcoin-Static](https://github.com/Ergon-moe/Bitcoin-Static)
 
 If you would like to contribute, please contact us directly at
-[bitcoincashnode.slack.com](https://bitcoincashnode.slack.com) or [t.me/bitcoincashnode](https://t.me/bitcoincashnode)
+ [t.me/ErgonCommunity](https://t.me/ErgonCommunity)
 
 Disclosure Policy
 -----------------
