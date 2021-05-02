@@ -57,7 +57,7 @@ After creating the VM, we need to configure it.
 Get the Debian 10.x net installer and verify its integrity:
 
 ```bash
-DEBIAN_VERSION="10.2.0"
+DEBIAN_VERSION="10.9.0"
 gpg --keyserver keyring.debian.org --recv-keys "DF9B 9C49 EAA9 2984 3258  9D76 DA87 E80D 6294 BE9B"
 mkdir -p ~/Downloads/debian-iso-"${DEBIAN_VERSION}"
 cd ~/Downloads/debian-iso-"${DEBIAN_VERSION}"

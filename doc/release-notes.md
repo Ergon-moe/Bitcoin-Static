@@ -1,12 +1,16 @@
-# Release Notes for Bitcoin Static version 22.3.0
+# Release Notes for Bitcoin Static version 23.0.0
 
-Bitcoin Static version 22.3.0 is now available from:
+Bitcoin Static version 23.0.0 is now available from:
 
-  <https://bitcoincashnode.org>
+  <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
 ## Overview
 
-...
+This is the first release of Bitcoin Static implementing proportional reward
+system, different DAA, burning half of the fees, new magic numbers, new genesis
+block, decreasedminimum difficulty, "ergon:" address prefix, client rebranding,
+default 288block finalization (compare 10 block finalization in bitcoin) and May
+poison pill removed.
 
 
 ## Usage recommendations
@@ -46,14 +50,12 @@ Bitcoin Static version 22.3.0 is now available from:
 
 ## Regressions
 
-Bitcoin Static 22.3.0 does not introduce any known regressions compared
-to 22.2.0.
+...
 
 
 ## Known Issues
 
-Some issues could not be closed in time for release, but we are tracking
-all of them on our GitLab repository.
+Inherited from Bitcoin Cash Node:
 
 - MacOS versions earlier than 10.12 are no longer supported. Additionally,
   Bitcoin Static does not yet change appearance when macOS "dark mode"
@@ -132,89 +134,10 @@ all of them on our GitLab repository.
   the current linting configuration. There are also RPC parameter type
   inconsistencies that flag linting checks (see #182).
 
----
+Additionally:
 
-## Changes since Bitcoin Static 22.2.0
+- Some unit tests are not updated to test Bitcoin Static features, still trying.
 
-### New documents
 
-...
 
-### Removed documents
-
-...
-
-### Notable commits grouped by functionality
-
-#### Security or consensus relevant fixes
-
-...
-
-#### Interfaces / RPC
-
-...
-
-#### Peformance optimizations
-
-...
-
-#### GUI
-
-...
-
-#### Code quality
-
-...
-
-#### Documentation updates
-
-...
-
-#### Build / general
-
-...
-
-#### Build / Linux
-
-...
-
-#### Build / Windows
-
-...
-
-#### Build / MacOSX
-
-...
-
-#### Tests / test framework
-
-...
-
-#### Benchmarks
-
-...
-
-#### Seeds / seeder software
-
-...
-
-#### Maintainer tools
-
-...
-
-#### Infrastructure
-
-...
-
-#### Cleanup
-
-...
-
-#### Continuous Integration (GitLab CI)
-
-...
-
-#### Backports
-
-...
 
