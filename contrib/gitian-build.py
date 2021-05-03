@@ -206,7 +206,7 @@ def main():
                         help='Indicate that the version argument is for a commit or branch')
     parser.add_argument('-R', '--merge-request', action='store_true', dest='merge_request',
                         help='Indicate that the version argument is the number of a GitLab merge request')
-    parser.add_argument('-u', '--url', dest='url', default='https://gitlab.com/Bitcoin-Static/Bitcoin-Static.git',
+    parser.add_argument('-u', '--url', dest='url', default='https://github.com/Ergon-Moe/Bitcoin-Static.git',
                         help='Specify the URL of the repository. Default is %(default)s')
     parser.add_argument('-v', '--verify', action='store_true',
                         dest='verify', help='Verify the Gitian build')
