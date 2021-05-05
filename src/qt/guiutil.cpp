@@ -177,7 +177,7 @@ bool parseBitcoinURI(const QString &scheme, const QUrl &uri,
             fShouldReturnFalse = false;
         } else if (i->first == "amount") {
             if (!i->second.isEmpty()) {
-                if (!BitcoinUnits::parse(BitcoinUnits::ERG, i->second,
+                if (!BitcoinUnits::parse(BitcoinUnits::XRG, i->second,
                                          &rv.amount)) {
                     return false;
                 }
@@ -220,7 +220,7 @@ QString formatBitcoinURI(const CChainParams &params,
     if (info.amount != Amount::zero()) {
         ret +=
             QString("?amount=%1")
-                .arg(BitcoinUnits::format(BitcoinUnits::ERG, info.amount, false,
+                .arg(BitcoinUnits::format(BitcoinUnits::XRG, info.amount, false,
                                           BitcoinUnits::separatorNever));
         paramCount++;
     }

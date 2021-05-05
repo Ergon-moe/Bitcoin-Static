@@ -22,7 +22,7 @@ Result
 ------
 
 ```
-amount              (numeric) The total amount in ERG received for this wallet.
+amount              (numeric) The total amount in XRG received for this wallet.
 ```
 
 Examples

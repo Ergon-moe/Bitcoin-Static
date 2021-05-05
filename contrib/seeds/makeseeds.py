@@ -41,7 +41,7 @@ PATTERN_AGENT = re.compile(
     r"|/Flowee:1[^/]*/|/kth:0\.6\.(\d+)[^/]*/"
     r"|/bchd:0\.17\.(\d+)[^/]*/"
     r"|/Bitcoin Verde:2\.(\d+)\.(\d+)[^/]*/"
-    r"|/ERG Unlimited:1\.9\.(\d+)[^/]*/)")
+    r"|/XRG Unlimited:1\.9\.(\d+)[^/]*/)")
 
 
 def parseline(line):

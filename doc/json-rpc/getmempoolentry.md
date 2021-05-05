@@ -20,7 +20,7 @@ Result
 ```
 {                           (json object)
     "size" : n,             (numeric) transaction size.
-    "fee" : n,              (numeric) transaction fee in ERG(DEPRECATED)
+    "fee" : n,              (numeric) transaction fee in XRG(DEPRECATED)
     "modifiedfee" : n,      (numeric) transaction fee with fee deltas used for mining priority (DEPRECATED)
     "time" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT
     "height" : n,           (numeric) block height when transaction entered pool
@@ -31,10 +31,10 @@ Result
     "ancestorsize" : n,     (numeric) transaction size of in-mempool ancestors (including this one)
     "ancestorfees" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) (DEPRECATED)
     "fees" : {
-        "base" : n,         (numeric) transaction fee in ERG
-        "modified" : n,     (numeric) transaction fee with fee deltas used for mining priority in ERG
-        "ancestor" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) in ERG
-        "descendant" : n,   (numeric) modified fees (see above) of in-mempool descendants (including this one) in ERG
+        "base" : n,         (numeric) transaction fee in XRG
+        "modified" : n,     (numeric) transaction fee with fee deltas used for mining priority in XRG
+        "ancestor" : n,     (numeric) modified fees (see above) of in-mempool ancestors (including this one) in XRG
+        "descendant" : n,   (numeric) modified fees (see above) of in-mempool descendants (including this one) in XRG
     }
     "depends" : [           (array) unconfirmed transactions used as inputs for this transaction
         "transactionid",    (string) parent transaction id

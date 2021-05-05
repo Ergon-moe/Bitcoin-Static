@@ -50,11 +50,11 @@ Result
     "txid" : "transactionid",     (string) The transaction id
     "vout": n,                    (numeric) the vout value
     "scriptPubKey" : "script",    (string) the script key
-    "amount" : x.xxx,             (numeric) The total amount in ERG of the unspent output
+    "amount" : x.xxx,             (numeric) The total amount in XRG of the unspent output
     "height" : n,                 (numeric) Height of the unspent transaction output
    }
    ,...],
- "total_amount" : x.xxx,          (numeric) The total amount of all found unspent outputs in ERG
+ "total_amount" : x.xxx,          (numeric) The total amount of all found unspent outputs in XRG
 ]
 ```
 

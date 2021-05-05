@@ -269,7 +269,7 @@ static UniValue getmininginfo(const Config &config,
     return obj;
 }
 
-// NOTE: Unlike wallet RPC (which use ERG values), mining RPCs follow GBT (BIP
+// NOTE: Unlike wallet RPC (which use XRG values), mining RPCs follow GBT (BIP
 // 22) in using fixoshi amounts
 static UniValue prioritisetransaction(const Config &config,
                                       const JSONRPCRequest &request) {

@@ -24,7 +24,7 @@ class AmountSpinBox : public QAbstractSpinBox {
 
 public:
     explicit AmountSpinBox(QWidget *parent)
-        : QAbstractSpinBox(parent), currentUnit(BitcoinUnits::ERG),
+        : QAbstractSpinBox(parent), currentUnit(BitcoinUnits::XRG),
           singleStep(100000 * FIXOSHI) {
         setAlignment(Qt::AlignRight);
 
@@ -92,7 +92,7 @@ public:
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
             int w = GUIUtil::TextWidth(
-                fm, BitcoinUnits::format(BitcoinUnits::ERG,
+                fm, BitcoinUnits::format(BitcoinUnits::XRG,
                                          BitcoinUnits::maxMoney(), false,
                                          BitcoinUnits::separatorAlways));
             // Cursor blinking space.

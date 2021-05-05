@@ -28,10 +28,10 @@ Result
   "transactions": [
     "address":"address",    (string) The bitcoin address of the transaction. Not present for move transactions (category = move).
     "category":"send|receive",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.
-    "amount": x.xxx,          (numeric) The amount in ERG. This is negative for the 'send' category, and for the 'move' category for moves
+    "amount": x.xxx,          (numeric) The amount in XRG. This is negative for the 'send' category, and for the 'move' category for moves
                                           outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.
     "vout" : n,               (numeric) the vout value
-    "fee": x.xxx,             (numeric) The amount of the fee in ERG. This is negative and only available for the 'send' category of transactions.
+    "fee": x.xxx,             (numeric) The amount of the fee in XRG. This is negative and only available for the 'send' category of transactions.
     "confirmations": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and 'receive' category of transactions.
                                           When it's < 0, it means the transaction conflicted that many blocks ago.
     "blockhash": "hashvalue",     (string) The block hash containing the transaction. Available for 'send' and 'receive' category of transactions.

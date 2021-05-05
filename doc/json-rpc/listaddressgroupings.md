@@ -17,7 +17,7 @@ Result
   [
     [
       "address",            (string) The bitcoin address
-      amount,                 (numeric) The amount in ERG
+      amount,                 (numeric) The amount in XRG
       "label"               (string, optional) The label
     ]
     ,...

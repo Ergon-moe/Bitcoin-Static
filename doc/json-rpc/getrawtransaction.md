@@ -59,7 +59,7 @@ Result (if verbose is set to true)
   ],
   "vout" : [              (array of json objects)
      {
-       "value" : x.xxx,            (numeric) The value in ERG
+       "value" : x.xxx,            (numeric) The value in XRG
        "n" : n,                    (numeric) index
        "scriptPubKey" : {          (json object)
          "asm" : "asm",          (string) the asm

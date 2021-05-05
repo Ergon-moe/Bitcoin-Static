@@ -1,13 +1,13 @@
-Bitcoin Static ERG-relevant DNS seed information
+Bitcoin Static XRG-relevant DNS seed information
 ====================================================
 
-Bitcoin Static uses special seeds under the control of Bitcoin Cash (ERG)
+Bitcoin Static uses special seeds under the control of Bitcoin Cash (XRG)
 network supporting operators to increase the chance of a node
-to find suitable peers on the ERG network.
+to find suitable peers on the XRG network.
 
 The seeds used by Cash Node should distribute peers fairly but in a
 manner which increases the likelihood that Bitcoin Statics are able
-to connect to ERG compatible peers.
+to connect to XRG compatible peers.
 
 
 General expectations for DNS Seed operators

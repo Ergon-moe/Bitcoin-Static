@@ -2,9 +2,9 @@ Test Networks
 =============
 
 This document describes the Bitcoin Cash test networks supported by the
-ERGN software.
+XRGN software.
 
-There are currently three test networks that you can access with ERGN:
+There are currently three test networks that you can access with XRGN:
 - testnet3 (historical testnet)
 - testnet4
 - scalenet
@@ -15,8 +15,8 @@ of protocol developers. They can be accessed by running the software
 arguments, respectively.
 
 Other software clients may have additional test network definitions compiled
-into them but these are not currently supported by ERGN and could not be
-accessed without further modifications to the software. If you wish ERGN
+into them but these are not currently supported by XRGN and could not be
+accessed without further modifications to the software. If you wish XRGN
 to access a test network not listed above, please raise a support request.
 
 Below, we give a brief description and an overview table for these networks.
@@ -68,7 +68,7 @@ performance levels are encouraged to do so by forking off of scalenet or
 creating their own private testnets or regtest networks.
 
 
-Overview Table for ERGN-supported Test Networks
+Overview Table for XRGN-supported Test Networks
 -----------------------------------------------
 
 | Attribute/Network            |  testnet3   |   testnet4   |  scalenet   |
@@ -89,7 +89,7 @@ Overview Table for ERGN-supported Test Networks
 | BIP65 height                 |  581885     |  3           |  3          |
 | BIP66 height                 |  330776     |  4           |  4          |
 | CSV height                   |  770112     |  5           |  5          |
-| UAHF (ERG fork) height       |  1155875    |  6           |  6          |
+| UAHF (XRG fork) height       |  1155875    |  6           |  6          |
 | Nov 13 2017 HF height        |  1188697    |  3000        |  3000       |
 | Nov 15 2018 HF height        |  1267996    |  4000        |  4000       |
 | Nov 15 2019 HF height        |  1341711    |  5000        |  5000       |
@@ -101,7 +101,7 @@ Overview Table for ERGN-supported Test Networks
 | Base58 p: ext. pubkey        |  0x043587cf |  0x043587cf  |  0x043587cf |
 | Base58 p: ext. seckey        |  0x04358394 |  0x04358394  |  0x04358394 |
 
-Note 1: set to 0 because historical sigop code has been removed from ERGN
+Note 1: set to 0 because historical sigop code has been removed from XRGN
         See chainparams.cpp for more detailed comments.
 
 Note 2: scalenet is intended to be periodically reorganized down to a

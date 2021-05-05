@@ -27,7 +27,7 @@ Arguments
 2. "outputs"               (array, required) a json array with outputs (key-value pairs)
    [
     {
-      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in ERG
+      "address": x.xxx,    (obj, optional) A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in XRG
     },
     {
       "data": "hex"        (obj, optional) A key-value pair. The key must be "data", the value is hex-encoded data

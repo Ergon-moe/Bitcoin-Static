@@ -13,18 +13,18 @@ BitcoinUnits::BitcoinUnits(QObject *parent)
 
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits() {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(ERG);
-    unitlist.append(mERG);
-    unitlist.append(uERG);
+    unitlist.append(XRG);
+    unitlist.append(mXRG);
+    unitlist.append(uXRG);
     unitlist.append(FIX);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit) {
     switch (unit) {
-        case ERG:
-        case mERG:
-        case uERG:
+        case XRG:
+        case mXRG:
+        case uXRG:
         case FIX:
             return true;
         default:
@@ -34,12 +34,12 @@ bool BitcoinUnits::valid(int unit) {
 
 QString BitcoinUnits::longName(int unit) {
     switch (unit) {
-        case ERG:
-            return QString("ERG");
-        case mERG:
-            return QString("mERG");
-        case uERG:
-            return QString::fromUtf8("μERG");
+        case XRG:
+            return QString("XRG");
+        case mXRG:
+            return QString("mXRG");
+        case uXRG:
+            return QString::fromUtf8("μXRG");
         case FIX:
             return QString("fix");
         default:
@@ -58,11 +58,11 @@ QString BitcoinUnits::shortName(int unit) {
 
 QString BitcoinUnits::description(int unit) {
     switch (unit) {
-        case ERG:
+        case XRG:
             return QString("Bitcoins");
-        case mERG:
+        case mXRG:
             return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
-        case uERG:
+        case uXRG:
             return QString("Micro-Bitcoins (1 / 1" THIN_SP_UTF8
                            "000" THIN_SP_UTF8 "000)");
         case FIX:
@@ -75,11 +75,11 @@ QString BitcoinUnits::description(int unit) {
 
 qint64 BitcoinUnits::factor(int unit) {
     switch (unit) {
-        case ERG:
+        case XRG:
             return 100000000;
-        case mERG:
+        case mXRG:
             return 100000;
-        case uERG:
+        case uXRG:
             return 100;
         case FIX:
             return 1;
@@ -90,11 +90,11 @@ qint64 BitcoinUnits::factor(int unit) {
 
 int BitcoinUnits::decimals(int unit) {
     switch (unit) {
-        case ERG:
+        case XRG:
             return 8;
-        case mERG:
+        case mXRG:
             return 5;
-        case uERG:
+        case uXRG:
             return 2;
         case FIX:
             return 0;

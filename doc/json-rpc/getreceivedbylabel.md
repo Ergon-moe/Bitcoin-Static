@@ -19,7 +19,7 @@ Result
 ------
 
 ```
-amount              (numeric) The total amount in ERG received for this label.
+amount              (numeric) The total amount in XRG received for this label.
 ```
 
 Examples

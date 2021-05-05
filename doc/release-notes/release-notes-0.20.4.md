@@ -11,7 +11,7 @@ This release includes the following features and fixes:
  - New `fees` field introduced in `getrawmempool`, `getmempoolancestors`,
    `getmempooldescendants` and  `getmempoolentry` when verbosity is set to
    `true` with sub-fields `ancestor`, `base`, `modified` and `descendant`
-   denominated in ERG. This new field deprecates previous fee fields, such a
+   denominated in XRG. This new field deprecates previous fee fields, such a
    `fee`, `modifiedfee`, `ancestorfee` and `descendantfee`.
 
 Dynamic creation of wallets

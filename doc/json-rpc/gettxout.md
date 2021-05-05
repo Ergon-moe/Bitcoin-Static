@@ -23,7 +23,7 @@ Result
 {
   "bestblock" : "hash",    (string) the block hash
   "confirmations" : n,       (numeric) The number of confirmations
-  "value" : x.xxx,           (numeric) The transaction value in ERG
+  "value" : x.xxx,           (numeric) The transaction value in XRG
   "scriptPubKey" : {         (json object)
      "asm" : "code",       (string)
      "hex" : "hex",        (string)

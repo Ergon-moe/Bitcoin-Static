@@ -111,7 +111,7 @@ class WalletTest(BitcoinTestFramework):
             txid=confirmed_txid, n=confirmed_index, include_mempool=True)
         assert_equal(txout['value'], 50)
 
-        # Send 21 ERG from 0 to 2 using sendtoaddress call.
+        # Send 21 XRG from 0 to 2 using sendtoaddress call.
         self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(), 11)
         mempool_txid = self.nodes[0].sendtoaddress(
             self.nodes[2].getnewaddress(), 10)
@@ -219,7 +219,7 @@ class WalletTest(BitcoinTestFramework):
         assert_raises_rpc_error(-8, "Invalid parameter, expected unspent output",
                                 self.nodes[0].lockunspent, False, [spent_0])
 
-        # Send 10 ERG normal
+        # Send 10 XRG normal
         old_balance = self.nodes[2].getbalance()
         address = self.nodes[0].getnewaddress("test")
         fee_per_byte = Decimal('0.001') / 1000
@@ -232,7 +232,7 @@ class WalletTest(BitcoinTestFramework):
                                            fee_per_byte, ctx.billable_size())
         assert_equal(self.nodes[0].getbalance(), Decimal('10'))
 
-        # Send 10 ERG with subtract fee from amount
+        # Send 10 XRG with subtract fee from amount
         txid = self.nodes[2].sendtoaddress(address, 10, "", "", True)
         self.nodes[2].generate(1)
         self.sync_all([self.nodes[0:3]])
@@ -241,7 +241,7 @@ class WalletTest(BitcoinTestFramework):
         node_0_bal = self.check_fee_amount(self.nodes[0].getbalance(), Decimal(
             '20'), fee_per_byte, count_bytes(self.nodes[2].getrawtransaction(txid)))
 
-        # Sendmany 10 ERG
+        # Sendmany 10 XRG
         txid = self.nodes[2].sendmany('', {address: 10}, 0, "", [])
         self.nodes[2].generate(1)
         self.sync_all([self.nodes[0:3]])
@@ -251,7 +251,7 @@ class WalletTest(BitcoinTestFramework):
         ), node_2_bal - Decimal('10'), fee_per_byte, ctx.billable_size())
         assert_equal(self.nodes[0].getbalance(), node_0_bal)
 
-        # Sendmany 10 ERG with subtract fee from amount
+        # Sendmany 10 XRG with subtract fee from amount
         txid = self.nodes[2].sendmany('', {address: 10}, 0, "", [address])
         self.nodes[2].generate(1)
         self.sync_all([self.nodes[0:3]])

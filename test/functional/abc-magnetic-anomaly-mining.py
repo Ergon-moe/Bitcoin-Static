@@ -80,7 +80,7 @@ class CTORMiningTest(BitcoinTestFramework):
             for _ in range(len(inputs)):
                 addr = mining_node.getnewaddress()
                 output = {
-                    # 50 ERG per coinbase
+                    # 50 XRG per coinbase
                     addr: decimal.Decimal(50)
                 }
                 outputs.update(output)

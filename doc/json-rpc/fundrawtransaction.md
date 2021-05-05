@@ -27,7 +27,7 @@ Arguments
      "changePosition"         (numeric, optional, default random) The index of the change output
      "includeWatching"        (boolean, optional, default false) Also select inputs which are watch only
      "lockUnspents"           (boolean, optional, default false) Lock selected unspent outputs
-     "feeRate"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in ERG/kB
+     "feeRate"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in XRG/kB
      "subtractFeeFromOutputs" (array, optional) A json array of integers.
                               The fee will be equally deducted from the amount of each specified output.
                               The outputs are specified by their zero-based index, before any change output is added.
@@ -44,7 +44,7 @@ Result
 ```
 {
   "hex":       "value", (string)  The resulting raw transaction (hex-encoded string)
-  "fee":       n,         (numeric) Fee in ERG the resulting transaction pays
+  "fee":       n,         (numeric) Fee in XRG the resulting transaction pays
   "changepos": n          (numeric) The position of the added change output, or -1
 }
 ```

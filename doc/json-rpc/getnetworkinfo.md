@@ -30,8 +30,8 @@ Result
   }
   ,...
   ],
-  "relayfee": x.xxxxxxxx,                (numeric) minimum relay fee for transactions in ERG/kB
-  "excessutxocharge": x.xxxxxxxx,        (numeric) minimum charge for excess utxos in ERG
+  "relayfee": x.xxxxxxxx,                (numeric) minimum relay fee for transactions in XRG/kB
+  "excessutxocharge": x.xxxxxxxx,        (numeric) minimum charge for excess utxos in XRG
   "localaddresses": [                    (array) list of local addresses
   {
     "address": "xxxx",                 (string) network address

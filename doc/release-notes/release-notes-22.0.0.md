@@ -70,7 +70,7 @@ Automatic banning of peers for bad behavior has been slightly altered:
 
 - All extant automatic bans ("node misbehaving") that are currently stored in the
   node's `banlist.dat` file will be converted into "manual bans" and will expire
-  within 24 hours after first running this version of ERGN.
+  within 24 hours after first running this version of XRGN.
 
 
 ### Regtest network now requires standard transactions by default
@@ -189,7 +189,7 @@ No changes.
   now have their `banned_reason` as "manually added" (since `listbanned` can
   now only ever show manual bans). The "node misbehaving" value for this key
   will never appear. This key is now deprecated and may be removed altogether
-  in a future release of ERGN.
+  in a future release of XRGN.
 
 - The `setban` method can no longer lift individual automatic bans. Use
   `clearbanned` instead to clear all bans, or `clearbanned false true` to
@@ -247,7 +247,7 @@ all of them on our GitLab repository.
 
 - There is a report that the `test_bitcoin-qt` test executable fails on
   Linux Mint 20 (see Issue #144). This does not otherwise appear to impact
-  the functioning of the ERGN software on that platform.
+  the functioning of the XRGN software on that platform.
 
 - An 'autotools' build (the old build method) fails on OSX when using Clang.
   (Issue #129)
@@ -358,7 +358,7 @@ all of them on our GitLab repository.
 #### Documentation updates
 
 - 4dd54a7494b89b2ce337b7fbbd978cc05704f4be Document implementation of November 2020 Bitcoin Cash Network Upgrade
-- 490d710450f984fd6a6b879341144598fdd7badc Upgrade documentation of BIPs and ERG upgrades implementation history (#68)
+- 490d710450f984fd6a6b879341144598fdd7badc Upgrade documentation of BIPs and XRG upgrades implementation history (#68)
 - 64e2bf4d2b9f25658bdafc2707389f4813b18dce Update doc/ninja_targets.md
 - f841f99d748e4629315f1fe5d89c1b6de676fd44 [doc] Add lines before and after lists, and other Markdown doc improvements
 - 504a3c1dff88d0d6117fea24cf7e57a68385cae0 Remove trailing spaces from generated Markdown documentation
@@ -420,8 +420,8 @@ No changes.
 
 #### Maintainer tools
 
-- df24a4a467fad579d835ed34603ff0e628f6bb4c Adapt debian-packages.sh to work with ERGN infrastructure (take #2)
-- 23f0627270705a17bf2eb7723121ce93f55a573e Adapt debian-packags.sh to the ERGN infrastructure
+- df24a4a467fad579d835ed34603ff0e628f6bb4c Adapt debian-packages.sh to work with XRGN infrastructure (take #2)
+- 23f0627270705a17bf2eb7723121ce93f55a573e Adapt debian-packags.sh to the XRGN infrastructure
 
 
 #### Infrastructure

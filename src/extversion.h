@@ -83,7 +83,7 @@ static_assert (version.Revision() < version.MinorRevisionRange(), "Static versio
   Bitcoin Cash extended version message implementation.
 
   This version message de-/serializes the same fields as the version
-  message format as in the BU ERG implementation as of July 2018.
+  message format as in the BU XRG implementation as of July 2018.
 
   For now we only support Key::Version as the only key we understand
   and serialize/deserialize.  All other unknown keys are silently

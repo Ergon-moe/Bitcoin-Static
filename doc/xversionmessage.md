@@ -1,4 +1,4 @@
-# XVersionMessage: ERG node extended version and configuration fields
+# XVersionMessage: XRG node extended version and configuration fields
 
 DRAFT specification
 

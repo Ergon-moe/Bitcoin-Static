@@ -8,7 +8,7 @@
 
 #include <tinyformat.h>
 
-const std::string CURRENCY_UNIT = "ERG";
+const std::string CURRENCY_UNIT = "XRG";
 
 std::string Amount::ToString() const {
     return strprintf("%d.%08d %s", *this / COIN, (*this % COIN) / FIXOSHI,

@@ -11,7 +11,7 @@ Arguments
 ---------
 
 ```
-1. amount         (numeric or string, required) The transaction fee in ERG/kB
+1. amount         (numeric or string, required) The transaction fee in XRG/kB
 
 Result
 true|false        (boolean) Returns true if successful

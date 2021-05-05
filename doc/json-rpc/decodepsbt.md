@@ -29,7 +29,7 @@ Result
   "inputs" : [                 (array of json objects)
     {
       "utxo" : {            (json object, optional) Transaction output for UTXOs
-        "amount" : x.xxx,           (numeric) The value in ERG
+        "amount" : x.xxx,           (numeric) The value in XRG
         "scriptPubKey" : {          (json object)
           "asm" : "asm",            (string) The asm
           "hex" : "hex",            (string) The hex

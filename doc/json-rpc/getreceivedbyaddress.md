@@ -19,7 +19,7 @@ Result
 ------
 
 ```
-amount   (numeric) The total amount in ERG received at this address.
+amount   (numeric) The total amount in XRG received at this address.
 ```
 
 Examples
