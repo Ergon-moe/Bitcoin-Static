@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>BitcoinCashNode-Qt</string>
+  <string>BitcoinStatic-Qt</string>
   
   <key>CFBundleName</key>
-  <string>BitcoinCashNode-Qt</string>
+  <string>BitcoinStatic-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.bitcoincashnode.BitcoinCashNode-Qt</string>
+  <string>moe.ergon.BitcoinCashNode-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.bitcoincash.BitcoinPayment</string>
+      <string>moe.ergon.BitcoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>bitcoincash</string>
+        <string>ergon</string>
       </array>
     </dict>
   </array>
@@ -58,9 +58,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.bitcoincash.paymentrequest</string>
+      <string>moe.ergon.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Bitcoin Cash payment request</string>
+      <string>Ergon payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -68,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/bitcoincash-paymentrequest</string>
+        <string>application/ergon-paymentrequest</string>
         <key>public.filename-extension</key>
         <array>
-          <string>bitcoincashpaymentrequest</string>
+          <string>ergonpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -84,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.bitcoincash.paymentrequest</string>
+        <string>moe.ergon.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>
