@@ -6,7 +6,7 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE
 	"${CMAKE_SOURCE_DIR}/cmake/modules/OverrideInitFlags.cmake"
 )
 
-project(bitcoin-cash-node
+project(bitcoin-static
 	VERSION 23.0.0
 	DESCRIPTION "Bitcoin Static is a full node implementation of the Bitcoin Static protocol."
 	HOMEPAGE_URL "https://www.ergon.moe"
