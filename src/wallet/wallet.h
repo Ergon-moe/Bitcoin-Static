@@ -78,11 +78,9 @@ static constexpr unsigned int DEFAULT_KEYPOOL_SIZE = 1000;
 //! -paytxfee default
 constexpr Amount DEFAULT_PAY_TX_FEE = Amount::zero();
 //! -fallbackfee default
-static constexpr Amount DEFAULT_FALLBACK_FEE(20000 * FIXOSHI);
+static constexpr Amount DEFAULT_FALLBACK_FEE(200 * FIXOSHI);
 //! -mintxfee default
-static constexpr Amount DEFAULT_TRANSACTION_MINFEE_PER_KB = 1000 * FIXOSHI;
-//! minimum recommended increment for BIP 125 replacement txs
-static constexpr Amount WALLET_INCREMENTAL_RELAY_FEE(5000 * FIXOSHI);
+static constexpr Amount DEFAULT_TRANSACTION_MINFEE_PER_KB = 10 * FIXOSHI;
 //! Default for -spendzeroconfchange
 static constexpr bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -walletrejectlongchains
