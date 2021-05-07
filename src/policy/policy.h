@@ -26,7 +26,7 @@ static constexpr uint64_t DEFAULT_MAX_GENERATED_BLOCK_SIZE = 2 * ONE_MEGABYTE;
  * Default for -blockmintxfee, which sets the minimum feerate for a transaction
  * in blocks created by mining code.
  */
-static constexpr Amount DEFAULT_BLOCK_MIN_TX_FEE_PER_KB(1000 * FIXOSHI);
+static constexpr Amount DEFAULT_BLOCK_MIN_TX_FEE_PER_KB(10 * FIXOSHI);
 /**
  * The maximum size for transactions we're willing to relay/mine.
  */
@@ -64,7 +64,7 @@ static constexpr unsigned int DEFAULT_BYTES_PER_SIGOP = 50;
  * only increase the dust limit after prior releases were already not creating
  * outputs below the new threshold.
  */
-static constexpr Amount DUST_RELAY_TX_FEE(1000 * FIXOSHI);
+static constexpr Amount DUST_RELAY_TX_FEE(10 * FIXOSHI);
 
 /**
  * When transactions fail script evaluations under standard flags, this flagset
