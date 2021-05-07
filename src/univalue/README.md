@@ -11,7 +11,7 @@ This class is aligned with the JSON standard, [RFC
 
 UniValue was originally created by [Jeff Garzik](https://github.com/jgarzik/univalue/)
 and is used in node software for many bitcoin-based cryptocurrencies.
-**ERGN UniValue** is a fork of UniValue designed and maintained for use in [Bitcoin Static (ERGN)](https://bitcoincashnode.org/).
+**ERGN UniValue** is a fork of UniValue designed and maintained for use in [Bitcoin Static (ERGN)](https://ergon.moe/).
 Unlike the [Bitcoin Core fork](https://github.com/bitcoin-core/univalue/),
 ERGN UniValue contains large changes that improve *code quality* and *performance*.
 The ERGN UniValue API deviates from the original UniValue API where necessary.
