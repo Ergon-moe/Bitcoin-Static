@@ -4,7 +4,7 @@ Bitcoin Static
 The goal of Bitcoin Static is to create sound money that is usable by everyone
 in the world. We believe this is a civilization-changing technology which will
 dramatically increase human flourishing, freedom, and prosperity. The project
-aims to achieve this goal by implementing [proportional reward system](https://ergon.moe/prop_reward.pdf) to stabilize
+aims to achieve this goal by implementing [proportional reward system](https://ergon.moe/prop-reward.pdf) to stabilize
 the currency value over time.
 
 What is Ergon?
