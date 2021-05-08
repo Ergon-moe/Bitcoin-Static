@@ -119,8 +119,8 @@ Intro::Intro(QWidget *parent, uint64_t blockchain_size,
     ui->lblExplanation1->setText(ui->lblExplanation1->text()
                                      .arg(PACKAGE_NAME)
                                      .arg(m_blockchain_size)
-                                     .arg(2009)
-                                     .arg(tr("Bitcoin")));
+                                     .arg(2021)
+                                     .arg(tr("Ergon")));
     ui->lblExplanation2->setText(
         ui->lblExplanation2->text().arg(PACKAGE_NAME));
 
