@@ -295,7 +295,7 @@ public:
         netMagic[1] = 212;
         netMagic[2] = 31;
         netMagic[3] = 144;
-        nDefaultPort = 18333;
+        nDefaultPort = 12137;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 60;
         m_assumed_chain_state_size = 2;
@@ -424,7 +424,7 @@ public:
         netMagic[1] = 0xb7;
         netMagic[2] = 0xda;
         netMagic[3] = 0xaf;
-        nDefaultPort = 28333;
+        nDefaultPort = 22137;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
@@ -556,7 +556,7 @@ public:
         netMagic[1] = 0xaf;
         netMagic[2] = 0xe1;
         netMagic[3] = 0xa2;
-        nDefaultPort = 38333;
+        nDefaultPort = 32137;
         nPruneAfterHeight = 10000;
         m_assumed_blockchain_size = 100;
         m_assumed_chain_state_size = 10;
