@@ -16,6 +16,7 @@
 #include <util/system.h>
 
 #include <cassert>
+#include <cstdio>
 #include <cstring>
 #include <memory>
 #include <stdexcept>
@@ -172,17 +173,17 @@ public:
 
         genesis.nNonce = 92586649;
 
-        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
-                {
-                    printf("recalculating params for MAINNET.\n");
-                    printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-                    printf("old MAINNET genesis nonce: %u\n",genesis.nNonce);
-                    printf("old MAINNET genesis hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
-                    for(genesis.nNonce = 0; genesis.GetHash() > BlockHash::fromHex("0000000897062db8d1fd00000000000000000000000000000000000000000000"); genesis.nNonce++){ }
-                    printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-                    printf("new MAINNET genesis nonce: %u\n", genesis.nNonce);
-                    printf("new MAINNET genesis hash: %s\n", genesis.GetHash().ToString().c_str());
-                }
+        if (genesis.GetHash() != consensus.hashGenesisBlock) {
+            std::printf("recalculating params for MAINNET.\n");
+            std::printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+            std::printf("old MAINNET genesis nonce: %u\n", genesis.nNonce);
+            std::printf("old MAINNET genesis hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+            const auto targetHash = BlockHash::fromHex("0000000897062db8d1fd00000000000000000000000000000000000000000000");
+            for (genesis.nNonce = 0; genesis.GetHash() > targetHash; ++genesis.nNonce) {}
+            std::printf("new MAINNET genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+            std::printf("new MAINNET genesis nonce: %u\n", genesis.nNonce);
+            std::printf("new MAINNET genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+        }
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -211,7 +212,7 @@ public:
         checkpointData = {
             .mapCheckpoints = {}};
 
-        chainTxData = ChainTxData{0, 1607003022, 0.};
+        chainTxData = ChainTxData{1620430294, 1713, 0.00167};
     }
 };
 
@@ -222,7 +223,6 @@ public:
 class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
-        printf("Testnet Params.\n");
         strNetworkID = CBaseChainParams::TESTNET;
         consensus.nSubsidyHalvingInterval = 1440;
         // 00000000040b4e986385315e14bee30ad876d8b47f748025b26683116d21aa65
