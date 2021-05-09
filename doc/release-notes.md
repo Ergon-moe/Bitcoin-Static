@@ -1,22 +1,35 @@
-# Release Notes for Bitcoin Static version 23.0.0
+# Release Notes for Bitcoin Static version 23.1.0
 
-Bitcoin Static version 23.0.0 is now available from:
+Bitcoin Static version 23.1.0 is now available from:
 
   <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
 ## Overview
 
-This is the first release of Bitcoin Static implementing proportional reward
-system, different DAA, burning half of the fees, new magic numbers, new genesis
-block, decreasedminimum difficulty, "ergon:" address prefix, client rebranding,
-default 288block finalization (compare 10 block finalization in bitcoin) and May
-poison pill removed.
+Default node policy reduced to 0.01 fix/b. Default data falder changed to bitcoin-static, **see usage recommendations for the migration guide**. Some more rebranding fixes and full C++17 migration.
+
 
 
 ## Usage recommendations
 
-...
+igration guide from 23.0.0 to 23.1.0
 
+The default data folder has been changed from Bitcoin to Bitcoin Static. It means that the version 23.1.0 won't be able to see your coins unless you. The recommended way to migrate between those version:
+
+(optional)
+0. The new version implements a reduced transaction fee. If you have many utxos that might need combining and you want to do it on the older node version, add the following options to your bitcoin.conf file.
+dustrelayfee=0.0000001
+minrelaytxfee=0.0000001
+blockmintxfee=0.0000001
+mintxfee=0.0000001
+
+1. Download 23.1.0 but keep the 23.0.0 binary file for your architecture,
+2. Turn on the Bitcoin Static qt wallet and sellect the default directory,
+3. Sellect the receive tab, click request payment and copy the address and paste it to a text file,
+4. Close the Bitcoin Static window and turn on Bitcoin Static 23.0.0,
+3. Go to Send tab and send all the coins to the address.
+
+If you prefer to keep the addresses you're using, you need to export private keys corresponding to the addresses and import them to the new version.
 
 ## Network changes
 
