@@ -1,6 +1,6 @@
-# Release Notes for Bitcoin Static version 23.1.0
+# Release Notes for Bitcoin Static version 23.1.1
 
-Bitcoin Static version 23.1.0 is now available from:
+Bitcoin Static version 23.1.1 is now available from:
 
   <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
@@ -12,7 +12,7 @@ Default node policy reduced to 0.01 fix/b. Default data falder changed to bitcoi
 
 ## Usage recommendations
 
-igration guide from 23.0.0 to 23.1.0
+igration guide from 23.0.0 to 23.1.1
 
 The default data folder has been changed from Bitcoin to Bitcoin Static. It means that the version 23.1.0 won't be able to see your coins unless you. The recommended way to migrate between those version:
 
