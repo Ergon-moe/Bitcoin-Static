@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-cash-node-osx"
+name: "bitcoin-static-osx"
 enable_cache: true
 distro: "debian"
 suites:
@@ -32,12 +32,12 @@ packages:
 - "python3-setuptools"
 # FIXME: these dependencies are only required to make CMake happy when building
 # native tools. They can be removed when the `NativeExecutable.cmake` gets
-# improved to avoid requiring all the bitcoin-cash-node dependencies.
+# improved to avoid requiring all the bitcoin-static dependencies.
 - "libboost-all-dev"
 - "libevent-dev"
 - "libssl-dev"
 remotes:
-- "url": "https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node.git"
+- "url": "https://gitlab.com/bitcoin-static/bitcoin-static.git"
   "dir": "bitcoin"
 files:
 - "MacOSX10.14.sdk.tar.xz"
@@ -132,7 +132,7 @@ script: |
     -DENABLE_QRCODE=OFF \
     -DENABLE_UPNP=OFF
   ninja package_source
-  SOURCEDIST=`echo bitcoin-cash-node-*.tar.gz`
+  SOURCEDIST=`echo bitcoin-static-*.tar.gz`
   mv ${SOURCEDIST} ..
   popd
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
@@ -141,7 +141,7 @@ script: |
   mkdir -p temp
   pushd temp
   tar xf ../$SOURCEDIST
-  find bitcoin-cash-node-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  find bitcoin-static-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   popd
 
   ORIGPATH="$PATH"
