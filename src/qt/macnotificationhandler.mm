@@ -12,7 +12,7 @@
 @implementation NSBundle (returnCorrectIdentifier)
 - (NSString *)__bundleIdentifier {
     if (self == [NSBundle mainBundle]) {
-        return @"org.bitcoincashnode.BitcoinCashNode-Qt";
+        return @"moe.ergon.BitcoinStatic-Qt";
     } else {
         return [self __bundleIdentifier];
     }

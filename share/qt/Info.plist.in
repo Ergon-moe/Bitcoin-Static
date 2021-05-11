@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>moe.ergon.BitcoinCashNode-Qt</string>
+  <string>moe.ergon.BitcoinStatic-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
