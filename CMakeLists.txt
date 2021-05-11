@@ -7,7 +7,7 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE
 )
 
 project(bitcoin-static
-	VERSION 23.1.1
+	VERSION 23.1.2
 	DESCRIPTION "Bitcoin Static is a full node implementation of the Bitcoin Static protocol."
 	HOMEPAGE_URL "https://www.ergon.moe"
 )
