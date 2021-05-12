@@ -35,10 +35,10 @@ class Node;
  * Class encapsulating Bitcoin Static startup and shutdown.
  * Allows running startup and shutdown in a different thread from the UI thread.
  */
-class BitcoinCashNode : public QObject {
+class BitcoinStatic : public QObject {
     Q_OBJECT
 public:
-    explicit BitcoinCashNode(interfaces::Node &node);
+    explicit BitcoinStatic(interfaces::Node &node);
 
 public Q_SLOTS:
     void initialize(Config *config, RPCServer *rpcServer,

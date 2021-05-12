@@ -1,10 +1,10 @@
 # Package options
 set(CPACK_PACKAGE_VENDOR "${COPYRIGHT_HOLDERS_FINAL}")
-set(CPACK_PACKAGE_DESCRIPTION "Bitcoin Static is a Bitcoin Cash full node implementation.")
+set(CPACK_PACKAGE_DESCRIPTION "Bitcoin Static is an Ergon full node implementation.")
 set(CPACK_PACKAGE_HOMEPAGE_URL "${PROJECT_HOMEPAGE_URL}")
-set(CPACK_PACKAGE_CONTACT "info@bitcoincashnode.org")
+set(CPACK_PACKAGE_CONTACT "info@ergon.moe")
 
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "Bitcoin-Cash-Node")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Bitcoin-Static")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/doc/README_windows.txt")
 

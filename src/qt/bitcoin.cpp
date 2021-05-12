@@ -153,14 +153,14 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext &context,
     }
 }
 
-BitcoinCashNode::BitcoinCashNode(interfaces::Node &node) : QObject(), m_node(node) {}
+BitcoinStatic::BitcoinStatic(interfaces::Node &node) : QObject(), m_node(node) {}
 
-void BitcoinCashNode::handleRunawayException(const std::exception *e) {
+void BitcoinStatic::handleRunawayException(const std::exception *e) {
     PrintExceptionContinue(e, "Runaway exception");
     Q_EMIT runawayException(QString::fromStdString(m_node.getWarnings("gui")));
 }
 
-void BitcoinCashNode::initialize(Config *config, RPCServer *rpcServer,
+void BitcoinStatic::initialize(Config *config, RPCServer *rpcServer,
                             HTTPRPCRequestProcessor *httpRPCRequestProcessor) {
     try {
         qDebug() << __func__ << ": Running initialization in thread";
@@ -175,7 +175,7 @@ void BitcoinCashNode::initialize(Config *config, RPCServer *rpcServer,
     }
 }
 
-void BitcoinCashNode::shutdown() {
+void BitcoinStatic::shutdown() {
     try {
         qDebug() << __func__ << ": Running Shutdown in thread";
         m_node.appShutdown();
@@ -274,15 +274,15 @@ void BitcoinApplication::startThread() {
         return;
     }
     coreThread = new QThread(this);
-    BitcoinCashNode *executor = new BitcoinCashNode(m_node);
+    BitcoinStatic *executor = new BitcoinStatic(m_node);
     executor->moveToThread(coreThread);
 
     /*  communication to and from thread */
-    connect(executor, &BitcoinCashNode::initializeResult, this,
+    connect(executor, &BitcoinStatic::initializeResult, this,
             &BitcoinApplication::initializeResult);
-    connect(executor, &BitcoinCashNode::shutdownResult, this,
+    connect(executor, &BitcoinStatic::shutdownResult, this,
             &BitcoinApplication::shutdownResult);
-    connect(executor, &BitcoinCashNode::runawayException, this,
+    connect(executor, &BitcoinStatic::runawayException, this,
             &BitcoinApplication::handleRunawayException);
 
     // Note on how Qt works: it tries to directly invoke methods if the signal
@@ -299,10 +299,10 @@ void BitcoinApplication::startThread() {
     // crash because initialize() gets executed in another thread at some
     // unspecified time (after) requestedInitialize() is emitted!
     connect(this, &BitcoinApplication::requestedInitialize, executor,
-            &BitcoinCashNode::initialize);
+            &BitcoinStatic::initialize);
 
     connect(this, &BitcoinApplication::requestedShutdown, executor,
-            &BitcoinCashNode::shutdown);
+            &BitcoinStatic::shutdown);
     /*  make sure executor object is deleted in its own thread */
     connect(this, &BitcoinApplication::stopThread, executor,
             &QObject::deleteLater);
@@ -477,41 +477,6 @@ static void SetupUIArgs() {
 
 #ifndef BITCOIN_QT_TEST
 
-static void MigrateSettings() {
-    assert(!QApplication::applicationName().isEmpty());
-
-    static const QString abcAppName("BitcoinABC-Qt"),
-#ifdef Q_OS_DARWIN
-        // Macs and/or iOS et al use a domain-style name for Settings
-        // files. All other platforms use a simple orgname. This
-        // difference is documented in the QSettings class documentation.
-        abcOrg("bitcoinabc.org");
-#else
-        abcOrg("BitcoinABC");
-#endif
-    QSettings
-        // below picks up settings file location based on orgname,appname
-        abc(abcOrg, abcAppName),
-        // default c'tor below picks up settings file location based on
-        // QApplication::applicationName(), et al -- which was already set
-        // in main()
-        bchn;
-#ifdef Q_OS_DARWIN
-    // Disable bogus OSX keys from MacOS system-wide prefs that may cloud our
-    // judgement ;) (this behavior is also documented in QSettings docs)
-    abc.setFallbacksEnabled(false);
-    bchn.setFallbacksEnabled(false);
-#endif
-    // We only migrate settings if we have ABC settings but no ERGN
-    // settings (first run).
-    if (bchn.allKeys().isEmpty()) {
-        for (const QString &key : abc.allKeys()) {
-            // now, copy settings over
-            bchn.setValue(key, abc.value(key));
-        }
-    }
-}
-
 int GuiMain(int argc, char *argv[]) {
 #ifdef WIN32
     util::WinCmdLineArgs winArgs;
@@ -594,12 +559,6 @@ int GuiMain(int argc, char *argv[]) {
     QApplication::setOrganizationName(QAPP_ORG_NAME);
     QApplication::setOrganizationDomain(QAPP_ORG_DOMAIN);
     QApplication::setApplicationName(QAPP_APP_NAME_DEFAULT);
-    // Migrate GUI settings from Bitcoin ABC to our Bitcoin Static
-    // only if ABC's exists but ours doesn't.
-    // NOTE -- this function needs to be called *after* the above 3 lines
-    // that set the app orgname and app name! If you move the above 3 lines
-    // to elsewhere, take this call with you!
-    MigrateSettings();
 
     /// 4. Initialization of translations, so that intro dialog is in user's
     /// language. Now that QSettings are accessible, initialize translations.
