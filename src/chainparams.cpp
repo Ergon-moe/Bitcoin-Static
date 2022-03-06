@@ -124,6 +124,8 @@ public:
         // November 13, 2017 hard fork
         consensus.daaHeight = 0;
 
+        consensus.emaDAAHeight = 31343;
+
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 0;
 
@@ -263,7 +265,7 @@ public:
 
         // November 13, 2017 hard fork
         consensus.daaHeight = 0;
-
+        consensus.emaDAAHeight = 60000;
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 0;
 
@@ -378,7 +380,7 @@ public:
 
         // November 13, 2017 hard fork
         consensus.daaHeight = 3000;
-
+        consensus.emaDAAHeight = 60000;
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 4000;
 
@@ -513,7 +515,7 @@ public:
 
         // November 13, 2017 hard fork
         consensus.daaHeight = 3000;
-
+        consensus.emaDAAHeight = 60000;
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 4000;
 
@@ -648,7 +650,7 @@ public:
 
         // November 13, 2017 hard fork is always on on regtest.
         consensus.daaHeight = 0;
-
+        consensus.emaDAAHeight = 31343;
         // November 15, 2018 hard fork is always on on regtest.
         consensus.magneticAnomalyHeight = 0;
 

@@ -946,12 +946,20 @@ Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
     arith_uint256 aWork = (~bnTarget / (bnTarget + 1)) + 1;
 
     int divisions = nHeight / consensusParams.nSubsidyHalvingInterval;
-
-    for(int a=0; a<divisions; a++)  {
+    int reward_fork =
+        consensusParams.emaDAAHeight /consensusParams.nSubsidyHalvingInterval;
+    for(int a=0; a < divisions ; a++)  {
         // to be tunned in few years based on high quality empirical research
-        aWork *= 99826;
-        aWork /= 100000;
+        if(a < reward_fork) {
+            aWork *= 99826;
+            aWork /= 100000;
+        }
+        else {
+            aWork *= 99918;
+            aWork /= 100000;
+        }
     }
+
     aWork /= consensusParams.nValueCalibration; //14200000000000
     uint256 uWork = ArithToUint256(aWork);
     int64_t iWork = uWork.GetUint64(0);
