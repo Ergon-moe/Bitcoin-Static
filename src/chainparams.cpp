@@ -252,8 +252,8 @@ public:
                 {478559, BlockHash::fromHex("000000000000000000651ef99cb9fcbe0d"
                                             "adde1d424bd9f15ff20136191a5eec")},
                 // Nov, 13 DAA activation block.
-                {504031, BlockHash::fromHex("0000000000000000011ebf65b60d0a3de8"
-                                            "0b8175be709d653b4c1a1beeb6ab9c")},
+                {504032, BlockHash::fromHex("00000000000000000343e9875012f20625"
+                                            "54c8752929892c82a0c0743ac7dcfd")},
                 // Monolith activation.
                 {530359, BlockHash::fromHex("0000000000000000011ada8bd08f46074f"
                                             "44a8f155396f43e38acf9501c49103")},
@@ -429,9 +429,9 @@ public:
                  BlockHash::fromHex("00000000f17c850672894b9a75b63a1e72830bbd5f"
                                     "4c8889b5c1a80e7faef138")},
                 // Nov, 13. DAA activation block.
-                {1188697,
-                 BlockHash::fromHex("0000000000170ed0918077bde7b4d36cc4c91be69f"
-                                    "a09211f748240dabe047fb")},
+                {1188698,
+                 BlockHash::fromHex("0000000000051b450faa75bb8e1ea30bc18c4b9736"
+                                    "e765d2794259a53bc83f99")},
                 // Great wall activation.
                 {1303885,
                  BlockHash::fromHex("00000000000000479138892ef0e4fa478ccc938fb9"
