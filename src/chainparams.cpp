@@ -425,9 +425,9 @@ public:
                 {546, BlockHash::fromHex("000000002a936ca763904c3c35fce2f3556c5"
                                          "59c0214345d31b1bcebf76acb70")},
                 // UAHF fork block.
-                {1155875,
-                 BlockHash::fromHex("00000000f17c850672894b9a75b63a1e72830bbd5f"
-                                    "4c8889b5c1a80e7faef138")},
+                {1155876,
+                 BlockHash::fromHex("00000000000e38fef93ed9582a7df43815d5c2ba9f"
+                                    "d37ef70c9a0ea4a285b8f5")},
                 // Nov, 13. DAA activation block.
                 {1188697,
                  BlockHash::fromHex("0000000000170ed0918077bde7b4d36cc4c91be69f"
