@@ -278,6 +278,11 @@ public:
                 // Upgrade 7 ("tachyon") era (actual activation block was 688094)
                 {699484, BlockHash::fromHex("0000000000000000030192242425926218184a609a63efee615b7586d7f3972b")},
                 {714881, BlockHash::fromHex("000000000000000004cd628ee64c058183e780bc31143ff00680ea8af51fa0ff")},
+
+                // Upgrade 8; May 15, 2022 (MTP time >= 1652616000), first upgrade block: 740238
+                {740238, BlockHash::fromHex("000000000000000002afc6fbd302f01f8cf4533f4b45207abc61d9f4297bf969")},
+                {741245, BlockHash::fromHex("000000000000000001c46d1d0f35df726bfb3e84cdc396d9edd9e2f8414191cd")},
+
             }};
 
         // Data as of block
@@ -456,6 +461,8 @@ public:
                 {1472870, BlockHash::fromHex(
                               "00000000000000b013f75c2cf5e357b5f95af715c2829b0686ee53663101a6e0")},
 
+                // Upgrade 8; May 15, 2022 (MTP time >= 1652616000), first upgrade block: 1500206
+                {1500206, BlockHash::fromHex("000000000000360769353e933530c40d3f00565a4e7731ff56027e23fa74a8ef")},
             }};
 
         // Data as of block
@@ -607,6 +614,9 @@ public:
                 // Upgrade 7 ("tachyon") era (actual activation block was in the past significantly before this)
                 {54700, BlockHash::fromHex("00000000009af4379d87f17d0f172ee4769b48839a5a3a3e81d69da4322518b8")},
                 {68117, BlockHash::fromHex("0000000000a2c2fc11a3b72adbd10a3f02a1f8745da55a85321523043639829a")},
+
+                // Upgrade 8; May 15, 2022 (MTP time >= 1652616000), first upgrade block: 95465
+                {95465, BlockHash::fromHex("00000000a77206a2265cabc47cc2c34706ba1c5e5a5743ac6681b83d43c91a01")},
             }};
 
         // Data as of block
