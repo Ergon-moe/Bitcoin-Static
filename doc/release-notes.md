@@ -1,6 +1,6 @@
-# Release Notes for Bitcoin Cash Node version 24.0.1
+# Release Notes for Bitcoin Cash Node version 24.1.0
 
-Bitcoin Cash Node version 24.0.1 is now available from:
+Bitcoin Cash Node version 24.1.0 is now available from:
 
   <https://bitcoincashnode.org>
 
