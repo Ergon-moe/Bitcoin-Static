@@ -149,8 +149,8 @@ bool DecodeBase58(const std::string &str, std::vector<uint8_t> &vchRet, size_t m
 std::string EncodeBase58Check(const std::vector<uint8_t> &vchIn) {
     // add 4-byte hash check to the end
     std::vector<uint8_t> vch(vchIn);
-    uint256 hash = Hash(vch);
-    vch.insert(vch.end(), (uint8_t *)&hash, (uint8_t *)&hash + 4);
+    const uint256 hash = Hash(vch);
+    vch.insert(vch.end(), hash.begin(), hash.begin() + 4);
     return EncodeBase58(vch);
 }
 
