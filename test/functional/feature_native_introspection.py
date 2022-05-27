@@ -76,7 +76,7 @@ class NativeIntrospectionTest(BitcoinTestFramework):
         self.block_heights = {}
         self.extra_args = [
             # Node0 has native introspection activated (activates at upgrade8)
-            ["-acceptnonstdtxn=1", "-upgrade8activationtime=1", "-expire=0"],
+            ["-acceptnonstdtxn=1", "-expire=0"],
         ]
 
     def bootstrap_p2p(self, *, num_connections=1):
@@ -893,6 +893,9 @@ class NativeIntrospectionTest(BitcoinTestFramework):
         self.restart_node(0, self.extra_args[0] + ["-reindex-chainstate=1"])
         assert_equal(node.getbestblockhash(), tiphash)
 
+        # The below tests have been disabled since BCHN no longer has the -upgrade8activationtime argument
+        # (it has activated already and the height has been hard-coded for all chains).
+        """
         # 2. Restart the node with native introspection disabled
         #    We specify -reindex-chainstate=1 in order to have it re-evaluate all txns, and reject what it doesn't
         #    understand.  It should roll-back the latest block since now that block is invalid.
@@ -906,6 +909,7 @@ class NativeIntrospectionTest(BitcoinTestFramework):
         assert_equal(node.getbestblockhash(), prevtiphash)
         node.reconsiderblock(tiphash)
         assert_equal(node.getbestblockhash(), tiphash)
+        """
 
 
 if __name__ == '__main__':

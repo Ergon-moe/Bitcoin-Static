@@ -932,12 +932,6 @@ void SetupServerArgs() {
                   defaultChainParams->GetConsensus().axionActivationTime),
         ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg(
-        "-upgrade8activationtime=<n>",
-        strprintf("Activation time of the May 2022 Bitcoin Cash Network Upgrade (<n> seconds since epoch, "
-                  "default: %d)",
-                  defaultChainParams->GetConsensus().upgrade8ActivationTime),
-        ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg(
         "-upgrade9activationtime=<n>",
         strprintf("Activation time of the tentative May 2023 Bitcoin Cash Network Upgrade (<n> seconds since epoch, "
                   "default: %d)",

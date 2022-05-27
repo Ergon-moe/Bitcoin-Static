@@ -5,7 +5,7 @@
 import time
 import os
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BitcoinTestFramework, SkipTest
 from test_framework.util import wait_until
 
 DUMMY_ACTIVATION_TIME = 2000000000
@@ -49,6 +49,10 @@ class WarnOnOutdatedTest(BitcoinTestFramework):
         self.num_nodes = 4
 
     def run_test(self):
+        if self.options.upgrade9activation:
+            # Running this test from ninja check-upgrade-activated will fail, so skip.
+            raise SkipTest("This test cannot be run with the next upgrade unconditionally enabled")
+
         goodNode = self.nodes[0]
         outdatedNode = self.nodes[1]
         supressingNode = self.nodes[2]

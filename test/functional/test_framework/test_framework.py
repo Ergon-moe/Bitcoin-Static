@@ -130,8 +130,8 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                             help="Attach a python debugger if test fails")
         parser.add_argument("--usecli", dest="usecli", default=False, action="store_true",
                             help="use bitcoin-cli instead of RPC for all commands")
-        parser.add_argument("--with-upgrade8activation", dest="upgrade8activation", default=False, action="store_true",
-                            help="Activate May 2022 (upgrade 8) update on timestamp {}".format(TIMESTAMP_IN_THE_PAST))
+        parser.add_argument("--with-upgrade9activation", dest="upgrade9activation", default=False, action="store_true",
+                            help="Activate May 2023 (upgrade 9) update on timestamp {}".format(TIMESTAMP_IN_THE_PAST))
         parser.add_argument("--extra-bitcoind-args", dest="extra_bitcoind_args", default="",
                             help="Start bitcoind with these additional arguments (comma separated)")
         self.add_options(parser)
@@ -336,9 +336,9 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                 use_cli=self.options.usecli,
                 emulator=self.options.emulator,
             ))
-            if self.options.upgrade8activation:
+            if self.options.upgrade9activation:
                 self.nodes[i].extend_default_args(
-                    ["-upgrade8activationtime={}".format(TIMESTAMP_IN_THE_PAST)])
+                    ["-upgrade9activationtime={}".format(TIMESTAMP_IN_THE_PAST), "-expire=0"])
             if len(self.options.extra_bitcoind_args):
                 self.nodes[i].extend_default_args(
                     self.options.extra_bitcoind_args.split(","))
@@ -554,9 +554,9 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                 if i > 0:
                     self.nodes[i].extend_default_args(
                         ["-connect=127.0.0.1:" + str(p2p_port(0))])
-                if self.options.upgrade8activation:
+                if self.options.upgrade9activation:
                     self.nodes[i].extend_default_args(
-                        ["-upgrade8activationtime={}".format(TIMESTAMP_IN_THE_PAST)])
+                        ["-upgrade9activationtime={}".format(TIMESTAMP_IN_THE_PAST), "-expire=0"])
                 self.start_node(i)
 
             # Wait for RPC connections to be ready

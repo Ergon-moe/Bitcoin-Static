@@ -138,7 +138,7 @@ public:
         // we do not track this time (since it does not apply at all to the blockchain itself).
 
         // May 15, 2022 12:00:00 UTC protocol upgrade
-        consensus.upgrade8ActivationTime = 1652616000;
+        consensus.upgrade8Height = 740237;
 
         // May 15, 2023 12:00:00 UTC tentative protocol upgrade
         consensus.upgrade9ActivationTime = 1684152000;
@@ -360,7 +360,7 @@ public:
         consensus.axionActivationTime = 1605441600;
 
         // May 15, 2022 12:00:00 UTC protocol upgrade
-        consensus.upgrade8ActivationTime = 1652616000;
+        consensus.upgrade8Height = 1500205;
 
         // May 15, 2023 12:00:00 UTC tentative protocol upgrade
         consensus.upgrade9ActivationTime = 1684152000;
@@ -542,7 +542,7 @@ public:
         consensus.axionActivationTime = 1605441600;
 
         // May 15, 2022 12:00:00 UTC protocol upgrade
-        consensus.upgrade8ActivationTime = 1652616000;
+        consensus.upgrade8Height = 95464;
 
         // May 15, 2023 12:00:00 UTC tentative protocol upgrade
         consensus.upgrade9ActivationTime = 1684152000;
@@ -696,7 +696,7 @@ public:
         consensus.axionActivationTime = 1605441600;
 
         // May 15, 2022 12:00:00 UTC protocol upgrade
-        consensus.upgrade8ActivationTime = 1652616000;
+        consensus.upgrade8Height = 10'006;
 
         // May 15, 2023 12:00:00 UTC tentative protocol upgrade
         consensus.upgrade9ActivationTime = 1684152000;
@@ -824,7 +824,7 @@ public:
         consensus.axionActivationTime = 1605441600;
 
         // May 15, 2022 12:00:00 UTC protocol upgrade
-        consensus.upgrade8ActivationTime = 1652616000;
+        consensus.upgrade8Height = 0;
 
         // May 15, 2023 12:00:00 UTC tentative protocol upgrade
         consensus.upgrade9ActivationTime = 1684152000;
