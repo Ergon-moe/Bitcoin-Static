@@ -45,8 +45,7 @@ def main():
     indir = sys.argv[1]
 
     print('''\
-#ifndef BITCOIN_CHAINPARAMSCONSTANTS_H
-#define BITCOIN_CHAINPARAMSCONSTANTS_H
+#pragma once
 /**
  * Chain params constants for each tracked chain.
  * @{} by contrib/devtools/chainparams/generate_chainparams_constants.py
@@ -68,9 +67,7 @@ namespace ChainParamsConstants {{
     // Scalenet re-organizes above height 10,000 - use block 9,999 hash here.
     const BlockHash SCALENET_DEFAULT_ASSUME_VALID = BlockHash::fromHex("{}");
     const uint256 SCALENET_MINIMUM_CHAIN_WORK = uint256S("{}");
-}} // namespace ChainParamsConstants
-
-#endif // BITCOIN_CHAINPARAMSCONSTANTS_H\
+}} // namespace ChainParamsConstants\
 '''.format(
         # 'generated' is split out so this file is not identified as generated.
         "generated",
