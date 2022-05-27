@@ -105,29 +105,20 @@ BOOST_AUTO_TEST_CASE(isaxionenabled) {
 }
 
 BOOST_AUTO_TEST_CASE(isupgrade8enabled) {
-    CBlockIndex prev;
+    const Consensus::Params &consensus = Params().GetConsensus();
+    BOOST_CHECK(!IsUpgrade8Enabled(consensus, nullptr));
 
-    const Consensus::Params &params = Params().GetConsensus();
-    const auto activation =
-        gArgs.GetArg("-upgrade8activationtime", params.upgrade8ActivationTime);
-    SetMockTime(activation - 1000000);
+    std::array<CBlockIndex, 4> blocks;
+    blocks[0].nHeight = consensus.upgrade8Height - 2;
 
-    BOOST_CHECK(!IsUpgrade8Enabled(params, nullptr));
-
-    std::array<CBlockIndex, 12> blocks;
     for (size_t i = 1; i < blocks.size(); ++i) {
         blocks[i].pprev = &blocks[i - 1];
+        blocks[i].nHeight = blocks[i - 1].nHeight + 1;
     }
-    BOOST_CHECK(!IsUpgrade8Enabled(params, &blocks.back()));
-
-    SetMTP(blocks, activation - 1);
-    BOOST_CHECK(!IsUpgrade8Enabled(params, &blocks.back()));
-
-    SetMTP(blocks, activation);
-    BOOST_CHECK(IsUpgrade8Enabled(params, &blocks.back()));
-
-    SetMTP(blocks, activation + 1);
-    BOOST_CHECK(IsUpgrade8Enabled(params, &blocks.back()));
+    BOOST_CHECK(!IsUpgrade8Enabled(consensus, &blocks[0]));
+    BOOST_CHECK(!IsUpgrade8Enabled(consensus, &blocks[1]));
+    BOOST_CHECK(IsUpgrade8Enabled(consensus, &blocks[2]));
+    BOOST_CHECK(IsUpgrade8Enabled(consensus, &blocks[3]));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

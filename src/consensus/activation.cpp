@@ -96,5 +96,5 @@ bool IsUpgrade8Enabled(const Consensus::Params &params, const CBlockIndex *pinde
         return false;
     }
 
-    return pindexPrev->GetMedianTimePast() >= gArgs.GetArg("-upgrade8activationtime", params.upgrade8ActivationTime);
+    return pindexPrev->nHeight >= params.upgrade8Height;
 }

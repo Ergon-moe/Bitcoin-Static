@@ -29,7 +29,7 @@ struct CustomArgumentsFixture {
         const std::set<std::string> testArgs = {
             testsuitename,
             "-axionactivationtime",
-            "-upgrade8activationtime",
+            "-upgrade9activationtime",
             force_locale,
         };
 
