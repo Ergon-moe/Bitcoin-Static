@@ -50,7 +50,7 @@ done like this:
 
     make download
     mkdir SDKs
-    tar -C SDKs -xf /path/to/MacOSX10.14.sdk.tar.xz
+    tar -C SDKs -xf /path/to/MacOSX10.15.sdk.tar.xz
     make build-osx HOST=x86_64-apple-darwin16
 
 Building the node against these dependencies is again a matter of (starting
@@ -135,8 +135,8 @@ In this example, `-DBUILD_BITCOIN_WALLET=OFF` should be passed to the `cmake`
 command line to ensure that the build will not fail due to missing dependencies.
 
 NOTE: The SDK_PATH should be set to the parent folder in which the
-`MacOSX10.14.sdk/` is located. Alternatively, you can unpack the SDK within
-the `depends/SDKs/` folder or create a symbolic link named `MacOSX10.14.sdk/`
+`MacOSX10.15.sdk/` is located. Alternatively, you can unpack the SDK within
+the `depends/SDKs/` folder or create a symbolic link named `MacOSX10.15.sdk/`
 to it from there.
 
 Additional targets:
