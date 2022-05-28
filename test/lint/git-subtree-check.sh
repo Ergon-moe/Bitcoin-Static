@@ -49,7 +49,8 @@ if [ -z "$latest_squash" ]; then
     echo "ERROR: $DIR is not a subtree" >&2
     exit 2
 fi
-set $latest_squash
+# shellcheck disable=SC2086
+set -- $latest_squash
 old=$1
 rev=$2
 
@@ -59,7 +60,8 @@ if [ -z "$tree_actual" ]; then
     echo "FAIL: subtree directory $DIR not found in $COMMIT" >&2
     exit 1
 fi
-set $tree_actual
+# shellcheck disable=SC2086
+set -- $tree_actual
 tree_actual_type=$2
 tree_actual_tree=$3
 echo "$DIR in $COMMIT currently refers to $tree_actual_type $tree_actual_tree"
@@ -69,22 +71,22 @@ if [ "d$tree_actual_type" != "dtree" ]; then
 fi
 
 # get the tree at the time of the last subtree update
-tree_commit=$(git show -s --format="%T" $old)
+tree_commit=$(git show -s --format="%T" "$old")
 echo "$DIR in $COMMIT was last updated in commit $old (tree $tree_commit)"
 
 # ... and compare the actual tree with it
 if [ "$tree_actual_tree" != "$tree_commit" ]; then
-    git diff $tree_commit $tree_actual_tree >&2
+    git diff "$tree_commit" "$tree_actual_tree" >&2
     echo "FAIL: subtree directory was touched without subtree merge" >&2
     exit 1
 fi
 
 # get the tree in the subtree commit referred to
-if [ "d$(git cat-file -t $rev 2>/dev/null)" != dcommit ]; then
+if [ "d$(git cat-file -t "$rev" 2>/dev/null)" != dcommit ]; then
     echo "subtree commit $rev unavailable: cannot compare" >&2
     exit
 fi
-tree_subtree=$(git show -s --format="%T" $rev)
+tree_subtree=$(git show -s --format="%T" "$rev")
 echo "$DIR in $COMMIT was last updated to upstream commit $rev (tree $tree_subtree)"
 
 # ... and compare the actual tree with it
