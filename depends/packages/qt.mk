@@ -11,6 +11,7 @@ $(package)_qt_libs=corelib network widgets gui plugins testlib
 $(package)_patches=fix_qt_pkgconfig.patch mac-qmake.conf fix_configure_mac.patch fix_no_printer.patch
 $(package)_patches+= fix_rcc_determinism.patch xkb-default.patch no-xlib.patch dont_hardcode_pwd.patch
 $(package)_patches+= drop_lrelease_dependency.patch
+$(package)_patches+=fix_numeric_limits_compile_error.patch
 
 
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
@@ -141,6 +142,7 @@ endef
 
 define $(package)_preprocess_cmds
   sed -i.old "s|updateqm.commands = \$$$$\$$$$LRELEASE|updateqm.commands = $($(package)_extract_dir)/qttools/bin/lrelease|" qttranslations/translations/translations.pro && \
+  patch -p1 -i $($(package)_patch_dir)/fix_numeric_limits_compile_error.patch && \
   patch -p1 -i $($(package)_patch_dir)/drop_lrelease_dependency.patch && \
   patch -p1 -i $($(package)_patch_dir)/dont_hardcode_pwd.patch &&\
   mkdir -p qtbase/mkspecs/macx-clang-linux &&\
