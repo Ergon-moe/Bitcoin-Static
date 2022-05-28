@@ -61,11 +61,11 @@ extracted from the free SDK.
 
 ```bash
 cd ~/gitian-builder
-curl -LO https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.14.sdk.tar.xz
-echo "0f03869f72df8705b832910517b47dd5b79eb4e160512602f593ed243b28715f MacOSX10.14.sdk.tar.xz" | sha256sum -c
-# Should echo "MacOSX10.14.sdk.tar.xz: OK"
+curl -LO https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.15.sdk.tar.xz
+echo "2408d07df7f324d3beea818585a6d990ba99587c218a3969f924dfcc4de93b62 MacOSX10.15.sdk.tar.xz" | sha256sum -c
+# Should echo "MacOSX10.15.sdk.tar.xz: OK"
 mkdir -p inputs
-mv MacOSX10.14.sdk.tar.xz inputs
+mv MacOSX10.15.sdk.tar.xz inputs
 ```
 
 Alternatively, you can skip the macOS build by adding `--os=lw` below.
