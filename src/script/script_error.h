@@ -91,8 +91,6 @@ enum class ScriptError {
     ERROR_COUNT,
 };
 
-#define SCRIPT_ERR_LAST ScriptError::ERROR_COUNT
-
 const char *ScriptErrorString(const ScriptError error);
 
 namespace {
