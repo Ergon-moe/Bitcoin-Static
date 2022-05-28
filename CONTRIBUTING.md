@@ -85,6 +85,43 @@ it is recommended to consult with project maintainers about the desirability
 of the change, so you can be sure they are willing to spend the time required
 to review your work.
 
+### Merge Request Philosophy
+
+Patchsets should always be focused. For example, a merge request could add a
+feature, fix a bug, or refactor code; but not a mixture. Please also avoid super
+merge requests which attempt to do too much, are overly large, or overly complex
+as this makes review difficult.
+
+#### Features
+
+When adding a new feature, thought must be given to the long term technical debt
+and maintenance that feature may require after inclusion. Before proposing a new
+feature that will require maintenance, please consider if you are willing to
+maintain it (including bug fixing). If features get orphaned with nobody using
+and caring for them in the future, they may be removed by the project maintainers.
+
+#### Refactoring
+
+Refactoring is a necessary part of any software project's evolution. The
+following guidelines cover refactoring merge requests for the project.
+
+There are three categories of refactoring: code-only moves, code style fixes, and
+code refactoring. In general, refactoring merge requests should not mix these
+three kinds of activities in order to make refactoring merge requests easy to
+review and uncontroversial. In all cases, refactoring MRs must not change the
+behaviour of code within the merge request (bugs must be preserved as is).
+
+Project maintainers aim for a quick turnaround on refactoring merge requests, so
+where possible keep them short, uncomplex and easy to verify.
+
+Merge requests that refactor the code should not be made by new contributors. It
+requires a certain level of experience to know where the code belongs to and to
+understand the full ramification (including rebase effort of other open MRs).
+
+Trivial merge requests or merge requests that refactor the code with no clear
+benefits may be immediately closed by the maintainers to reduce unnecessary
+workload on reviewing.
+
 #### Critical code paths
 
 Some code paths are more critical than others. This applies to code such as
