@@ -37,7 +37,8 @@ static UniValue setexcessiveblock(Config &config,
             "setexcessiveblock",
             "\nSet the excessive block size. Excessive blocks will not be used "
             "in the active chain or relayed. This discourages the propagation "
-            "of blocks that you consider excessively large.",
+            "of blocks that you consider excessively large.\n"
+            "DEPRECATED: instead, use excessiveblocksize config option and node restart.\n",
             {
                 {"maxBlockSize", RPCArg::Type::NUM, /* opt */ false,
                  /* default_value */ "",
