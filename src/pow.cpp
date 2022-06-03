@@ -552,8 +552,6 @@ static arith_uint256 ComputeEmaTarget(const CBlockIndex *pindexPrev,
     int64_t t0 = p0->nTime;
     int64_t t = t1 - t0;
 
-
-
     int64_t resistance = 1000;
 
     /*
@@ -596,14 +594,15 @@ static arith_uint256 ComputeEmaTarget(const CBlockIndex *pindexPrev,
                     - work / (resistance*resistance);
     } else {
     // Multiplication of arith uint by a negative is unimplemented, for negative sign we pull the minus out manually
-        work -= -(work * (-t) / params.nPowTargetSpacing) / resistance
-                    - work / resistance
-                    - (work * (-t) * (-t)
+        t = -t;
+        work += (work * t / params.nPowTargetSpacing) / resistance
+                    + work / resistance
+                    + (work * t * t
                     / (params.nPowTargetSpacing*params.nPowTargetSpacing))
                     / (resistance*resistance)
-                    - 2 * (work * (-t) / params.nPowTargetSpacing)
+                    + 2 * (work * t / params.nPowTargetSpacing)
                     / (resistance*resistance)
-                    - work / (resistance*resistance);
+                    + work / (resistance*resistance);
     }
     /**
      * We need to compute T = (2^256 / W) - 1 but 2^256 doesn't fit in 256 bits.
