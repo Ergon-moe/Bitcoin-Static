@@ -9,6 +9,7 @@ architectures:
 packages:
 - "autoconf"
 - "automake"
+- "bison"
 - "bsdmainutils"
 - "ca-certificates"
 - "cmake"

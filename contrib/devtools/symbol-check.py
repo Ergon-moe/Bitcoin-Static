@@ -36,11 +36,13 @@ import os
 #   (glibc)    GLIBC_2_19
 #
 MAX_VERSIONS = {
-    'GCC': (4, 8, 0),
+    'GCC': (8, 3, 0),
     'CXXABI': (1, 3, 7),
     'GLIBCXX': (3, 4, 18),
-    'GLIBC': (2, 19),
-    'LIBATOMIC': (1, 0)
+    'GLIBC': (2, 27),
+    'LIBATOMIC': (1, 0),
+    'V' : (1, 0, 0),  # Some parts of libxkb* use this
+    'gssapi_krb5_2' : (1, 0, 0), # OpenSSl 1.1.1 may link against this
 }
 # See here for a description of _IO_stdin_used:
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=634261#109
@@ -72,9 +74,23 @@ ALLOWED_LIBRARIES = {
     'libX11-xcb.so.1',  # part of X11
     'libX11.so.6',  # part of X11
     'libxcb.so.1',  # part of X11
+    'libxkbcommon.so.0',  # keyboard keymapping
+    'libxkbcommon-x11.so.0',  # keyboard keymapping
     'libfontconfig.so.1',  # font support
     'libfreetype.so.6',  # font parsing
-    'libdl.so.2'  # programming interface to dynamic linker
+    'libdl.so.2',  # programming interface to dynamic linker
+    'libxcb-icccm.so.4',
+    'libxcb-image.so.0',
+    'libxcb-shm.so.0',
+    'libxcb-keysyms.so.1',
+    'libxcb-randr.so.0',
+    'libxcb-render-util.so.0',
+    'libxcb-render.so.0',
+    'libxcb-shape.so.0',
+    'libxcb-sync.so.1',
+    'libxcb-xfixes.so.0',
+    'libxcb-xkb.so.1',
+    'libgssapi_krb5.so.2',
 }
 ARCH_MIN_GLIBC_VER = {
     '80386': (2, 1),
@@ -138,7 +154,11 @@ def check_version(max_versions, version, arch):
     else:
         lib = version
         ver = '0'
-    ver = tuple([int(x) for x in ver.split('.')])
+    try:
+        ver = tuple([int(x) for x in ver.split('.')])
+    except ValueError:
+        # Some lib version info like "gssapi_krb5_2_MIT" cannot be parsed, assume 0.
+        ver = 0,
     if lib not in max_versions:
         return False
     return ver <= max_versions[lib] or lib == 'GLIBC' and ver <= ARCH_MIN_GLIBC_VER[arch]

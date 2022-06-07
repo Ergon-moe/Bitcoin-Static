@@ -40,7 +40,7 @@ No other options are needed, the paths are automatically configured.
 
 #### Common to all arch/OS
 
-    sudo apt-get install build-essential autoconf automake cmake curl git libtool ninja-build patch pkg-config python3
+    sudo apt-get install build-essential autoconf automake cmake curl git libtool ninja-build patch pkg-config python3 bison
 
 #### For macOS cross compilation
 

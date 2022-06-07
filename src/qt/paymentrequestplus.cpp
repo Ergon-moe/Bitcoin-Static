@@ -172,7 +172,7 @@ bool PaymentRequestPlus::getMerchant(X509_STORE *certStore,
         std::string data_to_verify;
         rcopy.SerializeToString(&data_to_verify);
 
-#if HAVE_DECL_EVP_MD_CTX_NEW
+#if HAVE_DECL_EVP_MD_CTX_NEW || (defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10101000L)
         EVP_MD_CTX *ctx = EVP_MD_CTX_new();
         if (!ctx) {
             throw SSLVerifyError("Error allocating OpenSSL context.");
@@ -192,7 +192,7 @@ bool PaymentRequestPlus::getMerchant(X509_STORE *certStore,
                 (unsigned int)paymentRequest.signature().size(), pubkey)) {
             throw SSLVerifyError("Bad signature, invalid payment request.");
         }
-#if HAVE_DECL_EVP_MD_CTX_NEW
+#if HAVE_DECL_EVP_MD_CTX_NEW || (defined(OPENSSL_VERSION_NUMBER) && OPENSSL_VERSION_NUMBER >= 0x10101000L)
         EVP_MD_CTX_free(ctx);
 #endif
 
