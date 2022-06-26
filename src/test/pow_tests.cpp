@@ -127,7 +127,7 @@ static CBlockIndexPtr GetBlockIndex(CBlockIndex *pindexPrev, int64_t nTimeInterv
 BOOST_AUTO_TEST_CASE(exp_difficulty_test) {
     DummyConfig config(CBaseChainParams::MAIN);
 
-    std::vector<CBlockIndexPtr> blocks(3000);
+    std::vector<CBlockIndexPtr> blocks(40000);
 
     const Consensus::Params &params = config.GetChainParams().GetConsensus();
     const arith_uint256 powLimit = UintToArith256(params.powLimit);
@@ -168,7 +168,7 @@ BOOST_AUTO_TEST_CASE(exp_difficulty_test) {
     // expected timestamp.
     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 6000, nBits);
     BOOST_CHECK_EQUAL(
-        GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params), nBits);
+    GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params), nBits);
     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 2*600 - 6000, nBits);
     i++;
     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 600, nBits);
@@ -178,6 +178,7 @@ BOOST_AUTO_TEST_CASE(exp_difficulty_test) {
     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 600, nBits);
     BOOST_CHECK_EQUAL(
         GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params), nBits);
+
 
     // The system should continue unaffected by the block with a bogous
     // timestamps.
@@ -258,8 +259,18 @@ BOOST_AUTO_TEST_CASE(exp_difficulty_test) {
     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 6000, nBits);
     nBits = GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params);
 
+    // We produce blocks in a way that will produce a negative solve time,
+    // chronologically 1 2 3 4 will come out as 3 1 4 2, the middle blocks of
+    // this order will be 3 and 2, which is reversed. EMA daa is desgned
+    // to handle it with an increase in difficulty. This order happened
+    // between blocks 31343 and 31346 on the Bitcoin Static main chain
+    // causing a difficulty drop assigning a negative to an unsigned integer.
+
+
+    //nBits = GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params);
     // And goes down again. It takes a while due to the window being bounded and
     // the skewed block causes 2 blocks to get out of the window.
+    // nBits = GetNextExpWorkRequired(blocks[i++].get(), &blkHeaderDummy, params);
     for (size_t j = 0; j < 218; i++, j++) {
         blocks[i] = GetBlockIndex(blocks[i - 1].get(), 6000, nBits);
         const uint32_t nextBits =
@@ -289,6 +300,27 @@ BOOST_AUTO_TEST_CASE(exp_difficulty_test) {
         BOOST_CHECK_EQUAL(nextBits, powLimitBits);
         nBits = nextBits;
     }
+//    for (size_t j = 0; j < 30000; i++, j++) {
+        // reach the daa
+//         blocks[i] = GetBlockIndex(blocks[i - 1].get(), 600, nBits);
+//     }
+//     nBits = GetNextExpWorkRequired(blocks[i].get(), &blkHeaderDummy, params);
+
+//     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 3 * 600, nBits); // #3
+//     i++;
+//     blocks[i] = GetBlockIndex(blocks[i - 1].get(), - 3 * 600 + 600 , nBits); // #1
+//     i++;
+//     blocks[i] = GetBlockIndex(blocks[i - 1].get(), 4 * 600 - 600, nBits); // #4
+//     i++;
+//     blocks[i] = GetBlockIndex(blocks[i - 1].get(), -4 * 600 + 2*600, nBits); // #4
+//     const uint32_t nextBits = GetNextExpWorkRequired(blocks[i].get(), &blkHeaderDummy, params);
+//     arith_uint256 currentTarget;
+//     currentTarget.SetCompact(nBits);
+//     arith_uint256 nextTarget;
+//     nextTarget.SetCompact(nextBits);
+//     BOOST_CHECK(nextTarget <= powLimit);
+//     BOOST_CHECK(nextTarget < currentTarget);
+ //    BOOST_CHECK((currentTarget - nextTarget) < (currentTarget >> 3));
 }
 
 double TargetFromBits(const uint32_t nBits) {

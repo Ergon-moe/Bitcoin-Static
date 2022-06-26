@@ -124,7 +124,7 @@ public:
         // November 13, 2017 hard fork
         consensus.daaHeight = 0;
 
-        consensus.emaDAAHeight = 31343;
+        consensus.emaDAAHeight = 68000;
 
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 0;
@@ -197,6 +197,7 @@ public:
 
         vSeeds.emplace_back("dnsseed.ergon.moe");
         vSeeds.emplace_back("seed.ergon.loping.net");
+
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<uint8_t>(1, 5);
         base58Prefixes[SECRET_KEY] = std::vector<uint8_t>(1, 128);
@@ -265,7 +266,7 @@ public:
 
         // November 13, 2017 hard fork
         consensus.daaHeight = 0;
-        consensus.emaDAAHeight = 60000;
+        consensus.emaDAAHeight = 61905;
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 0;
 

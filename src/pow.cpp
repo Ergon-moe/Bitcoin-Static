@@ -686,8 +686,9 @@ uint32_t GetNextExpWorkRequired(const CBlockIndex *pindex,
     arith_uint256 nextTarget=ComputeExpTarget(pindex , params);
     if(pindex->nHeight < params.emaDAAHeight) {
         nextTarget=ComputeExpTarget(pindex , params);
-    }
-    else {
+    } else if (pindex->nHeight == params.emaDAAHeight) {
+        return 0x1b03c53c;
+    } else {
         nextTarget=ComputeEmaTarget(pindex , params);
     }
     const arith_uint256 powLimit = UintToArith256(params.powLimit);
