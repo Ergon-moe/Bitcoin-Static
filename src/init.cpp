@@ -919,6 +919,12 @@ void SetupServerArgs() {
                   defaultChainParams->GetConsensus().axionActivationTime),
         true, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg(
+        "-emaactivationtime=<n>",
+        strprintf("Activation time of the July 2022 Bitcoin Static Network Upgrade (<n> seconds since epoch, "
+                  "default: %d). This option only has an effect on regtest or scalenet.",
+                  defaultChainParams->GetConsensus().emaDAATime),
+        true, OptionsCategory::DEBUG_TEST);
+    gArgs.AddArg(
         "-tachyonactivationtime=<n>",
         strprintf("Tentative activation time of the first Bitcoin Cash Network Upgrade after November 2020 "
                   "(<n> seconds since epoch, default: %d)",

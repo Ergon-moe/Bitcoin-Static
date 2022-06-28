@@ -43,4 +43,7 @@ bool IsAxionEnabled(const Consensus::Params &params,
 bool IsTachyonEnabled(const Consensus::Params &params,
                       const CBlockIndex *pindexPrev);
 
+bool IsEMAEnabled(const Consensus::Params &params,
+                      const CBlockIndex *pindexPrev);
+
 #endif // BITCOIN_CONSENSUS_ACTIVATION_H

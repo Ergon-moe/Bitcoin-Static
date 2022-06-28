@@ -418,7 +418,7 @@ bool GetTransaction(const TxId &txid, CTransactionRef &txOut,
 bool ActivateBestChain(
     const Config &config, CValidationState &state,
     std::shared_ptr<const CBlock> pblock = std::shared_ptr<const CBlock>());
-Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
+Amount GetBlockSubsidy(CBlockIndex *pindexPrev, uint32_t nBits, int nHeight,
                        const Consensus::Params &consensusParams);
 
 /**

@@ -91,6 +91,16 @@ bool IsAxionEnabled(const Consensus::Params &params,
            gArgs.GetArg("-axionactivationtime", params.axionActivationTime);
 }
 
+bool IsEMAEnabled(const Consensus::Params &params,
+                    const CBlockIndex *pindexPrev) {
+    if (pindexPrev == nullptr) {
+        return false;
+    }
+
+    return pindexPrev->GetMedianTimePast() >=
+           gArgs.GetArg("-emaactivationtime", params.emaDAATime);
+}
+
 bool IsTachyonEnabled(const Consensus::Params &params,
                       const CBlockIndex *pindexPrev) {
     if (pindexPrev == nullptr) {

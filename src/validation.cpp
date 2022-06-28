@@ -933,9 +933,10 @@ bool ReadBlockFromDisk(CBlock &block, const CBlockIndex *pindex,
     return true;
 }
 
-Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
+Amount GetBlockSubsidy(CBlockIndex *pindexPrev, uint32_t nBits, int nHeight,
                        const Consensus::Params &consensusParams) {
     //calculate work based on nBits like in GetBlockProof from chain.cpp
+
     arith_uint256 bnTarget;
     bool fNegative;
     bool fOverflow;
@@ -945,12 +946,31 @@ Amount GetBlockSubsidy(uint32_t nBits, int nHeight,
     }
     arith_uint256 aWork = (~bnTarget / (bnTarget + 1)) + 1;
 
+    const CBlockIndex *emaBlock = pindexPrev;
+
+    while (emaBlock->pprev) {
+        // first, skip backwards testing IsEMAEnabled
+        // The below code leverages CBlockIndex::pskip to walk back efficiently.
+        if (IsEMAEnabled(consensusParams, emaBlock->pskip)) {
+            // skip backward
+            emaBlock = emaBlock->pskip;
+            continue; // continue skipping
+        }
+        // cannot skip here, walk back by 1
+        if (!IsEMAEnabled(consensusParams, emaBlock->pprev)) {
+            // found it -- highest block where EMA is not enabled is emaBlock->pprev, and
+            // emaBlock points to the first block for which IsAxionEnabled() == true
+            break;
+        }
+        // Walking back by 1
+        emaBlock = emaBlock->pprev;
+    }
     int divisions = nHeight / consensusParams.nSubsidyHalvingInterval;
-    int reward_fork =
-        consensusParams.emaDAAHeight /consensusParams.nSubsidyHalvingInterval;
+    int emaHeight =
+        emaBlock->nHeight /consensusParams.nSubsidyHalvingInterval;
     for(int a=0; a < divisions ; a++)  {
         // to be tunned in few years based on high quality empirical research
-        if(a < reward_fork) {
+        if(a < emaHeight) {
             aWork *= 99826;
             aWork /= 100000;
         }
@@ -1934,8 +1954,8 @@ bool CChainState::ConnectBlock(const CBlock &block, CValidationState &state,
              nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
 
     Amount blockReward =
-        nFees/2 + GetBlockSubsidy(pindex->nBits, pindex->nHeight,
-                                consensusParams);
+        nFees/2 + GetBlockSubsidy(pindex->pprev, pindex->nBits, pindex->nHeight,
+                                  consensusParams);
     if (block.vtx[0]->GetValueOut() > blockReward) {
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much "

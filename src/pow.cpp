@@ -649,22 +649,22 @@ static arith_uint256 ComputeExpTarget(const CBlockIndex *pindexPrev,
 
     if(normalized_time > minimum) {
         work -= (work * minimum) / resistance
-            - work / resistance
-            - (work * minimum * minimum)
-            / (resistance*resistance)
-            + 2 * (work * minimum)
-            / (resistance*resistance)
-            - work / (resistance*resistance);
+                 - work / resistance
+                 - (work * minimum * minimum)
+                 / (resistance*resistance)
+                 + 2 * (work * minimum)
+                 / (resistance*resistance)
+                 - work / (resistance*resistance);
     }
     else {
         work -= (work * t / params.nPowTargetSpacing) / resistance
-                    - work / resistance
-                    - (work * (t*t)
-                    / (params.nPowTargetSpacing*params.nPowTargetSpacing))
-                    / (resistance*resistance)
-                    + 2 * (work * t / params.nPowTargetSpacing)
-                    / (resistance*resistance)
-                    - work / (resistance*resistance);
+                 - work / resistance
+                 - (work * (t*t)
+                 / (params.nPowTargetSpacing*params.nPowTargetSpacing))
+                 / (resistance*resistance)
+                 + 2 * (work * t / params.nPowTargetSpacing)
+                 / (resistance*resistance)
+                 - work / (resistance*resistance);
     }
 
     /**
@@ -675,31 +675,29 @@ static arith_uint256 ComputeExpTarget(const CBlockIndex *pindexPrev,
     return (-work) / work;
 }
 
-uint32_t GetNextExpWorkRequired(const CBlockIndex *pindex,
+uint32_t GetNextExpWorkRequired(const CBlockIndex *pindexPrev,
                         const CBlockHeader *pblock,
                         const Consensus::Params &params) {
     // This cannot handle the genesis block and early blocks in general.
-    assert(pindex);
-    if (pindex->nHeight<4) {
+    assert(pindexPrev);
+    if (pindexPrev->nHeight<4) {
         return 0x1a04b500; //should be about right for two s9
     }
-    arith_uint256 nextTarget=ComputeExpTarget(pindex , params);
-    if(pindex->nHeight < params.emaDAAHeight) {
-        nextTarget=ComputeExpTarget(pindex , params);
-    } else if (pindex->nHeight == params.emaDAAHeight) {
+    arith_uint256 nextTarget=ComputeExpTarget(pindexPrev , params);
+    if(! IsEMAEnabled(params, pindexPrev)) {
+        nextTarget=ComputeExpTarget(pindexPrev , params);
+    } else if (IsEMAEnabled(params, pindexPrev)
+               && !IsEMAEnabled(params, pindexPrev->pprev)) {
+        // Due to attack on Jun 24 2022 the difficulty was driven to powLimit,
+        // we need to jumpstart it back on the fork.
         return 0x1b03c53c;
     } else {
-        nextTarget=ComputeEmaTarget(pindex , params);
+        nextTarget=ComputeEmaTarget(pindexPrev , params);
     }
     const arith_uint256 powLimit = UintToArith256(params.powLimit);
     if (nextTarget > powLimit) {
         return powLimit.GetCompact();
     }
-    //const arith_uint256 powLimit = UintToArith256(params.powLimit);
-
-    //if (nextTarget > powLimit) {
-    //    return powLimit.GetCompact();
-    //}
 
     return nextTarget.GetCompact();
 }
