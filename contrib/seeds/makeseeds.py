@@ -15,7 +15,7 @@ NSEEDS = 512
 
 MAX_SEEDS_PER_ASN = 2
 
-MIN_BLOCKS = 540000
+MIN_BLOCKS = 62000
 
 # These are hosts that have been observed to be behaving strangely (e.g.
 # aggressively connecting to every node).
@@ -37,11 +37,8 @@ PATTERN_ONION = re.compile(
 # Used to only select nodes with a user agent string compatible with the
 # Bitcoin Cash specification.
 PATTERN_AGENT = re.compile(
-    r"^(/Bitcoin Static:23\.(\d+)\.(\d+)[^/]*/"
-    r"|/Flowee:1[^/]*/|/kth:0\.6\.(\d+)[^/]*/"
-    r"|/bchd:0\.17\.(\d+)[^/]*/"
-    r"|/Bitcoin Verde:2\.(\d+)\.(\d+)[^/]*/"
-    r"|/XRG Unlimited:1\.9\.(\d+)[^/]*/)")
+    r"^(/Bitcoin Static:24\.(\d+)\.(\d+)[^/]*/)")
+
 
 
 def parseline(line):
@@ -163,7 +160,7 @@ def filterbyasn(ips, max_per_asn, max_total):
                 ipaddr = res.rstrip('.')
                 prefix = '.origin6'
 
-            asn = int([x.to_text() for x in dns.resolver.query('.'.join(
+            asn = int([x.to_text() for x in dns.resolver.resolve('.'.join(
                 reversed(ipaddr.split('.'))) + prefix + '.asn.cymru.com',
                 'TXT').response.answer][0].split('\"')[1].split(' ')[0])
             if asn not in asn_count:

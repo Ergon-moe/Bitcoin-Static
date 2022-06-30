@@ -432,6 +432,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
         // pointer for convenience.
         CBlock *pblock = &pblocktemplate->block;
         {
+            CBlockIndex *prev = ::ChainActive().Tip();
             LOCK(cs_main);
             pblock->nVersion = 1;
             pblock->nTime = ::ChainActive().Tip()->GetMedianTimePast() + 1;
@@ -444,7 +445,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
             txCoinbase.vout[0].scriptPubKey = CScript();
             CBlockHeader header = pblock->GetBlockHeader();
             pblock->nBits = GetNextWorkRequired(::ChainActive().Tip(), &header, chainparams.GetConsensus());
-            txCoinbase.vout[0].nValue = GetBlockSubsidy(pblock->nBits, 0, chainparams.GetConsensus());
+            txCoinbase.vout[0].nValue = GetBlockSubsidy(prev, pblock->nBits, 0, chainparams.GetConsensus());
             pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
             if (txFirst.size() == 0) {
                 baseheight = ::ChainActive().Height();
@@ -496,7 +497,9 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity) {
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams, g_mempool)
                                      .CreateNewBlock(scriptPubKey));
     CBlock *pblock = &pblocktemplate->block;
-    const Amount BLOCKSUBSIDY = GetBlockSubsidy(pblock->nBits, 0, chainparams.GetConsensus());
+    CBlockIndex *prev = ::ChainActive().Tip();
+    const Amount BLOCKSUBSIDY = GetBlockSubsidy(prev, pblock->nBits, 0,
+                                                chainparams.GetConsensus());
     const Amount LOWFEE = CENT;
     const Amount HIGHFEE = COIN;
     const Amount HIGHERFEE = 4 * COIN;

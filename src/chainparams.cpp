@@ -124,8 +124,6 @@ public:
         // November 13, 2017 hard fork
         consensus.daaHeight = 0;
 
-        consensus.emaDAATime = 1657000000;
-
         // November 15, 2018 hard fork
         consensus.magneticAnomalyHeight = 0;
 
@@ -140,6 +138,10 @@ public:
 
         // May 15, 2021 12:00:00 UTC tentative protocol upgrade
         consensus.tachyonActivationTime = 1621080000;
+
+        // Jul 2022 protocol upgrade 07-07-2022 12:00:00
+        consensus.emaDAATime = 1657195200;
+
 
         // Default limit for block size (in bytes)
         consensus.nDefaultExcessiveBlockSize = DEFAULT_EXCESSIVE_BLOCK_SIZE;

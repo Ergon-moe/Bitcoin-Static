@@ -690,7 +690,8 @@ uint32_t GetNextExpWorkRequired(const CBlockIndex *pindexPrev,
                && !IsEMAEnabled(params, pindexPrev->pprev)) {
         // Due to attack on Jun 24 2022 the difficulty was driven to powLimit,
         // we need to jumpstart it back on the fork.
-        return 0x1b03c53c;
+        return 0x1a04b500;
+        //return 0x1b03c53c; //Should result in a non-zero reward.
     } else {
         nextTarget=ComputeEmaTarget(pindexPrev , params);
     }

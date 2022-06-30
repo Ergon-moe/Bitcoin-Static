@@ -1,23 +1,39 @@
-# Release Notes for Bitcoin Static version 23.1.3
+# Release Notes for Bitcoin Static version 23.1.1
 
-Bitcoin Static version 24.0.0 is now available from:
+Bitcoin Static version 23.1.1 is now available from:
 
   <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
 ## Overview
 
-The release introduces a hard fork fix to a DAA exploit that happened on July 24th 2022. The hardfork will be activated based on the median time past (MTP) on July 7th 2022. It fixes the difficulty adjustment algorithm to handle bad input better. The exploit has driven the difficulty to minimum and the reward to zero. The hardfork includes a kickstart back to a reasonable difficulty and nonzero reward. It also fixes the older mistake of the Moore's law correction parameter. Instead of being 2.3y as intended initially it was mistakenly set to half of that value. From the time of the fork it will be on the intended value.
+Default node policy reduced to 0.01 fix/b. Default data falder changed to bitcoin-static, **see usage recommendations for the migration guide**. Some more rebranding fixes and full C++17 migration.
+
 
 
 ## Usage recommendations
 
+igration guide from 23.0.0 to 23.1.1
 
+The default data folder has been changed from Bitcoin to Bitcoin Static. It means that the version 23.1.0 won't be able to see your coins unless you. The recommended way to migrate between those version:
+
+(optional)
+0. The new version implements a reduced transaction fee. If you have many utxos that might need combining and you want to do it on the older node version, add the following options to your bitcoin.conf file.
+dustrelayfee=0.0000001
+minrelaytxfee=0.0000001
+blockmintxfee=0.0000001
+mintxfee=0.0000001
+
+1. Download 23.1.0 but keep the 23.0.0 binary file for your architecture,
+2. Turn on the Bitcoin Static qt wallet and sellect the default directory,
+3. Sellect the receive tab, click request payment and copy the address and paste it to a text file,
+4. Close the Bitcoin Static window and turn on Bitcoin Static 23.0.0,
+3. Go to Send tab and send all the coins to the address.
+
+If you prefer to keep the addresses you're using, you need to export private keys corresponding to the addresses and import them to the new version.
 
 ## Network changes
-Hard fork introducing
 
-- DAA upgrade
-- Moore's law correction parameter value from now on being as intended.
+...
 
 
 ## Added functionality

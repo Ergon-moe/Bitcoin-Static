@@ -1,23 +1,26 @@
-# Release Notes for Bitcoin Static version 23.1.3
+# Release Notes for Bitcoin Static version 23.0.0
 
-Bitcoin Static version 24.0.0 is now available from:
+Bitcoin Static version 23.0.0 is now available from:
 
   <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
 ## Overview
 
-The release introduces a hard fork fix to a DAA exploit that happened on July 24th 2022. The hardfork will be activated based on the median time past (MTP) on July 7th 2022. It fixes the difficulty adjustment algorithm to handle bad input better. The exploit has driven the difficulty to minimum and the reward to zero. The hardfork includes a kickstart back to a reasonable difficulty and nonzero reward. It also fixes the older mistake of the Moore's law correction parameter. Instead of being 2.3y as intended initially it was mistakenly set to half of that value. From the time of the fork it will be on the intended value.
+This is the first release of Bitcoin Static implementing proportional reward
+system, different DAA, burning half of the fees, new magic numbers, new genesis
+block, decreasedminimum difficulty, "ergon:" address prefix, client rebranding,
+default 288block finalization (compare 10 block finalization in bitcoin) and May
+poison pill removed.
 
 
 ## Usage recommendations
 
+...
 
 
 ## Network changes
-Hard fork introducing
 
-- DAA upgrade
-- Moore's law correction parameter value from now on being as intended.
+...
 
 
 ## Added functionality
