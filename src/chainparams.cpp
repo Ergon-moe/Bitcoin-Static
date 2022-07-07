@@ -140,7 +140,7 @@ public:
         consensus.tachyonActivationTime = 1621080000;
 
         // Jul 2022 protocol upgrade 07-07-2022 12:00:00
-        consensus.emaDAATime = 1657195200;
+        consensus.emaDAATime = 1657800000;
 
 
         // Default limit for block size (in bytes)
@@ -215,7 +215,9 @@ public:
         m_is_test_chain = false;
 
         checkpointData = {
-            .mapCheckpoints = {}};
+            .mapCheckpoints = {
+            }
+        };
 
         chainTxData = ChainTxData{1620430294, 1713, 0.00167};
     }

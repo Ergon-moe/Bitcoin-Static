@@ -61,7 +61,7 @@ Alternatively, you can skip the macOS build by adding `--os=lw` below.
 The `gitian-build.py` script will checkout different release tags, so it's best to copy it:
 
 ```bash
-cp bitcoin-cash-node/contrib/gitian-build.py .
+cp Bitcoin-Static/contrib/gitian-build.py .
 ```
 
 You only need to do this once:
@@ -90,7 +90,7 @@ You need to copy these uncommited changes to your host machine, where you can si
 
 ```bash
 export NAME=satoshi
-gpg --output $VERSION-linux/$NAME/bitcoin-cash-node-linux-0.21.0-build.assert.sig --detach-sign 0.21.0-linux/$NAME/bitcoin-cash-node-linux-0.21.0-build.assert
-gpg --output $VERSION-osx-unsigned/$NAME/bitcoin-cash-node-osx-0.21.0-build.assert.sig --detach-sign 0.21.0-osx-unsigned/$NAME/bitcoin-cash-node-osx-0.21.0-build.assert
-gpg --output $VERSION-win-unsigned/$NAME/bitcoin-cash-node-win-0.21.0-build.assert.sig --detach-sign 0.21.0-win-unsigned/$NAME/bitcoin-cash-node-win-0.21.0-build.assert
+gpg --output $VERSION-linux/$NAME/bitcoin-static-linux-0.21.0-build.assert.sig --detach-sign 0.21.0-linux/$NAME/bitcoin-static-linux-0.21.0-build.assert
+gpg --output $VERSION-osx-unsigned/$NAME/bitcoin-static-osx-0.21.0-build.assert.sig --detach-sign 0.21.0-osx-unsigned/$NAME/bitcoin-static-osx-0.21.0-build.assert
+gpg --output $VERSION-win-unsigned/$NAME/bitcoin-static-win-0.21.0-build.assert.sig --detach-sign 0.21.0-win-unsigned/$NAME/bitcoin-static-win-0.21.0-build.assert
 ```
