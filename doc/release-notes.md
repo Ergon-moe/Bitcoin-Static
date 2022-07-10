@@ -1,6 +1,6 @@
-# Release Notes for Bitcoin Static version 24.0.2
+# Release Notes for Bitcoin Static version 24.0.3
 
-Bitcoin Static version 24.0.2 is now available from:
+Bitcoin Static version 24.0.3 is now available from:
 
   <https://github.com/Ergon-moe/Bitcoin-Static/releases/>
 
