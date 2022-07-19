@@ -140,7 +140,7 @@ public:
         consensus.tachyonActivationTime = 1621080000;
 
         // Jul 2022 protocol upgrade 07-07-2022 12:00:00
-        consensus.emaDAATime = 1657800000;
+        consensus.emaDAATime = 1659182400;
 
 
         // Default limit for block size (in bytes)

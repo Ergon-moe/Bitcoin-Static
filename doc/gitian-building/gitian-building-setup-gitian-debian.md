@@ -76,7 +76,7 @@ Clone the git repositories for Bitcoin Static and Gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node.git
+git clone https://github.com/Ergon-moe/Bitcoin-Static.git
 ```
 
 ## Setting up the Gitian image
@@ -108,5 +108,5 @@ Execute the following as user `gitianuser`:
 
 ```bash
 cd gitian-builder
-make -C ../bitcoin-cash-node/depends download SOURCES_PATH=`pwd`/cache/common
+make -C ../Bitcoin-Static/depends download SOURCES_PATH=`pwd`/cache/common
 ```
